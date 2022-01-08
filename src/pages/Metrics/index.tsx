@@ -1,24 +1,16 @@
-import Button from '@/components/Button';
-import Paginator from '@/components/Paginator';
-import Tabs, { TabsEnum } from '@/components/Tabs';
-import Text from '@/components/Text';
 import React from 'react';
 import styles from './index.less';
+import ListCharacter from './ListCharacter';
+import Total from './Total';
 
 interface Props {}
 
 const Metrics: React.FC<Props> = (props: Props) => {
-  const handleChangeTab = (tab: TabsEnum) => {
-    console.log('🚀 ~ tab', tab);
-  };
-
-  const onPage = (pape: number) => {
-    console.log('🚀 ~ pape', pape);
-  };
-
   return (
     <div className={styles.metrics}>
-      <Text type="caption-12-light">Caption 12 - Light</Text>
+      <Total />
+      <ListCharacter />
+      {/* <Text type="caption-12-light">Caption 12 - Light</Text>
       <Text type="caption-12-regular">Caption 12 - regular</Text>
       <Text type="caption-12-semi-bold">Caption 12 - semibold</Text>
       <Text type="caption-12-bold">Caption 12 - bold</Text>
@@ -35,19 +27,19 @@ const Metrics: React.FC<Props> = (props: Props) => {
       <Text type="title-24-bold">Title 24 - bold</Text>
       <Text type="title-24-extra-bold">Title 24 - Extrabold</Text>
       <Text type="title-30-semi-bold">Title 30 - semibold</Text>
-      <Text type="title-30-bold">Title 30 - bold</Text>
+      <Text type="title-30-bold">Title 30 - bold</Text> */}
 
-      <Button className={styles.button}>Button</Button>
+      {/* <Button className={styles.button}>Button 1</Button>
       <Button className={styles.button} type="outline">
-        Button
+        Button 2
       </Button>
       <Button className={styles.button} type="ghost">
-        Button
-      </Button>
+        Button 3
+      </Button> */}
 
-      <Tabs onChange={handleChangeTab} />
+      {/* <Tabs onChange={handleChangeTab} /> */}
 
-      <Paginator currentPage={1} totalPages={100} onPage={onPage} />
+      {/* <Paginator currentPage={1} totalPages={100} onPage={onPage} /> */}
     </div>
   );
 };

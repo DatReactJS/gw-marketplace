@@ -1,0 +1,28 @@
+@import './colors.less';
+@import './fonts.less';
+@import './text.less';
+@import './table.less';
+@import './input.less';
+@import './layout.less';
+@import './modal.less';
+@import './input.less';
+@import './tooltip.less';
+
+body {
+  height: 100vh;
+  background: var(--primary-400);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .Toastify {
+    .Toastify__toast-body > div:last-child {
+      &:extend(.p-30-semi-bold,
+      .darker);
+      text-align: center;
+    }
+  }
+}

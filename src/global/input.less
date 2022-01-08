@@ -1,0 +1,76 @@
+.wrapper-input {
+  position: relative;
+  width: fit-content;
+
+  .input-label {
+    margin-bottom: 8px;
+    cursor: default;
+  }
+
+  .input {
+    height: 40px;
+    display: inline-block;
+    background: var(--primary-500);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0 16px;
+    &:extend(.body-16-semi-bold);
+    color: var(--neutral-0);
+    transition: all 0.3s;
+    outline: none;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      border: 1px solid var(--accent-500);
+    }
+
+    // input disabled
+    &-disabled {
+      background: var(--Darker);
+      cursor: not-allowed;
+      color: var(--Lighter);
+
+      &:hover {
+        border: 1px solid transparent;
+      }
+    }
+
+    // input number
+    &-number {
+      /* Chrome, Safari, Edge, Opera */
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      &[type='number'] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    // input password
+    &-password {
+      padding-right: 48px;
+    }
+  }
+
+  .mask-password,
+  .icon-suffix {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+  }
+
+  .mask-password {
+    cursor: pointer;
+  }
+
+  .eye-password {
+    position: absolute;
+    right: 16px;
+    top: 24px;
+  }
+}

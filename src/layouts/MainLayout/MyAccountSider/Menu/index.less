@@ -1,0 +1,36 @@
+.wrapper {
+  max-height: calc(100% - 110px);
+  position: fixed;
+  overflow-y: scroll;
+}
+
+.menu {
+  width: 256px;
+  height: 740px;
+  background: var(--primary-400);
+  border: 1px solid var(--primary-100);
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 16px 16px 24px;
+
+  .btn {
+    margin-bottom: 4px;
+    width: 100%;
+    justify-content: flex-start;
+    color: var(--primary-100);
+  }
+
+  .btnActive {
+    color: var(--neutral-0);
+  }
+
+  .btnLogout {
+    margin-top: 300px;
+    color: var(--warning);
+
+    &:hover,
+    &:focus {
+      color: var(--warning) !important;
+    }
+  }
+}

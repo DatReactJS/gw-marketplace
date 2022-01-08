@@ -1,0 +1,21 @@
+@import './fonts.less';
+
+.rc-tooltip {
+  .rc-tooltip-inner {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .tooltip-overlay {
+      color: var(--Dark-1);
+      &:extend(.p-14);
+    }
+  }
+
+  .rc-tooltip-arrow {
+    display: none;
+  }
+}

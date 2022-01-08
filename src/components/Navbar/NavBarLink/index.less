@@ -1,0 +1,45 @@
+.navLink {
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  color: var(--primary-100);
+  position: relative;
+  height: 64px;
+  display: inline-block;
+  padding-left: 32px;
+
+  span {
+    &.hidden {
+      color: transparent;
+    }
+    &::after {
+      color: var(--primary-100);
+      content: attr(data-content);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
+  }
+  &:global {
+    &:not(.disabled):hover {
+      span {
+        &::after {
+          color: var(--accent-600);
+        }
+      }
+    }
+    &.active {
+      span {
+        &::after {
+          color: var(--accent-600);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

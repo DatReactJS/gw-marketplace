@@ -1,0 +1,63 @@
+.Paginator {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  color: var(--primary-100);
+  align-items: center;
+  .number {
+    display: flex;
+    height: 32px;
+  }
+  div {
+    cursor: pointer;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    height: 30px;
+    margin: 0 1px;
+
+    &.ellipsis {
+      border: transparent;
+      span {
+        transform: translateY(-15%);
+      }
+    }
+
+    &:not(.active).pagesNumber:hover,
+    &.active {
+      background: var(--accent-500);
+      color: var(--neutral-0);
+    }
+
+    &.prev,
+    &.next {
+      position: relative;
+      background: var(--accent-500);
+    }
+
+    .icon-next,
+    .icon-prev {
+      height: 20px;
+    }
+
+    .icon-prev {
+      transform: rotate(180deg);
+    }
+
+    span {
+      margin: auto;
+      font-family: 'NunitoSans-Bold';
+      font-weight: 700;
+      font-size: 14px;
+      font-style: normal;
+      line-height: 22px;
+      letter-spacing: 0em;
+    }
+  }
+}

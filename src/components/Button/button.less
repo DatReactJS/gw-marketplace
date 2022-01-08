@@ -1,0 +1,143 @@
+.btn {
+  border-radius: 8px;
+  @border-width: 1px;
+  padding: calc(8px - @border-width);
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  outline: none;
+  font-family: 'NunitoSans-Bold';
+  font-weight: 700;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: 0em;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &-primary {
+    border: @border-width solid var(--accent-500);
+    background: var(--accent-500);
+    color: var(--neutral-0);
+
+    &:not(.disabled, .loading)&:hover,
+    :focus {
+      background: var(--accent-600);
+      border: @border-width solid var(--accent-600);
+    }
+    &.disabled {
+      cursor: not-allowed;
+    }
+    &.loading {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      .loading-btn {
+        order: 99;
+        margin-right: 0.5em;
+        display: inline-block;
+        height: 1.2em;
+        width: 1.2em;
+        animation: lds-dual-ring 1.2s linear infinite;
+        * {
+          fill: var(--primary-100);
+        }
+      }
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+
+  &-outline {
+    background: transparent;
+    border: 1px solid var(--accent-500);
+    color: var(--accent-500);
+
+    &:not(.disabled, .loading)&:hover,
+    :focus {
+      border: 1px solid var(--accent-600);
+      color: var(--accent-600);
+    }
+    &.disabled {
+      cursor: not-allowed;
+    }
+    &.loading {
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      .loading-btn {
+        order: 99;
+        margin-right: 0.5em;
+        display: inline-block;
+        height: 1.2em;
+        width: 1.2em;
+        animation: lds-dual-ring 1.2s linear infinite;
+        * {
+          fill: var(--primary-100);
+        }
+      }
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+
+  &-ghost {
+    border: none;
+    background: transparent;
+    color: var(--accent-500);
+
+    &:not(.disabled, .loading)&:hover,
+    :focus {
+      color: var(--accent-600);
+    }
+    &.disabled {
+      cursor: not-allowed;
+    }
+    &.loading {
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      .loading-btn {
+        order: 99;
+        margin-right: 0.5em;
+        display: inline-block;
+        height: 1.2em;
+        width: 1.2em;
+        animation: lds-dual-ring 1.2s linear infinite;
+        * {
+          fill: var(--primary-100);
+        }
+      }
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+
+  .prefix-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,91 @@
+.font {
+  font-family: 'Inter-SemiBold';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--White);
+}
+
+.rcselect {
+  background: transparent;
+  border: 1px solid var(--Secondary);
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: relative;
+  height: 44px !important;
+  cursor: pointer;
+
+  &.rc-select-open {
+    & + svg {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  .rc-select-selector {
+    cursor: pointer;
+    height: 44px !important;
+    border: 1px solid transparent;
+    .rc-select-selection-placeholder {
+      top: 6px;
+      left: 20px;
+      position: absolute;
+    }
+    input {
+      border: none;
+      outline: none;
+      &:extend(.font);
+      cursor: pointer;
+    }
+    .rc-select-selection-item {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      &:extend(.font);
+    }
+  }
+}
+.rc-select-dropdown {
+  &.rc-select-dropdown-hidden {
+    display: none;
+  }
+  background: #050d57;
+  border: 1px solid #050d57;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 3px 0;
+  position: relative;
+  box-sizing: border-box;
+  .rc-select-item {
+    transition: 0.3s ease-in-out;
+    &:extend(.font);
+    cursor: pointer;
+    padding: 8px 20px;
+    overflow-y: hidden;
+    opacity: 0.8;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .rc-select-item-option-selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.checkbox-container {
+  cursor: pointer;
+  position: relative;
+  & > svg {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    transition: 0.5s ease-in-out;
+  }
+}

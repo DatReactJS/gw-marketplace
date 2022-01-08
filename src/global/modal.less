@@ -1,0 +1,37 @@
+.rc-dialog-mask {
+  background: #100435;
+  opacity: 0.95;
+  filter: blur(100px);
+}
+
+.rc-dialog {
+  display: flex;
+  align-items: center;
+
+  .rc-dialog-content {
+    width: 100%;
+    background: linear-gradient(180deg, #3b4fff 0%, #3a10e3 100%);
+    border-radius: 20px;
+    .rc-dialog-close {
+      opacity: 1;
+      top: 20px;
+      right: 16px;
+    }
+    .rc-dialog-body {
+      padding: 16px 24px;
+      width: 100%;
+
+      .modal-title {
+        display: flex;
+        justify-content: center;
+      }
+      .modal-body {
+        padding: 24px 0;
+      }
+
+      .modal-footer {
+        width: 100%;
+      }
+    }
+  }
+}

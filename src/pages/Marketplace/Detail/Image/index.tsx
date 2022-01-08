@@ -18,7 +18,7 @@ const Image: React.FC<Props> = (props: Props) => {
       </Text>
 
       <div className={styles.img}>
-        <img alt="" src="/assets/images/char/char1.png" />
+        <img alt="" src="/assets/images/char/char2.png" />
       </div>
     </div>
   );

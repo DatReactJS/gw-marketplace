@@ -22,6 +22,7 @@ export default {
   'common.confirmPayment': 'Confirm payment',
   'common.goInventory': 'Go to Inventory',
   'common.deposit': 'Deposit',
+  'common.withdraw': 'Withdraw',
   'common.funds': 'Please deposit more funds to MetaMask.',
   'common.description': 'Lorem ipsum dolor sit amet consectetur',
 
@@ -110,4 +111,14 @@ export default {
   'marketplace.detail.saleHistory': 'Sale History',
   'marketplace.detail.buyer': 'BUYER',
   'marketplace.detail.seller': 'SELLER',
+
+  // Account
+  'account.wallets': 'Wallets',
+  'account.metamaskAddress': 'MetaMask Address: {address}',
+  'account.character': '{amount} Character',
+  'account.characters': '{amount} Characters',
+  'account.ship': '{amount} Ship',
+  'account.ships': '{amount} Ships',
+  'account.accesory': '{amount} Accesory',
+  'account.accesorys': '{amount} Accesories',
 };

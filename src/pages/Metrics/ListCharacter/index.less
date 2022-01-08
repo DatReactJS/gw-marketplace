@@ -1,0 +1,326 @@
+@import '../../../global/colors.less';
+@import '../../../global/fonts.less';
+.listCharacter {
+  display: flex;
+  max-width: 1232px;
+  width: 100%;
+  height: auto;
+  margin: 0px auto;
+  margin-top: 48px;
+  @media (max-width: 1200px) {
+    display: block;
+  }
+  .recentlyListed {
+    max-width: 608px;
+    width: 100%;
+    height: auto;
+    .titleRecentlyListed {
+      // font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      color: @neutral-0;
+    }
+    .headerSelectOption {
+      border: 1px solid @primary-100;
+      box-sizing: border-box;
+      border-radius: 8px;
+      margin-top: 16px;
+      height: 67px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .linkToMarketplace {
+      width: 100%;
+      // font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 22px;
+      color: @accent-500;
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      > img {
+        margin-left: 8px;
+      }
+    }
+  }
+  .recentlySold {
+    max-width: 608px;
+    width: 100%;
+    height: auto;
+    margin-left: 16px;
+    .titleRecentlySold {
+      // font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      color: @neutral-0;
+    }
+    .headerSelectOption {
+      border: 1px solid @primary-100;
+      box-sizing: border-box;
+      border-radius: 8px;
+      margin-top: 16px;
+      height: 67px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+  }
+}
+.pagination {
+  width: fit-content;
+  margin: 0px auto;
+  margin-top: 24px;
+}
+.itemListed {
+  max-width: 608px;
+  width: 100%;
+  height: 64px;
+  border: 1px solid @primary-100;
+  box-sizing: border-box;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px;
+  &:hover {
+    border: 1px solid @accent-500;
+    cursor: pointer;
+  }
+  .infoCharacter {
+    display: flex;
+
+    .characterCode {
+      display: flex;
+      align-items: center;
+      .avatar {
+        max-width: 48px;
+        max-height: 51px;
+      }
+      .code {
+        background: @accent-500;
+        border-radius: 4px;
+        width: fit-content;
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0px 4px;
+        color: @neutral-0;
+        margin-left: 8px;
+      }
+    }
+    .characterPower {
+      margin-left: 33px;
+      display: flex;
+      align-items: center;
+      .detailPower {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 26px;
+        align-items: center;
+        .icon {
+        }
+        .detail {
+          // font-family: Nunito Sans;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 20px;
+          color: @neutral-0;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+  .infoPriceCharacter {
+    .detail {
+      display: flex;
+      align-items: center;
+      .number {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 28px;
+        color: @accent-500;
+      }
+      .icon {
+        margin: 0px 7px 0px 3px;
+        width: 26px;
+        height: 26px;
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .price {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: @neutral-0;
+      }
+    }
+    .time {
+      // font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 20px;
+      color: @primary-100;
+      float: right;
+    }
+  }
+}
+
+.itemSold {
+  max-width: 608px;
+  width: 100%;
+  height: 64px;
+  border: 1px solid @primary-100;
+  box-sizing: border-box;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  &:hover {
+    border: 1px solid @accent-500;
+    cursor: pointer;
+  }
+  .infoCharacter {
+    display: flex;
+    .characterCode {
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      .avatar {
+        max-width: 48px;
+        max-height: 51px;
+      }
+      .code {
+        background: @accent-500;
+        border-radius: 4px;
+        width: fit-content;
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0px 4px;
+        color: @neutral-0;
+        margin-left: 8px;
+      }
+    }
+    .buyer {
+      margin-left: 32px;
+      .title {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: @primary-100;
+      }
+      .name {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        color: @neutral-0;
+      }
+      .code {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: @primary-100;
+      }
+    }
+    .seller {
+      margin-left: 46px;
+      .title {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: @primary-100;
+      }
+      .name {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        color: @neutral-0;
+      }
+      .code {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: @primary-100;
+      }
+    }
+  }
+  .infoPriceCharacter {
+    padding: 8px 8px 8px 0px;
+    .detail {
+      display: flex;
+      align-items: center;
+      .number {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 28px;
+        color: @accent-500;
+      }
+      .icon {
+        margin: 0px 7px 0px 3px;
+        width: 26px;
+        height: 26px;
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .price {
+        // font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: @neutral-0;
+      }
+    }
+    .time {
+      // font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 20px;
+      color: @primary-100;
+      float: right;
+    }
+  }
+}

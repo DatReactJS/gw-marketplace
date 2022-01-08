@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Paginator from '@/components/Paginator';
-import Tabs, { EnumTabs } from '@/components/Tabs';
+import Tabs, { TabsEnum } from '@/components/Tabs';
 import Text from '@/components/Text';
 import React from 'react';
 import styles from './index.less';
@@ -8,7 +8,7 @@ import styles from './index.less';
 interface Props {}
 
 const Metrics: React.FC<Props> = (props: Props) => {
-  const handleChangeTab = (tab: EnumTabs) => {
+  const handleChangeTab = (tab: TabsEnum) => {
     console.log('🚀 ~ tab', tab);
   };
 

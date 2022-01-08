@@ -7,33 +7,33 @@ import Text from '../Text';
 import styles from './index.less';
 
 interface Props {
-  onChange: (tabs: EnumTabs) => void;
-  defaultTab?: EnumTabs;
+  onChange: (tabs: TabsEnum) => void;
+  defaultTab?: TabsEnum;
 }
 
 interface Ref {
   ref?: React.Ref<any>;
 }
 
-export enum EnumTabs {
-  CHARACTER,
-  SHIP,
-  ACCESORY,
+export enum TabsEnum {
+  CHARACTER = 'character',
+  SHIP = 'ship',
+  ACCESORY = 'accessory',
 }
 
 const Tabs: React.FC<Props & Ref> = React.forwardRef(
   (props: Props, ref: Ref['ref']) => {
-    const { onChange, defaultTab = EnumTabs.CHARACTER } = props;
+    const { onChange, defaultTab = TabsEnum.CHARACTER } = props;
 
     const tabs = [
-      { icon: <Character />, label: 'Character', value: EnumTabs.CHARACTER },
-      { icon: <Ship />, label: 'Ship', value: EnumTabs.SHIP },
-      { icon: <Accessory />, label: 'Accessory', value: EnumTabs.ACCESORY },
+      { icon: <Character />, label: 'Character', value: TabsEnum.CHARACTER },
+      { icon: <Ship />, label: 'Ship', value: TabsEnum.SHIP },
+      { icon: <Accessory />, label: 'Accessory', value: TabsEnum.ACCESORY },
     ];
 
-    const [activeTab, setActiveTab] = React.useState<EnumTabs>(defaultTab);
+    const [activeTab, setActiveTab] = React.useState<TabsEnum>(defaultTab);
 
-    const onChangeTab = (newTab: EnumTabs) => {
+    const onChangeTab = (newTab: TabsEnum) => {
       setActiveTab(newTab);
 
       onChange(newTab);
@@ -50,7 +50,7 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
 
     return (
       <div className={styles.tabs}>
-        {tabs.map(({ icon, label, value }, index: EnumTabs) => {
+        {tabs.map(({ icon, label, value }, index: number) => {
           const isActive: boolean = activeTab === value;
 
           return (

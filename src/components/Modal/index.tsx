@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
         animation="zoom"
         maskAnimation="fade"
         onClose={onClose}
-        closeIcon={<img alt="" src="/assets/images/ic-cancel.png" />}
+        closeIcon={<img alt="" src="/assets/images/close_square.svg" />}
         keyboard={false}
         {...rest}
       >

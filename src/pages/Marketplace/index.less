@@ -3,11 +3,35 @@
   margin: 0 auto;
 
   .tabs {
-    padding-bottom: 8px;
+    padding: 0 16px 8px 16px;
     border-bottom: 1px solid var(--primary-300);
     z-index: 1;
     background-color: var(--primary-400);
     position: fixed;
     width: 1440px;
+  }
+
+  .heroContainer {
+    max-width: 1160px;
+    margin: 16px auto;
+  }
+
+  .heroContainerFlex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .heroCard {
+    flex: 0 0 25%;
+    width: 272px;
+    height: 312px;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+
+  .paginatorContainer {
+    flex-direction: row;
+    display: flex;
+    align-self: center;
   }
 }

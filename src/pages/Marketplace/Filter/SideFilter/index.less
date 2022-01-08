@@ -1,0 +1,35 @@
+.sideFilter {
+  max-height: calc(100% - 110px);
+  position: fixed;
+  overflow-y: scroll;
+
+  .content {
+    width: 256px;
+    // height: 740px;
+    background: var(--primary-300);
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 16px;
+
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .titleFilter {
+        display: flex;
+        align-items: center;
+
+        .txt {
+          margin-left: 4px;
+        }
+      }
+    }
+
+    .allFilter {
+      margin-top: 32px;
+      height: 648px;
+      overflow-y: scroll;
+    }
+  }
+}

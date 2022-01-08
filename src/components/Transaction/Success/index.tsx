@@ -1,33 +1,40 @@
 import Button from '@/components/Button';
 import Text from '@/components/Text';
-import classNames from 'classnames';
 import React from 'react';
-import { useIntl } from 'umi';
+import { history, useIntl } from 'umi';
 import styles from './index.less';
 
 interface Props {
   hash: string;
-  onClose: () => void;
 }
 
-const Success: React.FC<Props> = ({ hash, onClose }: Props) => {
+const Success: React.FC<Props> = ({ hash }: Props) => {
   const intl = useIntl();
 
-  const handleClose = (event: React.MouseEvent) => {
+  const goInventory = (event: React.MouseEvent) => {
     event.preventDefault();
 
-    onClose();
+    history.push('/account/inventory');
   };
 
   return (
     <div className={styles.success}>
-      <Text type="p-18-semi-bold">Content Success</Text>
+      <img
+        alt=""
+        src="/assets/images/success_big.svg"
+        className={styles.icon}
+      />
 
-      <Button
-        className={classNames('p-30-semi-bold', styles.btn)}
-        onClick={handleClose}
-      >
-        {intl.formatMessage({ id: 'common.close' })}
+      <Text type="title-24-semi-bold">
+        {intl.formatMessage({ id: 'common.purchaseSuccessful' })}
+      </Text>
+
+      <Text type="body-14-regular" color="primary-100">
+        {intl.formatMessage({ id: 'common.description' })}
+      </Text>
+
+      <Button className={styles.btn} onClick={goInventory}>
+        {intl.formatMessage({ id: 'common.goInventory' })}
       </Button>
     </div>
   );

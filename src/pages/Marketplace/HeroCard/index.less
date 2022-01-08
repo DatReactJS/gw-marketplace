@@ -1,0 +1,55 @@
+.heroCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-300);
+  border-radius: 8px;
+  height: 100%;
+  width: 272px;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+
+  &:hover {
+    border: 2px solid var(--accent-500);
+  }
+
+  .img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .info {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    padding: 0 6px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: var(--accent-500);
+
+    .id {
+      margin-left: 6px;
+    }
+  }
+
+  .prices {
+    position: absolute;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+
+    .bnb {
+      display: flex;
+      align-items: center;
+      margin-right: 4px;
+
+      .balance {
+        margin-right: 4px;
+      }
+    }
+  }
+}

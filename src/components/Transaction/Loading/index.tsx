@@ -15,7 +15,7 @@ const Loading: React.FC<Props> = (props: Props) => {
         src="/assets/images/ic-loader.png"
         className={styles.loader}
       />
-      <Text type="p-20-medium-teko">
+      <Text type="headline-20-bold">
         {intl.formatMessage({ id: 'common.loading.textInfo' })}
       </Text>
     </div>

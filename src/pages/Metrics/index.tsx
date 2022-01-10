@@ -1,3 +1,4 @@
+import Text from '@/components/Text';
 import React from 'react';
 import styles from './index.less';
 import ListCharacter from './ListCharacter';

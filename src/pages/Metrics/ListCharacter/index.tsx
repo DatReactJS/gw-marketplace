@@ -4,10 +4,13 @@ import React from 'react';
 import styles from './index.less';
 import ItemListed from './ItemListed';
 import ItemSold from './ItemSold';
+import { useIntl } from 'umi';
 
 interface Props {}
 
 const ListCharacter: React.FC<Props> = (props: Props) => {
+  const intl = useIntl();
+
   const handleChangeTab = (tab: TabsEnum) => {
     console.log('🚀 ~ tab', tab);
   };
@@ -20,18 +23,23 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
     <>
       <div className={styles.listCharacter}>
         <div className={styles.recentlyListed}>
-          <div className={styles.titleRecentlyListed}>Recently listed</div>
+          <div className={styles.titleRecentlyListed}>
+            {intl.formatMessage({ id: 'metrics.recentlyListed' })}{' '}
+          </div>
           <div className={styles.headerSelectOption}>
             <Tabs onChange={handleChangeTab} />
           </div>
           <ItemListed />
           <div className={styles.linkToMarketplace}>
-            View more on Marketplace
+            {intl.formatMessage({ id: 'metrics.viewMarketPlace' })}
             <img src="/assets/images/arrow_right.svg" alt="" />
           </div>
         </div>
         <div className={styles.recentlySold}>
-          <div className={styles.titleRecentlySold}>Recently listed</div>
+          <div className={styles.titleRecentlySold}>
+            {' '}
+            {intl.formatMessage({ id: 'metrics.recentlySold' })}
+          </div>
           <div className={styles.headerSelectOption}>
             <Tabs onChange={handleChangeTab} />
           </div>

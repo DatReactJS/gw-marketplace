@@ -71,6 +71,16 @@ export default {
   'login.passwordRequired': 'Password is required',
   'login.forgotPassword': 'Forgot password?',
 
+  //metrics
+  'metrics.last24h': 'Last 24h',
+  'metrics.days7': '7 days',
+  'metrics.days30': '30 days',
+  'metrics.totalSale': 'TOTAL SALE',
+  'metrics.totalVolume': 'TOTAL VOLUME',
+  'metrics.totalSold': 'TOTAL SOLD',
+  'metrics.viewMarketPlace': 'View more on Marketplace',
+  'metrics.recentlyListed': 'Recently listed',
+  'metrics.recentlySold': 'Recently sold',
   // Filter
   'filter.filter': 'Filter',
   'filter.total': 'Filter ({total})',

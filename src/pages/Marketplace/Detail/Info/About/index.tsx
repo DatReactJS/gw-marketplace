@@ -22,7 +22,7 @@ const About: React.FC<Props> = (props: Props) => {
             </Text>
 
             <div className={styles.property}>
-              <img alt="" src="/assets/images/warrior.svg" />
+              <img alt="" src="/assets/images/Warrior.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 Warrior
               </Text>
@@ -35,7 +35,7 @@ const About: React.FC<Props> = (props: Props) => {
             </Text>
 
             <div className={styles.property}>
-              <img alt="" src="/assets/images/RarityLegend.svg" />
+              <img alt="" src="/assets/images/Legend.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 Legendary
               </Text>

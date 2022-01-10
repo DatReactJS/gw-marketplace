@@ -21,7 +21,7 @@ const HeroCard: React.FC<Props> = (props: Props) => {
       <img alt="" src="/assets/images/char/char1.png" className={styles.img} />
 
       <div className={styles.info}>
-        <img alt="" src="/assets/images/warrior.svg" />
+        <img alt="" src="/assets/images/Warrior.png" />
         <Text type="caption-12-semi-bold" className={styles.id}>
           #62354876
         </Text>

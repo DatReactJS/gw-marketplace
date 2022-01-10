@@ -5,8 +5,9 @@ import styles from './index.less';
 export enum SorterValues {
   HIGHEST_ID = 'highestID',
   LOWEST_ID = 'lowestID',
-  HIGHEST_STAR = 'highestStar',
-  LOWEST_STAR = 'lowestStar',
+  HIGHEST_PRICE = 'highestPrice',
+  LOWEST_PRICE = 'lowestPrice',
+  LASTEST = 'lastest',
 }
 
 interface Props {
@@ -31,12 +32,16 @@ const Sorter: React.FC<Props> = ({
           label: intl.formatMessage({ id: 'filter.sorter.lowestID' }),
         },
         {
-          value: SorterValues.HIGHEST_STAR,
-          label: intl.formatMessage({ id: 'filter.sorter.highestStar' }),
+          value: SorterValues.HIGHEST_PRICE,
+          label: intl.formatMessage({ id: 'filter.sorter.highestPrice' }),
         },
         {
-          value: SorterValues.LOWEST_STAR,
-          label: intl.formatMessage({ id: 'filter.sorter.lowestStar' }),
+          value: SorterValues.LOWEST_PRICE,
+          label: intl.formatMessage({ id: 'filter.sorter.lowestPrice' }),
+        },
+        {
+          value: SorterValues.LASTEST,
+          label: intl.formatMessage({ id: 'filter.sorter.lastest' }),
         },
       ]}
       value={value}

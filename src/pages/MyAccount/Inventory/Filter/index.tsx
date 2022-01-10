@@ -66,7 +66,6 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
 
       if (JSON.stringify(currentQuery) !== '{}') {
         const newValues = getInitialValues(currentQuery);
-        history.push({ query: { ...newValues, tab } });
         getNumberFilter(newValues);
         form.setFieldsValue(newValues);
       }
@@ -174,7 +173,7 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
       }
 
       if (tab === TabsEnum.ACCESORY) {
-        if (values?.stat && +values?.stat === 0 && isNumber(+values.stat)) {
+        if (values?.stat || (+values?.stat === 0 && isNumber(+values.stat))) {
           count += 1;
         }
 

@@ -33,7 +33,7 @@ const Classes: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('warrior')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/warrior.svg" />
+              <img alt="" src="/assets/images/Warrior.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.class.warrior' })}
               </Text>
@@ -46,7 +46,7 @@ const Classes: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('mage')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/mage.svg" />
+              <img alt="" src="/assets/images/Mage.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.class.mage' })}
               </Text>
@@ -59,7 +59,7 @@ const Classes: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('assasin')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/assasin.svg" />
+              <img alt="" src="/assets/images/Assasin.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.class.assasin' })}
               </Text>

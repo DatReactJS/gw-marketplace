@@ -114,8 +114,9 @@ export default {
   'filter.type.notForSale': 'Not for sale',
   'filter.sorter.highestID': 'Highest ID',
   'filter.sorter.lowestID': 'Lowest ID',
-  'filter.sorter.highestStar': 'Highest Star',
-  'filter.sorter.lowestStar': 'Lowest Star',
+  'filter.sorter.highestPrice': 'Highest Price',
+  'filter.sorter.lowestPrice': 'Lowest Price',
+  'filter.sorter.lastest': 'Lastest',
 
   // Marketplace
   'marketplace.character.detail': 'Character Detail',

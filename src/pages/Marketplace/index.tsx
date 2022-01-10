@@ -18,7 +18,7 @@ const Marketplace: React.FC<Props> = (props: Props) => {
   const currentPage: number = +location.query?.page - 1 || 0;
   const tab: TabsEnum = location.query?.tab || TabsEnum.CHARACTER;
 
-  useMount(() => history.push({ query: { tab } }));
+  useMount(() => history.push({ query: { ...location.query, tab } }));
 
   const { loading, data, run } = useRequest(
     () => {

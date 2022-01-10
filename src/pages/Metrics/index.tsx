@@ -1,3 +1,4 @@
+import Text from '@/components/Text';
 import React from 'react';
 import styles from './index.less';
 import ListCharacter from './ListCharacter';
@@ -10,7 +11,7 @@ const Metrics: React.FC<Props> = (props: Props) => {
     <div className={styles.metrics}>
       <Total />
       <ListCharacter />
-      {/* <Text type="caption-12-light">Caption 12 - Light</Text>
+      <Text type="caption-12-light">Caption 12 - Light</Text>
       <Text type="caption-12-regular">Caption 12 - regular</Text>
       <Text type="caption-12-semi-bold">Caption 12 - semibold</Text>
       <Text type="caption-12-bold">Caption 12 - bold</Text>
@@ -27,7 +28,7 @@ const Metrics: React.FC<Props> = (props: Props) => {
       <Text type="title-24-bold">Title 24 - bold</Text>
       <Text type="title-24-extra-bold">Title 24 - Extrabold</Text>
       <Text type="title-30-semi-bold">Title 30 - semibold</Text>
-      <Text type="title-30-bold">Title 30 - bold</Text> */}
+      <Text type="title-30-bold">Title 30 - bold</Text>
 
       {/* <Button className={styles.button}>Button 1</Button>
       <Button className={styles.button} type="outline">

@@ -5,24 +5,20 @@
   width: 100%;
   height: auto;
   .date {
-    font-family: Nunito Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: @neutral-0;
+    height: 24px;
+    span {
+      color: @neutral-0;
+    }
   }
   .detail {
     margin-top: 12px;
     display: flex;
     align-items: center;
     .dateActivity {
-      font-family: Nunito Sans;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 22px;
-      color: #868790;
+      height: 22px;
+      span {
+        color: @primary-100;
+      }
     }
     .image {
       max-width: 33px;
@@ -38,42 +34,34 @@
       margin-left: 19px;
       height: fit-content;
       .info {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 22px;
-        color: @neutral-0;
+        height: 22px;
         span {
-          font-family: Nunito Sans;
-          font-style: normal;
-          font-weight: 600;
-          font-size: 14px;
+          color: @neutral-0;
+        }
+        strong {
           line-height: 22px;
-          color: #e9992a;
+          color: @accent-500;
           padding: 0px 4px;
+          font-weight: 600;
           cursor: pointer;
         }
       }
       .link {
         display: flex;
         .linkLeft {
-          font-family: Nunito Sans;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 12px;
-          line-height: 20px;
-          color: #868790;
+          height: 20px;
           cursor: pointer;
+          span {
+            color: @primary-100;
+          }
         }
         .linkRight {
           cursor: pointer;
-          font-family: Nunito Sans;
-          font-style: normal;
-          font-weight: normal;
           font-size: 12px;
-          line-height: 20px;
-          color: #868790;
+          height: 20px;
+          span {
+            color: @primary-100;
+          }
         }
       }
     }

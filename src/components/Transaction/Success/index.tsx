@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import Text from '@/components/Text';
 import React from 'react';
-import { history, useIntl } from 'umi';
+import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
 
 interface Props {
@@ -10,11 +10,14 @@ interface Props {
 
 const Success: React.FC<Props> = ({ hash }: Props) => {
   const intl = useIntl();
+  const location: any = useLocation();
 
   const goInventory = (event: React.MouseEvent) => {
     event.preventDefault();
 
-    history.push('/account/inventory');
+    const [, path] = location.pathname.split('/');
+
+    history.push(`/account/inventory?tab=${path}`);
   };
 
   return (

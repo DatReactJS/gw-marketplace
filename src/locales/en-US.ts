@@ -90,6 +90,7 @@ export default {
   'metrics.viewMarketPlace': 'View more on Marketplace',
   'metrics.recentlyListed': 'Recently listed',
   'metrics.recentlySold': 'Recently sold',
+
   // Filter
   'filter.filter': 'Filter',
   'filter.total': 'Filter ({total})',
@@ -120,6 +121,8 @@ export default {
   'marketplace.character.detail': 'Character Detail',
   'marketplace.ship.detail': 'Ship Detail',
   'marketplace.accesory.detail': 'Accesory Detail',
+  'marketplace.noResultFound': 'No result found',
+  'marketplace.cantMatch': 'We can’t find any item matching your filter.',
 
   'marketplace.detail.about': 'About',
   'marketplace.detail.class': 'CLASS',

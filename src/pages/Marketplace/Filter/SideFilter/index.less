@@ -25,6 +25,24 @@
           margin-left: 4px;
         }
       }
+
+      .clear {
+        cursor: pointer;
+        margin-top: 1px;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 1px;
+          display: block;
+          background: var(--accent-500);
+          transition: 300ms;
+        }
+
+        &:hover::after {
+          width: 67px;
+        }
+      }
     }
 
     .allFilter {

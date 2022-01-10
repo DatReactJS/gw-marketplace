@@ -1,6 +1,7 @@
 import FormItem from '@/components/Form';
 import { TabsEnum } from '@/components/Tabs';
 import Text from '@/components/Text';
+import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'umi';
 import Attack from './Attack';
@@ -41,6 +42,9 @@ const SideFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
             color="accent-500"
             onClick={onClear}
             disabled={total === 0}
+            className={classNames({
+              [styles.clear]: total > 0,
+            })}
           >
             {intl.formatMessage({ id: 'filter.clear' })}
           </Text>

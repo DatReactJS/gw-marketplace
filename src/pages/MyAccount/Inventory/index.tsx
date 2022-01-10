@@ -2,6 +2,7 @@ import Loading from '@/components/Loading';
 import Paginator from '@/components/Paginator';
 import Tabs, { TabsEnum } from '@/components/Tabs';
 import HeroCard from '@/pages/Marketplace/HeroCard';
+import NoData from '@/pages/Marketplace/NoData';
 import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import { useDebounceFn, useMount, useRequest } from '@umijs/hooks';
 import React from 'react';
@@ -96,6 +97,10 @@ const Inventory: React.FC<Props> = (props: Props) => {
           </div>
         </>
       );
+    }
+
+    if ((data as any)?.heroes?.length === 0 && !loading) {
+      return <NoData />;
     }
 
     /**

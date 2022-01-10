@@ -49,7 +49,7 @@ const Marketplace: React.FC<Props> = (props: Props) => {
     const realPage: number = page + 1;
 
     const newQuery: Record<string, any> = { ...location.query, page: realPage };
-    if (newQuery.page === 0) {
+    if (newQuery.page === 1) {
       delete newQuery.page;
     }
     history.push({ query: newQuery });

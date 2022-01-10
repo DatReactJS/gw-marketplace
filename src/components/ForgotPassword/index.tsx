@@ -1,29 +1,28 @@
-import Button from '@/components/Button';
-import FormItem from '@/components/Form';
-import Input from '@/components/Input';
-import Modal from '@/components/Modal';
-import Text from '@/components/Text';
 import { isEmail } from '@/utils/common';
 import classNames from 'classnames';
 import Form from 'rc-field-form';
 import React from 'react';
 import { useIntl } from 'umi';
+import Button from '../Button';
+import FormItem from '../Form';
+import Input from '../Input';
+import Modal from '../Modal';
+import Text from '../Text';
 import styles from './index.less';
 
 interface Props {
-  email: string;
+  onPreVisible?: () => void;
 }
 
 interface FormValues {
   email: string;
 }
 
-const Email: React.FC<Props> = (props: Props) => {
+const ForgotPassword: React.FC<Props> = ({ onPreVisible }: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
 
-  const [email, setEmail] = React.useState<string>(props.email);
-  const [visible, setVisible] = React.useState<boolean>(false);
+  const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
     return () => {
@@ -35,59 +34,45 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onVisible = () => setVisible(!visible);
 
-  const onShow = (event: React.MouseEvent) => {
-    event.preventDefault();
-
+  const onClickText = () => {
+    onPreVisible?.();
     onVisible();
+    // setTimeout(onVisible, onPreVisible ? 400 : 0);
   };
 
   const onFinish = (values: FormValues) => {
-    onVisible();
-    setEmail(values.email);
+    console.log('🚀 ~ values', values);
   };
 
-  const action: string = !email ? 'add' : 'change';
-
   return (
-    <div className={styles.email}>
-      <Text type="body-14-semi-bold">
-        {intl.formatMessage({ id: 'settings.email' })}
+    <div className={styles.forgotPassword}>
+      <Text
+        type="caption-12-semi-bold"
+        color="accent-500"
+        className={styles.text}
+        onClick={onClickText}
+      >
+        {intl.formatMessage({ id: 'login.forgotPassword' })}
       </Text>
-
-      <div className={styles.wrapperInput}>
-        <Input
-          disabled
-          value={email}
-          placeholder={intl.formatMessage({ id: 'settings.email' })}
-          className={styles.inputEmail}
-        />
-
-        <Button className={styles.btn} onClick={onShow}>
-          {intl.formatMessage({ id: `settings.${action}` })}
-        </Button>
-      </div>
 
       <Modal
         visible={visible}
         onClose={onVisible}
-        className={styles.modalEmail}
         content={
           <div className={styles.content}>
-            <Text
-              type="title-24-bold"
-              color="accent-500"
-              className={styles.title}
-            >
-              {intl.formatMessage({
-                id: `settings.${action}Email`,
-              })}
+            <img
+              alt=""
+              src="/assets/images/infor_big.svg"
+              className={styles.iconInfo}
+            />
+
+            <Text type="title-24-semi-bold">
+              {intl.formatMessage({ id: 'settings.forgetPassword' })}
             </Text>
 
-            <div className={styles.description}>
-              <Text type="body-14-regular" color="primary-100">
-                {intl.formatMessage({ id: 'settings.addEmailDescription' })}
-              </Text>
-            </div>
+            <Text type="body-14-regular" color="primary-100">
+              {intl.formatMessage({ id: 'settings.forgetPasswordDesciption' })}
+            </Text>
 
             <Form form={form} initialValues={{ email: '' }} onFinish={onFinish}>
               <FormItem shouldUpdate>
@@ -137,14 +122,15 @@ const Email: React.FC<Props> = (props: Props) => {
               </FormItem>
 
               <Button htmlType="submit" className={styles.btnConfirm}>
-                {intl.formatMessage({ id: 'common.confirm' })}
+                {intl.formatMessage({ id: 'settings.emailMe' })}
               </Button>
             </Form>
           </div>
         }
+        className={styles.modalForgot}
       />
     </div>
   );
 };
 
-export default Email;
+export default ForgotPassword;

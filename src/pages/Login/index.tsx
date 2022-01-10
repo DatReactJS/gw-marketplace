@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import ConnectWallet from '@/components/ConnectWallet';
+import ForgotPassword from '@/components/ForgotPassword';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
@@ -18,6 +19,14 @@ const Login: React.FC<Props> = (props: Props) => {
 
   const [showFormLogin, setShowFormLogin] = React.useState<boolean>(false);
   const [isLoginError, setIsLoginError] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    return () => {
+      if (showFormLogin) {
+        form.resetFields();
+      }
+    };
+  }, [showFormLogin]);
 
   const onToggleFormLogin = () => {
     setShowFormLogin(!showFormLogin);
@@ -43,7 +52,11 @@ const Login: React.FC<Props> = (props: Props) => {
         <div
           className={classNames(styles.loginEmail, {
             [styles.formEmail]: showFormLogin,
+            [styles.showCursor]: !showFormLogin,
           })}
+          onClick={() => {
+            !showFormLogin && onToggleFormLogin();
+          }}
         >
           <div className={styles.title} onClick={onToggleFormLogin}>
             <img
@@ -135,13 +148,7 @@ const Login: React.FC<Props> = (props: Props) => {
               }}
             </FormItem>
 
-            <Text
-              type="caption-12-semi-bold"
-              color="accent-500"
-              className={styles.forgot}
-            >
-              {intl.formatMessage({ id: 'login.forgotPassword' })}
-            </Text>
+            <ForgotPassword />
 
             {showFormLogin && isLoginError && (
               <Text

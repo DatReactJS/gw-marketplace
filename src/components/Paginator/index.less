@@ -39,14 +39,17 @@
     &.next {
       position: relative;
       background: var(--accent-500);
-    }
-
-    .icon-next,
-    .icon-prev {
+      width: 20px;
       height: 20px;
+      padding: 0;
     }
 
-    .icon-prev {
+    &.arrow-disabled {
+      background: var(--primary-100);
+      cursor: not-allowed;
+    }
+
+    .icon-next {
       transform: rotate(180deg);
     }
 

@@ -25,6 +25,9 @@ export default {
   'common.withdraw': 'Withdraw',
   'common.funds': 'Please deposit more funds to MetaMask.',
   'common.description': 'Lorem ipsum dolor sit amet consectetur',
+  'common.character': 'Character',
+  'common.ship': 'Ship',
+  'common.accesory': 'Accesory',
 
   'common.price.required': 'Price is required',
   'common.price.zero': 'Price must be greater than 0',
@@ -134,4 +137,30 @@ export default {
 
   //Activity
   'activity.activitiy': 'Activitiy',
+  // General settings
+  'settings.gereral': 'General Settings',
+  'settings.name': 'Name',
+  'settings.nameRequired': 'Name is required',
+  'settings.saveChange': 'Save change',
+  'settings.email': 'Email',
+  'settings.emailRequired': 'Email is required',
+  'settings.emailInvalid': 'Email is not valid',
+  'settings.add': 'Add',
+  'settings.addEmail': 'Add email',
+  'settings.changeEmail': 'Change email',
+  'settings.addEmailDescription':
+    'We will send verification code to your new email. Please verify it before you can this email to login.',
+  'settings.change': 'Change',
+  'settings.password': 'Password',
+  'settings.passwordRequired': 'Password is required',
+  'settings.addPassword': 'Add Password',
+  'settings.repeatPassword': 'Repeat password',
+  'settings.repeatPasswordMath': 'Repeat password does not match password',
+  'settings.currentPassword': 'Current password',
+  'settings.currentPasswordRequired': 'Current password is required',
+  'settings.forgetPassword': 'Forget password?',
+  'settings.forgetPasswordDesciption':
+    'We will email you a link to reset your password.',
+  'settings.emailMe': 'Email me',
+  'settings.createNewPassword': 'Create new password',
 };

@@ -27,16 +27,23 @@ export enum Status {
   UNKNOWN = 'unknown',
 }
 
+export enum StatusError {
+  INSUFFICIENT_BALANCE = 'insufficient_balance',
+  AUTHENTICATED = 'authenticated',
+}
+
 const Transaction: React.FC<Props & Ref> = React.forwardRef(
   ({ refresh }: Props, ref: Ref['ref']) => {
     const [visible, setVisible] = React.useState<boolean>(false);
     const [status, setStatus] = React.useState<Status>(Status.LOADING);
     const [hash, setHash] = React.useState<string>('');
+    const [error, setError] = React.useState<StatusError | undefined>();
 
     const onClose = () => {
       setVisible(false);
       setStatus(Status.LOADING);
       setHash('');
+      setError(undefined);
 
       if (visible && status === Status.SUCCESS) {
         setTimeout(() => refresh?.(), 500);
@@ -48,12 +55,18 @@ const Transaction: React.FC<Props & Ref> = React.forwardRef(
     const changeStatus = ({
       status: newStatus,
       hash: newHash = '',
+      error,
     }: {
       status: Status;
       hash?: string;
+      error?: StatusError;
     }) => {
       setStatus(newStatus);
       setHash(newHash);
+
+      if (error) {
+        setError(error);
+      }
     };
 
     React.useImperativeHandle(
@@ -67,9 +80,9 @@ const Transaction: React.FC<Props & Ref> = React.forwardRef(
         case Status.LOADING:
           return <Loading />;
         case Status.SUCCESS:
-          return <Success hash={hash} onClose={onClose} />;
+          return <Success hash={hash} />;
         case Status.FAILED:
-          return <Failed onClose={onClose} />;
+          return <Failed error={error} />;
         case Status.PROCESSING:
           return <Processing />;
         case Status.REJECTED:
@@ -83,13 +96,17 @@ const Transaction: React.FC<Props & Ref> = React.forwardRef(
       }
     };
 
+    const closable: boolean = ![Status.LOADING, Status.PROCESSING].includes(
+      status,
+    );
+
     return (
       <div className={styles.transaction}>
         <Modal
           visible={visible}
-          onClose={onVisible}
-          closable={false}
-          maskClosable={false}
+          onClose={onClose}
+          closable={closable}
+          maskClosable={closable}
           content={renderContent()}
         />
       </div>

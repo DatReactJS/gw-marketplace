@@ -81,9 +81,7 @@ const ConnectError: React.FC<Props> = ({
           {!isTurnOffCoin98 ? (
             <div className={styles.icon}>
               <img alt="" src={getLogoInstall()} />
-              <Text type="p-18-semi-bold" color="white">
-                {getTextConnectType()}
-              </Text>
+              <Text type="body-16-semi-bold">{getTextConnectType()}</Text>
             </div>
           ) : (
             <img alt="" src="/assets/images/logo-crash.png" />
@@ -92,7 +90,7 @@ const ConnectError: React.FC<Props> = ({
           <div className={styles.description}>
             {!isTurnOffCoin98 ? (
               <>
-                <Text type="p-24-bold">
+                <Text type="headline-20-semi-bold">
                   {intl.formatMessage(
                     { id: 'connectWallet.notInstallExt' },
                     {
@@ -101,8 +99,8 @@ const ConnectError: React.FC<Props> = ({
                   )}
                 </Text>
                 <Text
-                  type="p-20"
-                  color="secondary"
+                  type="body-16-bold"
+                  color="accent-500"
                   className={styles.txtDownload}
                   onClick={handleDownload}
                 >
@@ -113,19 +111,19 @@ const ConnectError: React.FC<Props> = ({
               </>
             ) : (
               <>
-                <Text type="p-24-bold">
+                <Text type="headline-20-semi-bold">
                   {intl.formatMessage({
                     id: 'connectWallet.cannotUseMetamask',
                   })}
                 </Text>
 
                 <div className={styles.manageExt}>
-                  <Text type="p-14">
+                  <Text type="body-14-regular">
                     {intl.formatMessage({ id: 'connectWallet.disabledCoin98' })}
                   </Text>
                   <Text
-                    type="p-14"
-                    color="violet"
+                    type="body-14-regular"
+                    color="accent-500"
                     className={styles.txtManage}
                     onClick={handleManageCoin98}
                   >

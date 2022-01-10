@@ -4,6 +4,7 @@ import styles from './index.less';
 import './index.less';
 import classNames from 'classnames';
 import 'rc-checkbox/assets/index.css';
+import Icon from '../Icon';
 interface CheckBoxProps {
   children?: React.ReactNode;
   className?: string;
@@ -43,7 +44,8 @@ const RcCheckBox: React.FC<CheckBoxProps & Ref> = React.forwardRef(
             checked={checked}
             {...rest}
           />
-          <div className="checked" />
+
+          <Icon icon="check" size={16} color="white" />
         </div>
 
         {children}

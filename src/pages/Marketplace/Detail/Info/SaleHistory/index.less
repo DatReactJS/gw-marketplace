@@ -1,0 +1,58 @@
+.saleHistory {
+  .table {
+    margin: 16px 0;
+    .row {
+      width: 504px;
+      height: 64px;
+      border: 1px solid var(--primary-100);
+      box-sizing: border-box;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .info {
+        width: 242px;
+        display: flex;
+        justify-content: space-between;
+
+        .buyer,
+        .seller {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+
+      .other {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+        .prices {
+          display: flex;
+          align-items: center;
+
+          .bnb {
+            display: flex;
+            align-items: center;
+            margin-right: 4px;
+
+            .balance {
+              margin-right: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

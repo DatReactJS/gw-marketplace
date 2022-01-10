@@ -1,9 +1,9 @@
-# version: '3.5'
+version: '3.5'
 
-# services:
-#   app:
-#     image: ghcr.io/NamAgiletech/battleNFTFE
-#     ports:
-#       - 5434:80
-#     volumes:
-#       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+services:
+  app:
+    image: ghcr.io/namnh240795agiletech/kingdomfe
+    ports:
+      - 5434:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf

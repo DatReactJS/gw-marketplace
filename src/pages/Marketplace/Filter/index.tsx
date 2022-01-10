@@ -174,7 +174,7 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
       }
 
       if (tab === TabsEnum.ACCESORY) {
-        if (values?.stat && +values?.stat === 0 && isNumber(+values.stat)) {
+        if (values?.stat || (+values?.stat === 0 && isNumber(+values.stat))) {
           count += 1;
         }
 

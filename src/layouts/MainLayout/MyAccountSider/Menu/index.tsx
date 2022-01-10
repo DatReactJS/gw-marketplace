@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import { useWallet } from '@/utils/hooks/connect/wallet';
 import classNames from 'classnames';
 import React from 'react';
-import { history, useIntl } from 'umi';
+import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
 import InfoQR from './InfoQR';
 
@@ -10,19 +10,25 @@ interface Props {}
 
 enum MenuEnum {
   ACCOUNT = '',
-  INVENTORY = '/inventory',
-  ACTIVITY = '/activity',
-  CLAIM_TOKENS = '/claim-tokens',
-  SETTINGS = '/settings',
+  INVENTORY = 'inventory',
+  ACTIVITY = 'activity',
+  CLAIM_TOKENS = 'claim-tokens',
+  SETTINGS = 'settings',
 }
 
 const Menu: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
+  const location: any = useLocation();
   const { disconnectWallet } = useWallet();
 
   const [activeMenu, setActiveMenu] = React.useState<MenuEnum>(
     MenuEnum.ACCOUNT,
   );
+
+  React.useEffect(() => {
+    const [, , path = MenuEnum.ACCOUNT] = location.pathname.split('/');
+    setActiveMenu(path as MenuEnum);
+  }, [location.pathname]);
 
   const handleLogout = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -57,7 +63,7 @@ const Menu: React.FC<Props> = (props: Props) => {
     event.preventDefault();
 
     setActiveMenu(menu);
-    history.push(`/account${menu}`);
+    history.push(`/account/${menu}`);
   };
 
   return (
@@ -77,7 +83,13 @@ const Menu: React.FC<Props> = (props: Props) => {
                 handleSelectMenu(event, value)
               }
               type={isActive ? 'primary' : 'ghost'}
-              icon={<img alt="" src="/assets/images/account.svg" />}
+              icon={
+                <img
+                  alt=""
+                  src={`/assets/images/ic-${value || 'account'}.svg`}
+                  className={classNames({ [styles.iconActive]: isActive })}
+                />
+              }
             >
               {label}
             </Button>

@@ -7,6 +7,7 @@ import { history, useLocation } from 'umi';
 import Filter from './Filter';
 import HeroCard from './HeroCard';
 import styles from './index.less';
+import NoData from './NoData';
 
 interface Props {}
 
@@ -94,6 +95,10 @@ const Marketplace: React.FC<Props> = (props: Props) => {
           </div>
         </>
       );
+    }
+
+    if ((data as any)?.heroes?.length === 0 && !loading) {
+      return <NoData />;
     }
 
     /**

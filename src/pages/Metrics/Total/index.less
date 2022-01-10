@@ -7,19 +7,27 @@
     height: fit-content;
     margin: 0px auto;
     display: flex;
-    padding: 4px;
+    padding: 3px 4px;
     border: 1px solid @accent-500;
     box-sizing: border-box;
     border-radius: 8px;
+    height: 38px;
     .button {
       padding: 0px 16px;
-      font-family: Nunito Sans;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 22px;
       height: 30px;
+      span {
+        color: @primary-100;
+      }
       &:hover {
+        span {
+          color: @neutral-0;
+        }
+      }
+    }
+    .buttonActive {
+      padding: 0px 16px;
+      height: 30px;
+      span {
         color: @neutral-0;
       }
     }
@@ -39,22 +47,18 @@
       // .icon{
       // }
       .title {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 22px;
-        color: @neutral-0;
         margin-top: 8px;
+        height: 22px;
+        span {
+          color: @neutral-0;
+        }
       }
       .content {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: 800;
-        font-size: 24px;
-        line-height: 32px;
-        color: @accent-500;
         width: fit-content;
+        height: 32px;
+        span {
+          color: @accent-500;
+        }
       }
     }
     .totalVolume {
@@ -65,42 +69,32 @@
       // .icon{
       // }
       .title {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 22px;
-        color: @neutral-0;
         margin-top: 8px;
+        height: 22px;
+        span {
+          color: @neutral-0;
+        }
       }
       .content {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: 800;
-        font-size: 24px;
-        line-height: 32px;
-        color: @accent-500;
         width: fit-content;
         display: flex;
         align-items: center;
-        .totalNumber {
-          font-family: Nunito Sans;
-          font-style: normal;
-          font-weight: 800;
-          font-size: 24px;
-          line-height: 32px;
+        height: 32px;
+        span {
           color: @accent-500;
+        }
+        .totalNumber {
+          span {
+            color: @accent-500;
+          }
         }
         .iconPrice {
           margin: 0px 7px 0px 3px;
         }
         .priceNumber {
-          font-family: Nunito Sans;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 22px;
-          color: @neutral-0;
+          span {
+            color: @neutral-0;
+          }
         }
       }
     }
@@ -112,22 +106,18 @@
       // .icon{
       // }
       .title {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 22px;
-        color: @neutral-0;
         margin-top: 8px;
+        height: 22px;
+        span {
+          color: @neutral-0;
+        }
       }
       .content {
-        font-family: Nunito Sans;
-        font-style: normal;
-        font-weight: 800;
-        font-size: 24px;
-        line-height: 32px;
-        color: @accent-500;
         width: fit-content;
+        height: 32px;
+        span {
+          color: @accent-500;
+        }
       }
     }
   }

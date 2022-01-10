@@ -19,15 +19,20 @@ const Total: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.total}>
       <div className={styles.optionsDate}>
-        <Button className={styles.button}>
-          {' '}
-          {intl.formatMessage({ id: 'metrics.last24h' })}
+        <Button className={styles.buttonActive}>
+          <Text type="body-14-semi-bold">
+            {intl.formatMessage({ id: 'metrics.last24h' })}
+          </Text>
         </Button>
         <Button className={styles.button} type="ghost">
-          {intl.formatMessage({ id: 'metrics.days7' })}
+          <Text type="body-14-semi-bold">
+            {intl.formatMessage({ id: 'metrics.days7' })}
+          </Text>
         </Button>
         <Button className={styles.button} type="ghost">
-          {intl.formatMessage({ id: 'metrics.days30' })}
+          <Text type="body-14-semi-bold">
+            {intl.formatMessage({ id: 'metrics.days30' })}
+          </Text>
         </Button>
       </div>
 
@@ -37,23 +42,33 @@ const Total: React.FC<Props> = (props: Props) => {
             <img src="/assets/images/token_big.svg" alt="" />
           </div>
           <div className={styles.title}>
-            {intl.formatMessage({ id: 'metrics.totalSale' })}{' '}
+            <Text type="body-14-semi-bold">
+              {intl.formatMessage({ id: 'metrics.totalSale' })}
+            </Text>
           </div>
-          <div className={styles.content}>50.000</div>
+          <div className={styles.content}>
+            <Text type="title-24-extra-bold">50.000</Text>
+          </div>
         </div>
         <div className={styles.totalVolume}>
           <div className={styles.icon}>
             <img src="/assets/images/token_big.svg" alt="" />
           </div>
           <div className={styles.title}>
-            {intl.formatMessage({ id: 'metrics.totalVolume' })}{' '}
+            <Text type="body-14-semi-bold">
+              {intl.formatMessage({ id: 'metrics.totalVolume' })}
+            </Text>
           </div>
           <div className={styles.content}>
-            <div className={styles.totalNumber}>5000</div>
+            <div className={styles.totalNumber}>
+              <Text type="title-24-extra-bold">5000</Text>
+            </div>
             <div className={styles.iconPrice}>
               <img src="/assets/images/bnb.svg" alt="" />
             </div>
-            <div className={styles.priceNumber}>$100.000</div>
+            <div className={styles.priceNumber}>
+              <Text type="body-14-regular">$100.000</Text>
+            </div>
           </div>
         </div>
         <div className={styles.totalSold}>
@@ -61,9 +76,13 @@ const Total: React.FC<Props> = (props: Props) => {
             <img src="/assets/images/token_big.svg" alt="" />
           </div>
           <div className={styles.title}>
-            {intl.formatMessage({ id: 'metrics.totalSold' })}{' '}
+            <Text type="body-14-semi-bold">
+              {intl.formatMessage({ id: 'metrics.totalSold' })}
+            </Text>
           </div>
-          <div className={styles.content}>50.000</div>
+          <div className={styles.content}>
+            <Text type="title-24-extra-bold">50.000</Text>
+          </div>
         </div>
       </div>
     </div>

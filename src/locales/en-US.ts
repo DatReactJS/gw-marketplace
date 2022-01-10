@@ -135,6 +135,8 @@ export default {
   'account.accesory': '{amount} Accesory',
   'account.accesorys': '{amount} Accesories',
 
+  //Activity
+  'activity.activitiy': 'Activitiy',
   // General settings
   'settings.gereral': 'General Settings',
   'settings.name': 'Name',

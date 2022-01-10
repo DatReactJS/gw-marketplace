@@ -19,9 +19,8 @@ interface Props {
 const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
   const intl = useIntl();
 
-  const [isShowSideFilter, setIsShowSideFilter] = React.useState<boolean>(
-    false,
-  );
+  const [isShowSideFilter, setIsShowSideFilter] =
+    React.useState<boolean>(false);
 
   const divRef = useClickAway(() => {
     setIsShowSideFilter(false);

@@ -1,0 +1,81 @@
+@import '../../../../global/colors.less';
+
+.containerActivity {
+  margin-top: 16px;
+  width: 100%;
+  height: auto;
+  .date {
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: @neutral-0;
+  }
+  .detail {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    .dateActivity {
+      font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 22px;
+      color: #868790;
+    }
+    .image {
+      max-width: 33px;
+      max-height: 33px;
+      margin-left: 19px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .detailActivity {
+      margin-left: 19px;
+      height: fit-content;
+      .info {
+        font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        color: @neutral-0;
+        span {
+          font-family: Nunito Sans;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 22px;
+          color: #e9992a;
+          padding: 0px 4px;
+          cursor: pointer;
+        }
+      }
+      .link {
+        display: flex;
+        .linkLeft {
+          font-family: Nunito Sans;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 20px;
+          color: #868790;
+          cursor: pointer;
+        }
+        .linkRight {
+          cursor: pointer;
+          font-family: Nunito Sans;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 20px;
+          color: #868790;
+        }
+      }
+    }
+  }
+}

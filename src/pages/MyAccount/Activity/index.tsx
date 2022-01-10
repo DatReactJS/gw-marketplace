@@ -1,10 +1,21 @@
 import React from 'react';
+import ActivityItem from './ActivityItem';
+import { useIntl } from 'umi';
 import styles from './index.less';
 
 interface Props {}
 
 const Activity: React.FC<Props> = (props: Props) => {
-  return <div className={styles.activity}>Activity</div>;
+  const intl = useIntl();
+
+  return (
+    <div className={styles.containerActivities}>
+      <div className={styles.header}>
+        {intl.formatMessage({ id: 'activity.activitiy' })}
+      </div>
+      <ActivityItem />
+    </div>
+  );
 };
 
 export default Activity;

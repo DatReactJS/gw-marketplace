@@ -63,7 +63,11 @@ const Marketplace: React.FC<Props> = (props: Props) => {
 
   const renderContent = () => {
     if (loading) {
-      return <Loading />;
+      return (
+        <div className={styles.loading}>
+          <Loading />
+        </div>
+      );
     }
 
     if (data && !loading) {

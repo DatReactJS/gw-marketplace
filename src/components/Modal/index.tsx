@@ -33,7 +33,7 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
     className,
     title,
     content,
-    width = 443,
+    width = 400,
     onClose,
     ...rest
   } = props;

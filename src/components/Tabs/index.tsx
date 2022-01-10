@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import { useIntl } from 'umi';
 import Accessory from '../Icon/Accesory';
 import Character from '../Icon/Character';
 import Ship from '../Icon/Ship';
@@ -18,17 +19,30 @@ interface Ref {
 export enum TabsEnum {
   CHARACTER = 'character',
   SHIP = 'ship',
-  ACCESORY = 'accessory',
+  ACCESORY = 'accesory',
 }
 
 const Tabs: React.FC<Props & Ref> = React.forwardRef(
   (props: Props, ref: Ref['ref']) => {
     const { onChange, defaultTab = TabsEnum.CHARACTER } = props;
+    const intl = useIntl();
 
     const tabs = [
-      { icon: <Character />, label: 'Character', value: TabsEnum.CHARACTER },
-      { icon: <Ship />, label: 'Ship', value: TabsEnum.SHIP },
-      { icon: <Accessory />, label: 'Accessory', value: TabsEnum.ACCESORY },
+      {
+        icon: <Character />,
+        label: intl.formatMessage({ id: 'common.character' }),
+        value: TabsEnum.CHARACTER,
+      },
+      {
+        icon: <Ship />,
+        label: intl.formatMessage({ id: 'common.ship' }),
+        value: TabsEnum.SHIP,
+      },
+      {
+        icon: <Accessory />,
+        label: intl.formatMessage({ id: 'common.accesory' }),
+        value: TabsEnum.ACCESORY,
+      },
     ];
 
     const [activeTab, setActiveTab] = React.useState<TabsEnum>(defaultTab);

@@ -12,7 +12,7 @@ const Detail: React.FC<Props> = (props: Props) => {
   const { loading, data, refresh } = useRequest(() => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(() => console.log('🚀 ~ Loading Detail...'));
+        resolve(1);
       }, 500);
     });
   });

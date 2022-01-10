@@ -74,14 +74,13 @@ const ConnectError: React.FC<Props> = ({
 
   return (
     <Modal
-      closable={false}
       onClose={onClose}
       content={
         <div className={styles.content}>
           {!isTurnOffCoin98 ? (
             <div className={styles.icon}>
               <img alt="" src={getLogoInstall()} />
-              <Text type="body-16-semi-bold">{getTextConnectType()}</Text>
+              {/* <Text type="body-16-semi-bold">{getTextConnectType()}</Text> */}
             </div>
           ) : (
             <img alt="" src="/assets/images/logo-crash.png" />
@@ -90,7 +89,7 @@ const ConnectError: React.FC<Props> = ({
           <div className={styles.description}>
             {!isTurnOffCoin98 ? (
               <>
-                <Text type="headline-20-semi-bold">
+                <Text type="body-14-regular" color="primary-100">
                   {intl.formatMessage(
                     { id: 'connectWallet.notInstallExt' },
                     {
@@ -98,7 +97,7 @@ const ConnectError: React.FC<Props> = ({
                     },
                   )}
                 </Text>
-                <Text
+                {/* <Text
                   type="body-16-bold"
                   color="accent-500"
                   className={styles.txtDownload}
@@ -107,7 +106,7 @@ const ConnectError: React.FC<Props> = ({
                   {intl.formatMessage({
                     id: 'connectWallet.downloadExtension',
                   })}
-                </Text>
+                </Text> */}
               </>
             ) : (
               <>
@@ -136,14 +135,14 @@ const ConnectError: React.FC<Props> = ({
             )}
           </div>
 
-          <Button
+          {/* <Button
             onClick={onClose}
             className={classNames('p-30-semi-bold', styles.btn)}
           >
             {intl.formatMessage({
               id: `connectWallet.${isTurnOffCoin98 ? 'close' : 'gotIt'}`,
             })}
-          </Button>
+          </Button> */}
         </div>
       }
       visible={visible}

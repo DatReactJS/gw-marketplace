@@ -2,6 +2,7 @@ import Loading from '@/components/Loading';
 import Paginator from '@/components/Paginator';
 import Tabs, { TabsEnum } from '@/components/Tabs';
 import HeroCard from '@/pages/Marketplace/HeroCard';
+import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import { useDebounceFn, useMount, useRequest } from '@umijs/hooks';
 import React from 'react';
 import { history, useLocation } from 'umi';
@@ -13,6 +14,7 @@ interface Props {}
 const Inventory: React.FC<Props> = (props: Props) => {
   const location: any = useLocation();
   const filterRef: any = React.useRef();
+  const walletInfo = useWalletInfo();
 
   const currentPage: number = +location.query?.page - 1 || 0;
   const tab: TabsEnum = location.query?.tab || TabsEnum.CHARACTER;
@@ -29,7 +31,7 @@ const Inventory: React.FC<Props> = (props: Props) => {
     },
     {
       debounceInterval: 250,
-      refreshDeps: [tab],
+      refreshDeps: [tab, walletInfo.address],
     },
   );
 

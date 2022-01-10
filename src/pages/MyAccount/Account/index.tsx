@@ -5,8 +5,11 @@ import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import { formatWalletAddress } from '@/utils/normalizers';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { useIntl } from 'umi';
+import { history, useIntl } from 'umi';
+import ActivityItem from '../Activity/ActivityItem';
+import Deposit from './Deposit';
 import styles from './index.less';
+import Withdraw from './Withdraw';
 
 interface Props {}
 
@@ -29,6 +32,8 @@ const Account: React.FC<Props> = (props: Props) => {
 
   const totalUSDT = (): number => balance * USDTPrice;
 
+  const navigateActitivy = () => history.push('/account/activity');
+
   return (
     <div className={styles.account}>
       <Text type="title-24-semi-bold" color="primary-100">
@@ -47,13 +52,10 @@ const Account: React.FC<Props> = (props: Props) => {
           </Text>
 
           <div className={styles.button}>
-            <Button type="outline" className={styles.btnDeposit}>
-              {intl.formatMessage({ id: 'common.deposit' })}
-            </Button>
-            <Button type="outline" className={styles.btnWithdraw}>
-              {intl.formatMessage({ id: 'common.withdraw' })}
-            </Button>
+            <Deposit />
+            <Withdraw />
           </div>
+
           <div className={styles.walletAddess}>
             <Text type="body-16-regular">
               {intl.formatMessage(
@@ -65,6 +67,7 @@ const Account: React.FC<Props> = (props: Props) => {
             <img alt="" src="/assets/images/copy.svg" onClick={onCopied} />
           </div>
         </div>
+
         <div className={styles.right}>
           <div className={styles.top}>
             <div className={styles.amount}>
@@ -103,6 +106,26 @@ const Account: React.FC<Props> = (props: Props) => {
               </Text>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className={styles.activities}>
+        <Text type="title-24-semi-bold" color="primary-100">
+          {intl.formatMessage({ id: 'account.wallets.activities' })}
+        </Text>
+
+        <ActivityItem />
+
+        <div className={styles.viewAll} onClick={navigateActitivy}>
+          <Text
+            type="body-14-semi-bold"
+            color="accent-500"
+            className={styles.txt}
+          >
+            {intl.formatMessage({ id: 'account.wallets.viewAllActivities' })}
+          </Text>
+
+          <img alt="" src="/assets/images/ic-arrow-large-accent.png" />
         </div>
       </div>
     </div>

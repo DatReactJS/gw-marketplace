@@ -9,7 +9,9 @@ import React from 'react';
 import { useIntl } from 'umi';
 import styles from './index.less';
 
-interface Props {}
+interface Props {
+  name: string;
+}
 
 interface FormValues {
   name: string;
@@ -19,7 +21,7 @@ const Name: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
 
-  const initName: string = 'David';
+  const initName: string = props.name;
 
   const onFinish = ({ name }: FormValues) => {
     console.log('🚀 ~ name', name);

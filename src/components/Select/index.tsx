@@ -4,6 +4,7 @@ import './index.less';
 import { useBoolean } from '@umijs/hooks';
 import React from 'react';
 import Icon from '../Icon';
+import { PRIMARY } from '@/utils/constants/colors';
 
 export interface OptionSelect {
   value: string | number;
@@ -47,7 +48,7 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
           },
         )}
       </Select>
-      <Icon icon="chevron_down" color="white" size={25} />
+      <Icon icon="chevron_down" color={PRIMARY.PRIMARY_100} size={25} />
     </div>
   );
 };

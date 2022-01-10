@@ -32,6 +32,7 @@
       .button {
         margin-top: 32px;
         padding-left: 24px;
+        display: flex;
 
         .btnDeposit {
           width: 152px;
@@ -84,6 +85,38 @@
         .amount {
           width: 176px;
         }
+      }
+    }
+  }
+
+  .activities {
+    margin-top: 16px;
+
+    .viewAll {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .txt {
+        margin-top: 2px;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 2px;
+          display: block;
+          background: var(--accent-500);
+          transition: 300ms;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+
+      img {
+        margin-left: 8px;
       }
     }
   }

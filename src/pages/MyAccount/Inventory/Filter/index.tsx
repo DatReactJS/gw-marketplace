@@ -107,7 +107,7 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         newQuery.sort = sort;
       }
 
-      if (type !== TypeValues.FOR_SALE) {
+      if (type !== TypeValues.ALL) {
         form.setFieldsValue({ type });
         newQuery.type = type;
       }
@@ -127,7 +127,7 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         delete values.sort;
       }
 
-      if (values?.type === TypeValues.FOR_SALE) {
+      if (values?.type === TypeValues.ALL) {
         delete values.type;
       }
 
@@ -212,6 +212,10 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         form={form}
         className={styles.filter}
         onFieldsChange={onFieldsChange}
+        initialValues={{
+          sort: SorterValues.HIGHEST_ID,
+          type: TypeValues.ALL,
+        }}
       >
         <HeadFilter total={numberFilter} tab={tab} onClear={onResetFilter} />
         {children}

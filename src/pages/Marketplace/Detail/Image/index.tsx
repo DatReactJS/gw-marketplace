@@ -10,7 +10,7 @@ const Image: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.image}>
       <div className={styles.goBack} onClick={goBack}>
-        <img alt="" src="/assets/images/arrow_right_white.svg" />
+        <img alt="" src="/assets/images/ic-arrow-large.png" />
       </div>
 
       <Text type="body-16-semi-bold" className={styles.id}>

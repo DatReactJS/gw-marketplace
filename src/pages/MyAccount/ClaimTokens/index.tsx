@@ -16,9 +16,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
           <img src="/assets/images/bnb.svg" alt="" />
         </div>
         <div className={styles.name}>
-          <Text type="caption-12-semi-bold">
-            {intl.formatMessage({ id: 'Lorem ipsum' })}
-          </Text>
+          <Text type="caption-12-semi-bold">Lorem ipsum</Text>
         </div>
         <div className={styles.qty}>
           <Text type="body-16-semi-bold">x0</Text>
@@ -68,9 +66,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
           <img src="/assets/images/bnb.svg" alt="" />
         </div>
         <div className={styles.name}>
-          <Text type="caption-12-semi-bold">
-            {intl.formatMessage({ id: 'Lorem ipsum' })}
-          </Text>
+          <Text type="caption-12-semi-bold">Lorem ipsum</Text>
         </div>
         <div className={styles.qty}>
           <Text type="body-16-semi-bold">x0</Text>

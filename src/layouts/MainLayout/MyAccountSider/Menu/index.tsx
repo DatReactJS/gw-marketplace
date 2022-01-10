@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
-import InfoQR from './InfoQR';
+import Info from './Info';
 
 interface Props {}
 
@@ -69,7 +69,7 @@ const Menu: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.menu}>
-        <InfoQR />
+        <Info />
 
         {allMenus.map(({ label, value }, index: number) => {
           const isActive: boolean = activeMenu === value;

@@ -131,4 +131,7 @@ export default {
   'account.ships': '{amount} Ships',
   'account.accesory': '{amount} Accesory',
   'account.accesorys': '{amount} Accesories',
+
+  //Activity
+  'activity.activitiy': 'Activitiy',
 };

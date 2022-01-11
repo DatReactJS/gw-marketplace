@@ -16,9 +16,40 @@
       margin-top: -16px;
     }
 
+    .wrapperInput {
+      position: relative;
+
+      img {
+        position: absolute;
+        right: 16px;
+        top: 32px;
+      }
+    }
+
     .input {
       margin-top: 24px;
       width: 368px;
+      padding-right: 48px;
+
+      &:focus::placeholder {
+        color: transparent;
+      }
+    }
+
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: var(--primary-100);
+      opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: var(--primary-100);
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: var(--primary-100);
     }
 
     .inputError {

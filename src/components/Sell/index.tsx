@@ -63,43 +63,46 @@ const Sell: React.FC<Props> = ({ onSell }: Props) => {
                     form.getFieldError('price').length > 0;
 
                   return (
-                    <FormItem
-                      name="price"
-                      normalize={normalizeInputPrice}
-                      rules={[
-                        {
-                          validator: async (_: any, value: string) => {
-                            const floatValue: number = parseFloat(value);
+                    <div className={styles.wrapperInput}>
+                      <FormItem
+                        name="price"
+                        normalize={normalizeInputPrice}
+                        rules={[
+                          {
+                            validator: async (_: any, value: string) => {
+                              const floatValue: number = parseFloat(value);
 
-                            if (floatValue === 0) {
-                              return Promise.reject(
-                                intl.formatMessage({
-                                  id: 'common.price.zero',
-                                }),
-                              );
-                            }
+                              if (floatValue === 0) {
+                                return Promise.reject(
+                                  intl.formatMessage({
+                                    id: 'common.price.zero',
+                                  }),
+                                );
+                              }
 
-                            if (!value) {
-                              return Promise.reject(
-                                intl.formatMessage({
-                                  id: 'common.price.required',
-                                }),
-                              );
-                            }
+                              if (!value) {
+                                return Promise.reject(
+                                  intl.formatMessage({
+                                    id: 'common.price.required',
+                                  }),
+                                );
+                              }
 
-                            return Promise.resolve();
+                              return Promise.resolve();
+                            },
                           },
-                        },
-                      ]}
-                    >
-                      <Input
-                        type="number"
-                        className={classNames(styles.input, {
-                          [styles.inputError]: isError,
-                        })}
-                        placeholder="0"
-                      />
-                    </FormItem>
+                        ]}
+                      >
+                        <Input
+                          type="number"
+                          className={classNames(styles.input, {
+                            [styles.inputError]: isError,
+                          })}
+                          placeholder="0"
+                        />
+                      </FormItem>
+                      <img alt="" src="/assets/images/ic-BNB-medium.png" />
+                    </div>
                   );
                 }}
               </FormItem>

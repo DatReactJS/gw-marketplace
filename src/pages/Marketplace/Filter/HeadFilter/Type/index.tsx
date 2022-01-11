@@ -11,13 +11,12 @@ export enum TypeValues {
 interface Props {
   value?: string;
   onChange?: Function;
+  placeholder: string;
 }
 
-const Type: React.FC<Props> = ({
-  onChange,
-  value = TypeValues.FOR_SALE,
-}: Props) => {
+const Type: React.FC<Props> = ({ onChange, value, placeholder }: Props) => {
   const intl = useIntl();
+
   return (
     <Select
       options={[
@@ -41,6 +40,7 @@ const Type: React.FC<Props> = ({
         }
       }}
       className={styles.selectType}
+      placeholder={placeholder}
     />
   );
 };

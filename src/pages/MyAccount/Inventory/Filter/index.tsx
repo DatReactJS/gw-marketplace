@@ -211,10 +211,12 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         form={form}
         className={styles.filter}
         onFieldsChange={onFieldsChange}
-        initialValues={{
-          sort: SorterValues.HIGHEST_ID,
-          type: TypeValues.ALL,
-        }}
+        initialValues={
+          {
+            // sort: SorterValues.HIGHEST_ID,
+            // type: TypeValues.ALL,
+          }
+        }
       >
         <HeadFilter total={numberFilter} tab={tab} onClear={onResetFilter} />
         {children}

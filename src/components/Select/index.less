@@ -28,9 +28,11 @@
     height: 40px !important;
     border: 1px solid transparent;
     .rc-select-selection-placeholder {
-      top: 6px;
-      left: 20px;
       position: absolute;
+      top: 7px;
+      left: 12px;
+      color: var(--primary-100);
+      &:extend(.font);
     }
     input {
       border: none;
@@ -42,6 +44,7 @@
       position: absolute;
       top: 7px;
       left: 12px;
+      color: var(--neutral-0);
       &:extend(.font);
     }
   }
@@ -62,7 +65,7 @@
     transition: 0.3s ease-in-out;
     &:extend(.font);
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 6px 12px;
     overflow-y: hidden;
     opacity: 0.8;
     border-bottom: 1px solid transparent;

@@ -3,6 +3,7 @@
   position: fixed;
   overflow-y: scroll;
   margin-top: 16px;
+  box-shadow: 0px 0px 20px rgba(33, 35, 48, 0.2);
 
   .content {
     width: 256px;
@@ -23,6 +24,24 @@
 
         .txt {
           margin-left: 4px;
+        }
+      }
+
+      .clear {
+        cursor: pointer;
+        margin-top: 1px;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 1px;
+          display: block;
+          background: var(--accent-500);
+          transition: 300ms;
+        }
+
+        &:hover::after {
+          width: 67px;
         }
       }
     }

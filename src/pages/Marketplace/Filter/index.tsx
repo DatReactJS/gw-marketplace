@@ -174,7 +174,7 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
       }
 
       if (tab === TabsEnum.ACCESORY) {
-        if (values?.stat && +values?.stat === 0 && isNumber(+values.stat)) {
+        if (values?.stat || (+values?.stat === 0 && isNumber(+values.stat))) {
           count += 1;
         }
 
@@ -212,10 +212,12 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
         form={form}
         className={styles.filter}
         onFieldsChange={onFieldsChange}
-        initialValues={{
-          sort: SorterValues.HIGHEST_ID,
-          type: TypeValues.FOR_SALE,
-        }}
+        initialValues={
+          {
+            // sort: SorterValues.HIGHEST_ID,
+            // type: TypeValues.FOR_SALE,
+          }
+        }
       >
         <SideFilter onClear={onResetFilter} total={numberFilter} tab={tab} />
 

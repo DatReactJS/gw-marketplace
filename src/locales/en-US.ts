@@ -28,6 +28,9 @@ export default {
   'common.character': 'Character',
   'common.ship': 'Ship',
   'common.accesory': 'Accesory',
+  'common.next': 'Next',
+  'common.amount': 'Amount',
+  'common.amount.required': 'Amount is required',
 
   'common.price.required': 'Price is required',
   'common.price.zero': 'Price must be greater than 0',
@@ -73,6 +76,9 @@ export default {
   'login.password': 'Password',
   'login.passwordRequired': 'Password is required',
   'login.forgotPassword': 'Forgot password?',
+  'login.showQR': 'Show QR',
+  'login.withQrCode': 'Log in with QR Code',
+  'login.dontShare': 'DO NOT share this QR code to anyone!',
 
   //metrics
   'metrics.last24h': 'Last 24h',
@@ -84,6 +90,7 @@ export default {
   'metrics.viewMarketPlace': 'View more on Marketplace',
   'metrics.recentlyListed': 'Recently listed',
   'metrics.recentlySold': 'Recently sold',
+
   // Filter
   'filter.filter': 'Filter',
   'filter.total': 'Filter ({total})',
@@ -107,13 +114,16 @@ export default {
   'filter.type.notForSale': 'Not for sale',
   'filter.sorter.highestID': 'Highest ID',
   'filter.sorter.lowestID': 'Lowest ID',
-  'filter.sorter.highestStar': 'Highest Star',
-  'filter.sorter.lowestStar': 'Lowest Star',
+  'filter.sorter.highestPrice': 'Highest Price',
+  'filter.sorter.lowestPrice': 'Lowest Price',
+  'filter.sorter.lastest': 'Lastest',
 
   // Marketplace
   'marketplace.character.detail': 'Character Detail',
   'marketplace.ship.detail': 'Ship Detail',
   'marketplace.accesory.detail': 'Accesory Detail',
+  'marketplace.noResultFound': 'No result found',
+  'marketplace.cantMatch': 'We can’t find any item matching your filter.',
 
   'marketplace.detail.about': 'About',
   'marketplace.detail.class': 'CLASS',
@@ -127,6 +137,8 @@ export default {
 
   // Account
   'account.wallets': 'Wallets',
+  'account.wallets.activities': 'Activities',
+  'account.wallets.viewAllActivities': 'View all activities',
   'account.metamaskAddress': 'MetaMask Address: {address}',
   'account.character': '{amount} Character',
   'account.characters': '{amount} Characters',
@@ -137,6 +149,7 @@ export default {
 
   //Activity
   'activity.activitiy': 'Activitiy',
+
   // General settings
   'settings.gereral': 'General Settings',
   'settings.name': 'Name',
@@ -154,10 +167,13 @@ export default {
   'settings.password': 'Password',
   'settings.passwordRequired': 'Password is required',
   'settings.addPassword': 'Add Password',
+  'settings.changePassword': 'Change Password',
   'settings.repeatPassword': 'Repeat password',
-  'settings.repeatPasswordMath': 'Repeat password does not match password',
+  'settings.repeatPasswordRequired': 'Repeat password is required',
+  'settings.repeatPasswordMatch': 'Repeat password does not match password',
   'settings.currentPassword': 'Current password',
   'settings.currentPasswordRequired': 'Current password is required',
+  'settings.currentPasswordInvalid': 'Current password is wrong',
   'settings.forgetPassword': 'Forget password?',
   'settings.forgetPasswordDesciption':
     'We will email you a link to reset your password.',

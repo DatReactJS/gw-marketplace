@@ -10,7 +10,9 @@ import React from 'react';
 import { useIntl } from 'umi';
 import styles from './index.less';
 
-interface Props {}
+interface Props {
+  email: string;
+}
 
 interface FormValues {
   email: string;
@@ -20,7 +22,7 @@ const Email: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
 
-  const [email, setEmail] = React.useState<string>('');
+  const [email, setEmail] = React.useState<string>(props.email);
   const [visible, setVisible] = React.useState<boolean>(false);
 
   React.useEffect(() => {

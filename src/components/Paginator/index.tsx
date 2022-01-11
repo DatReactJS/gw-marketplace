@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
 const screenWidth: number = window.innerWidth;
 
 export interface PaginatorProps {
-  totalPages?: number;
+  totalPages: number;
   currentPage: number;
   onPage: (page: number) => void;
 }
@@ -46,13 +46,25 @@ const Paginator: React.FC<PaginatorProps> = ({
   currentPage,
   onPage,
 }: PaginatorProps) => {
+  if (currentPage < 0) {
+    currentPage = 0;
+  }
+
+  if (currentPage >= totalPages) {
+    currentPage = totalPages - 1;
+  }
+
   const max = 5;
 
   const handlePrev = () => {
+    if (totalPages && currentPage === 0) return;
+
     onPage && onPage(currentPage - 1);
   };
 
   const handleNext = () => {
+    if (totalPages && currentPage + 1 > totalPages - 1) return;
+
     onPage && onPage(currentPage + 1);
   };
 
@@ -79,20 +91,14 @@ const Paginator: React.FC<PaginatorProps> = ({
 
   return (
     <div className="Paginator">
-      {currentPage > 0 && (
-        <Button
-          page={
-            <img
-              alt=""
-              src="/assets/images/arrow_right_white.svg"
-              className="icon-prev"
-            />
-          }
-          onPage={handlePrev}
-          isActive
-          className="prev"
-        />
-      )}
+      <Button
+        page={
+          <img alt="" src="/assets/images/ic-arrow.png" className="icon-prev" />
+        }
+        onPage={handlePrev}
+        isActive
+        className={classNames('prev', { 'arrow-disabled': currentPage === 0 })}
+      />
 
       <div className="number">
         {screenWidth > 414 && (
@@ -149,20 +155,16 @@ const Paginator: React.FC<PaginatorProps> = ({
         )}
       </div>
 
-      {totalPages - 1 > currentPage && (
-        <Button
-          page={
-            <img
-              alt=""
-              src="/assets/images/arrow_right_white.svg"
-              className="icon-next"
-            />
-          }
-          onPage={handleNext}
-          isActive
-          className="next"
-        />
-      )}
+      <Button
+        page={
+          <img alt="" src="/assets/images/ic-arrow.png" className="icon-next" />
+        }
+        onPage={handleNext}
+        isActive
+        className={classNames('next', {
+          'arrow-disabled': currentPage >= totalPages - 1,
+        })}
+      />
     </div>
   );
 };

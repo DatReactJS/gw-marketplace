@@ -1,6 +1,6 @@
 import Paginator from '@/components/Paginator';
 import Text from '@/components/Text';
-import React, { useState } from 'react';
+import React from 'react';
 import { useIntl } from 'umi';
 import styles from './index.less';
 
@@ -12,7 +12,6 @@ const SaleHistory: React.FC<Props> = (props: Props) => {
   const [page, setPage] = React.useState<number>(1);
 
   const onPageChange = (newPage: number) => {
-    console.log('🚀 ~ newPage', newPage);
     setPage(newPage + 1);
   };
 

@@ -45,7 +45,7 @@ const RcCheckBox: React.FC<CheckBoxProps & Ref> = React.forwardRef(
             {...rest}
           />
 
-          <Icon icon="check" size={16} color="white" />
+          <img alt="" src="/assets/images/ic-tick.png" />
         </div>
 
         {children}

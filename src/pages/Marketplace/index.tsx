@@ -7,6 +7,7 @@ import { history, useLocation } from 'umi';
 import Filter from './Filter';
 import HeroCard from './HeroCard';
 import styles from './index.less';
+import NoData from './NoData';
 
 interface Props {}
 
@@ -17,7 +18,7 @@ const Marketplace: React.FC<Props> = (props: Props) => {
   const currentPage: number = +location.query?.page - 1 || 0;
   const tab: TabsEnum = location.query?.tab || TabsEnum.CHARACTER;
 
-  useMount(() => history.push({ query: { tab } }));
+  useMount(() => history.push({ query: { ...location.query, tab } }));
 
   const { loading, data, run } = useRequest(
     () => {
@@ -49,7 +50,7 @@ const Marketplace: React.FC<Props> = (props: Props) => {
     const realPage: number = page + 1;
 
     const newQuery: Record<string, any> = { ...location.query, page: realPage };
-    if (newQuery.page === 0) {
+    if (newQuery.page === 1) {
       delete newQuery.page;
     }
     history.push({ query: newQuery });
@@ -94,6 +95,10 @@ const Marketplace: React.FC<Props> = (props: Props) => {
           </div>
         </>
       );
+    }
+
+    if ((data as any)?.heroes?.length === 0 && !loading) {
+      return <NoData />;
     }
 
     /**

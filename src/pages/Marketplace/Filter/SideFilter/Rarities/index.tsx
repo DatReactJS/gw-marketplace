@@ -33,7 +33,7 @@ const Rarities: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('legendary')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/RarityLegend.svg" />
+              <img alt="" src="/assets/images/Legend.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.rarity.legendary' })}
               </Text>
@@ -46,7 +46,7 @@ const Rarities: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('epic')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/RarityEpic.svg" />
+              <img alt="" src="/assets/images/Epic.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.rarity.epic' })}
               </Text>
@@ -59,7 +59,7 @@ const Rarities: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('rare')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/RarityRare.svg" />
+              <img alt="" src="/assets/images/Rare.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.rarity.rare' })}
               </Text>
@@ -72,7 +72,7 @@ const Rarities: React.FC<Props> = ({ value = [], onChange }: Props) => {
             checked={value.includes('common')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/RarityCommon.svg" />
+              <img alt="" src="/assets/images/Common.png" />
               <Text type="body-16-bold" className={styles.txt}>
                 {intl.formatMessage({ id: 'filter.rarity.common' })}
               </Text>

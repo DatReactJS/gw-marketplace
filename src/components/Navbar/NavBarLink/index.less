@@ -12,6 +12,7 @@
     &.hidden {
       color: transparent;
     }
+
     &::after {
       color: var(--primary-100);
       content: attr(data-content);
@@ -22,17 +23,21 @@
       white-space: nowrap;
     }
   }
+
   &:global {
-    &:not(.disabled):hover {
+    &:not(.disabled, .active):hover {
       span {
         &::after {
-          color: var(--accent-600);
+          color: var(--neutral-0);
+          transition: all 0.3s;
         }
       }
     }
+
     &.active {
       span {
         &::after {
+          transition: all 0.3s;
           color: var(--accent-600);
           position: absolute;
           top: 50%;

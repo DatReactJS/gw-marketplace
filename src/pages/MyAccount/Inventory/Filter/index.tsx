@@ -66,7 +66,6 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
 
       if (JSON.stringify(currentQuery) !== '{}') {
         const newValues = getInitialValues(currentQuery);
-        history.push({ query: { ...newValues, tab } });
         getNumberFilter(newValues);
         form.setFieldsValue(newValues);
       }
@@ -107,7 +106,7 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         newQuery.sort = sort;
       }
 
-      if (type !== TypeValues.FOR_SALE) {
+      if (type !== TypeValues.ALL) {
         form.setFieldsValue({ type });
         newQuery.type = type;
       }
@@ -127,7 +126,7 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         delete values.sort;
       }
 
-      if (values?.type === TypeValues.FOR_SALE) {
+      if (values?.type === TypeValues.ALL) {
         delete values.type;
       }
 
@@ -174,7 +173,7 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
       }
 
       if (tab === TabsEnum.ACCESORY) {
-        if (values?.stat && +values?.stat === 0 && isNumber(+values.stat)) {
+        if (values?.stat || (+values?.stat === 0 && isNumber(+values.stat))) {
           count += 1;
         }
 
@@ -212,6 +211,12 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         form={form}
         className={styles.filter}
         onFieldsChange={onFieldsChange}
+        initialValues={
+          {
+            // sort: SorterValues.HIGHEST_ID,
+            // type: TypeValues.ALL,
+          }
+        }
       >
         <HeadFilter total={numberFilter} tab={tab} onClear={onResetFilter} />
         {children}

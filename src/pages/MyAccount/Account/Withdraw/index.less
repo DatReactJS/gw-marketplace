@@ -1,0 +1,88 @@
+.withdraw {
+  .btn {
+    width: 152px;
+    margin-right: 14px;
+  }
+}
+
+.modalWithdraw {
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
+
+    .title {
+      margin-top: -16px;
+    }
+
+    .info {
+      margin: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      .metamask,
+      .kingdom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--primary-200);
+        box-sizing: border-box;
+        border-radius: 8px;
+        width: 160px;
+        height: 58px;
+        .detail {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-left: 8px;
+        }
+      }
+
+      .kingdom {
+        width: 182px;
+
+        img {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .input {
+      margin-top: 4px;
+      width: 405px;
+
+      &:focus::placeholder {
+        color: transparent;
+      }
+    }
+
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: var(--primary-100);
+      opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: var(--primary-100);
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: var(--primary-100);
+    }
+
+    .inputError {
+      border: 1px solid var(--warning);
+    }
+
+    .btnNext {
+      width: 405px;
+      margin-top: 24px;
+    }
+  }
+}

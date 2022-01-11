@@ -20,7 +20,6 @@
       border-radius: 8px;
       border: 1px solid var(--accent-500);
       margin-bottom: 16px;
-      cursor: pointer;
       -moz-transition: height 0.6s ease;
       -webkit-transition: height 0.6s ease;
       -o-transition: height 0.6s ease;
@@ -36,10 +35,15 @@
         display: flex;
         align-items: center;
         padding-bottom: 12px;
+        cursor: pointer;
         .icon {
           margin-right: 10px;
         }
       }
+    }
+
+    .showCursor {
+      cursor: pointer;
     }
 
     .formEmail {
@@ -54,6 +58,11 @@
       .input {
         width: 368px;
       }
+      :global {
+        .eye-password {
+          top: 24px;
+        }
+      }
 
       .inputPassword {
         margin-top: 16px;
@@ -61,28 +70,6 @@
 
       .inputError {
         border: 1px solid var(--warning);
-      }
-
-      .forgot {
-        margin-top: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-end;
-        width: 100%;
-
-        &::after {
-          content: '';
-          width: 0;
-          height: 1px;
-          display: block;
-          background: var(--accent-500);
-          transition: 300ms;
-        }
-
-        &:hover::after {
-          width: 98px;
-        }
       }
 
       .txtError {

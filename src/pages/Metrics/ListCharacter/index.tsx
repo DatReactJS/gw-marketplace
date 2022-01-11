@@ -4,20 +4,32 @@ import React from 'react';
 import styles from './index.less';
 import ItemListed from './ItemListed';
 import ItemSold from './ItemSold';
-import { useIntl } from 'umi';
+import { history, useIntl } from 'umi';
 import Text from '@/components/Text';
 
 interface Props {}
 
 const ListCharacter: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const [currentTab, setCurrentTab] = React.useState<string>(
+    TabsEnum.CHARACTER,
+  );
 
-  const handleChangeTab = (tab: TabsEnum) => {
+  const handleChangeTabRecentlyListed = (tab: TabsEnum) => {
     console.log('🚀 ~ tab', tab);
+    setCurrentTab(tab);
   };
 
+  const handleChangeTabRecentlySold = (): void => {};
+
   const onPage = (pape: number) => {
+    setCurrentPage(pape);
     console.log('🚀 ~ pape', pape);
+  };
+
+  const redirectToMarket = (): void => {
+    history.push('/marketplace');
   };
 
   return (
@@ -30,11 +42,15 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
             </Text>
           </div>
           <div className={styles.headerSelectOption}>
-            <Tabs onChange={handleChangeTab} />
+            <Tabs onChange={handleChangeTabRecentlyListed} />
           </div>
-          <ItemListed />
+          <ItemListed currentTab={currentTab} />
           <div className={styles.linkToMarketplace}>
-            <Text type="body-14-semi-bold" color="accent-500">
+            <Text
+              type="body-14-semi-bold"
+              color="accent-500"
+              onClick={redirectToMarket}
+            >
               {intl.formatMessage({ id: 'metrics.viewMarketPlace' })}
             </Text>
 
@@ -48,13 +64,13 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
             </Text>
           </div>
           <div className={styles.headerSelectOption}>
-            <Tabs onChange={handleChangeTab} />
+            <Tabs onChange={handleChangeTabRecentlySold} />
           </div>
           <ItemSold />
         </div>
       </div>
       <div className={styles.pagination}>
-        <Paginator currentPage={1} totalPages={100} onPage={onPage} />
+        <Paginator currentPage={currentPage} totalPages={50} onPage={onPage} />
       </div>
     </>
   );

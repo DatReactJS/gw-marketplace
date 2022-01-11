@@ -1,8 +1,6 @@
 import Button from '@/components/Button';
-import Paginator from '@/components/Paginator';
-import Tabs, { TabsEnum } from '@/components/Tabs';
 import Text from '@/components/Text';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './index.less';
 import { useIntl } from 'umi';
 
@@ -11,29 +9,54 @@ interface Props {}
 const Total: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
 
-  const [active, setActive] = useState(1);
-  // const setDateActive = (id: Number):void =>{
-  //   setActive(id);
-  // }
+  const optionsTime = {
+    LAST24H: 'last24h',
+    DAYS7: 'days7',
+    DAYS30: 'days30',
+  };
+
+  const options = [
+    {
+      label: intl.formatMessage({ id: 'metrics.last24h' }),
+      value: optionsTime.LAST24H,
+    },
+    {
+      label: intl.formatMessage({ id: 'metrics.days7' }),
+      value: optionsTime.DAYS7,
+    },
+    {
+      label: intl.formatMessage({ id: 'metrics.days30' }),
+      value: optionsTime.DAYS30,
+    },
+  ];
+
+  const [active, setActive] = React.useState<string>(optionsTime.LAST24H);
+  const handleActiveDate = (value: string) => {
+    setActive(value);
+  };
 
   return (
     <div className={styles.total}>
       <div className={styles.optionsDate}>
-        <Button className={styles.buttonActive}>
-          <Text type="body-14-semi-bold">
-            {intl.formatMessage({ id: 'metrics.last24h' })}
-          </Text>
-        </Button>
-        <Button className={styles.button} type="ghost">
-          <Text type="body-14-semi-bold" color="primary-100">
-            {intl.formatMessage({ id: 'metrics.days7' })}
-          </Text>
-        </Button>
-        <Button className={styles.button} type="ghost">
-          <Text type="body-14-semi-bold" color="primary-100">
-            {intl.formatMessage({ id: 'metrics.days30' })}
-          </Text>
-        </Button>
+        {options.map((item, idx) => {
+          const isActive: boolean = active === item.value;
+          return (
+            <Button
+              className={isActive ? styles.buttonActive : styles.button}
+              type={isActive ? 'primary' : 'ghost'}
+              onClick={() => {
+                handleActiveDate(item.value);
+              }}
+            >
+              <Text
+                type="body-14-bold"
+                color={!isActive ? 'primary-100' : 'neutral-0'}
+              >
+                {item.label}
+              </Text>
+            </Button>
+          );
+        })}
       </div>
 
       <div className={styles.totalWrapper}>

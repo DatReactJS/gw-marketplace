@@ -1,12 +1,17 @@
 import Text from '@/components/Text';
 import React from 'react';
+import { history } from 'umi';
 import styles from './index.less';
 
 interface Props {}
 
 const ItemSold: React.FC<Props> = (props: Props) => {
+  const handleViewDetailItem = (): void => {
+    history.push('character/123');
+  };
+
   return (
-    <div className={styles.itemSold}>
+    <div className={styles.itemSold} onClick={handleViewDetailItem}>
       <div className={styles.infoCharacter}>
         <div className={styles.characterCode}>
           <div className={styles.avatar}>

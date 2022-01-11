@@ -29,6 +29,7 @@ export default {
   'common.ship': 'Ship',
   'common.accesory': 'Accesory',
   'common.next': 'Next',
+  'common.asset': 'Asset',
   'common.amount': 'Amount',
   'common.amount.required': 'Amount is required',
 

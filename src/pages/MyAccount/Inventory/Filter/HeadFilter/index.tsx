@@ -19,17 +19,16 @@ interface Props {
 const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
   const intl = useIntl();
 
-  const [isShowSideFilter, setIsShowSideFilter] =
-    React.useState<boolean>(false);
+  const [isShowSideFilter, setShowSideFilter] = React.useState<boolean>(false);
 
   const divRef = useClickAway(() => {
-    setIsShowSideFilter(false);
+    setShowSideFilter(false);
   });
 
   const onClickFilter = (event: React.MouseEvent) => {
     event.preventDefault();
 
-    setIsShowSideFilter(!isShowSideFilter);
+    setShowSideFilter(!isShowSideFilter);
   };
 
   return (
@@ -51,6 +50,7 @@ const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
               { total },
             )}
           </Button>
+
           {isShowSideFilter && (
             <div
               className={classNames(styles.wrapperSideFilter, {

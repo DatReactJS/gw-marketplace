@@ -51,9 +51,25 @@
       }
     }
 
+    .wrapper {
+      display: flex;
+      &Amount {
+        display: flex;
+        flex-direction: column;
+        margin-right: 16px;
+      }
+
+      &Asset {
+        .select {
+          width: 88px;
+          margin-top: 4px;
+        }
+      }
+    }
+
     .input {
       margin-top: 4px;
-      width: 405px;
+      width: 306px;
 
       &:focus::placeholder {
         color: transparent;
@@ -83,6 +99,17 @@
     .btnNext {
       width: 405px;
       margin-top: 24px;
+    }
+  }
+
+  :global {
+    .rc-select {
+      background: var(--primary-500);
+      border: 1px solid var(--primary-500);
+
+      .rc-select-selection-item {
+        color: transparent;
+      }
     }
   }
 }

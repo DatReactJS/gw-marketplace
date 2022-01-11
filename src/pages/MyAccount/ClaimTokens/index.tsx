@@ -65,7 +65,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
           </div>
           <div className={styles.name}>
             <Text type="caption-12-semi-bold" color="primary-100">
-              {intl.formatMessage({ id: 'Lorem ipsum' })}
+              Lorem ipsum
             </Text>
           </div>
           <div className={styles.qty}>
@@ -121,7 +121,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
           </div>
           <div className={styles.name}>
             <Text type="caption-12-semi-bold" color="primary-100">
-              {intl.formatMessage({ id: 'Lorem ipsum' })}
+              Lorem ipsum
             </Text>
           </div>
           <div className={styles.qty}>

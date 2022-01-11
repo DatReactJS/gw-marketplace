@@ -26,14 +26,11 @@ interface SelectProps {
 const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
   const { options = [], className, classNameDropdown, icon, ...rest } = props;
 
-  const { setTrue } = useBoolean(false);
-
   return (
     <div className="checkbox-container">
       <Select
         className={cls(['rcselect', className])}
         dropdownClassName={cls(['menu', classNameDropdown])}
-        onClick={setTrue}
         {...rest}
       >
         {options.map(
@@ -48,6 +45,7 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
           },
         )}
       </Select>
+
       <Icon
         icon="chevron_down"
         color={props?.value ? NEUTRAL.NEUTRAL_0 : PRIMARY.PRIMARY_100}

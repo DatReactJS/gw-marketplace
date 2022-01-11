@@ -154,12 +154,12 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
       let count: number = 0;
 
       if (values?.rarities?.length > 0) {
-        count += 1;
+        count += values.rarities.length;
       }
 
       if (tab === TabsEnum.CHARACTER) {
         if (values?.classes?.length > 0) {
-          count += 1;
+          count += values.classes.length;
         }
       }
 

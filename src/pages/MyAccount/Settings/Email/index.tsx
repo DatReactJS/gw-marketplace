@@ -8,9 +8,9 @@ import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
 import Form from 'rc-field-form';
 import React from 'react';
-import { toast } from 'react-toastify';
 import { useIntl } from 'umi';
 import styles from './index.less';
+import Verify from './Verify';
 
 interface Props {
   email: string;
@@ -23,6 +23,7 @@ interface FormValues {
 const Email: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
+  const verifyRef: any = React.useRef();
 
   const [email, setEmail] = React.useState<string>(props.email);
   const [visible, setVisible] = React.useState<boolean>(false);
@@ -41,6 +42,10 @@ const Email: React.FC<Props> = (props: Props) => {
     event.preventDefault();
 
     onVisible();
+  };
+
+  const onSaveEmail = (newEmail: string) => {
+    setEmail(newEmail);
   };
 
   const checkEmailRequest = useRequest(
@@ -67,24 +72,6 @@ const Email: React.FC<Props> = (props: Props) => {
     },
   );
 
-  const updateEmailRequest = useRequest(
-    (email: string) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(email);
-        }, 500);
-      });
-    },
-    {
-      manual: true,
-      onSuccess: (result: string) => {
-        setEmail(result);
-        onVisible();
-        toast.success(intl.formatMessage({ id: 'common.success' }));
-      },
-    },
-  );
-
   const onValuesChange = (values: FormValues) => {
     if (isEmail(values.email)) {
       checkEmailRequest.run(values.email);
@@ -93,7 +80,9 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onFinish = (values: FormValues) => {
     if (isEmail(values.email)) {
-      updateEmailRequest.run(values.email);
+      verifyRef.current?.setEmail?.(values.email);
+      verifyRef.current?.onVisible?.();
+      onVisible();
     }
   };
 
@@ -200,9 +189,7 @@ const Email: React.FC<Props> = (props: Props) => {
                     <Button
                       htmlType={!isError ? 'submit' : 'button'}
                       className={styles.btnConfirm}
-                      loading={
-                        checkEmailRequest.loading || updateEmailRequest.loading
-                      }
+                      loading={checkEmailRequest.loading}
                     >
                       {intl.formatMessage({ id: 'common.confirm' })}
                     </Button>
@@ -213,6 +200,8 @@ const Email: React.FC<Props> = (props: Props) => {
           </div>
         }
       />
+
+      <Verify ref={verifyRef} onSaveEmail={onSaveEmail} />
     </div>
   );
 };

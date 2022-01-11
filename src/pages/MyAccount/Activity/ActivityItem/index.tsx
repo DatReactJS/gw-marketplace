@@ -12,7 +12,9 @@ const ActivityItem: React.FC<Props> = (props: Props) => {
       </div>
       <div className={styles.detail}>
         <div className={styles.dateActivity}>
-          <Text type="body-14-semi-bold">09:30</Text>
+          <Text type="body-14-semi-bold" color="primary-100">
+            09:30
+          </Text>
         </div>
         <div className={styles.image}>
           <img src="/assets/images/img_arow.png" alt="" />
@@ -27,12 +29,12 @@ const ActivityItem: React.FC<Props> = (props: Props) => {
           </div>
           <div className={styles.link}>
             <div className={styles.linkLeft}>
-              <Text type="caption-12-regular">
+              <Text type="caption-12-regular" color="primary-100">
                 View transaction status here
               </Text>
             </div>
             <div className={styles.linkRight}>
-              <Text type="caption-12-regular">
+              <Text type="caption-12-regular" color="primary-100">
                 View transaction status here
               </Text>
             </div>

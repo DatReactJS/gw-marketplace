@@ -104,7 +104,7 @@ export const preContractRequest = async (
   }
 
   let chainIdReq = await provider.send('eth_chainId');
-  console.log('🚀 ~ file: ultilities.ts ~ line 107 ~ chainIdReq', chainIdReq);
+
   const chainId = chainIdReq.result;
   if (chainId !== CURRENT_NET.chainId) {
     try {

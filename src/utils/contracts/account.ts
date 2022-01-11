@@ -9,6 +9,7 @@ const useAccount = () => {
     const provider = await getProvider();
     const signer = await provider.getSigner();
     const signature = await signer.signMessage(mes);
+
     return {
       signature,
     };

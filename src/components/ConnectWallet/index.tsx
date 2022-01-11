@@ -1,5 +1,5 @@
 import { useWallet } from '@/utils/hooks/connect/wallet';
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../Button';
 import styles from './index.less';
 import ConnectError from './ConnectError';
@@ -15,11 +15,12 @@ import useAccount from '@/utils/contracts/account';
 const ConnectWallet: React.FC = () => {
   const intl = useIntl();
   const { walletState, setWalletState } = useWallet();
-  const [address, setAddress] = useState('');
-  const [isConnectError, setIsConnectError] = React.useState<boolean>(false);
   const account = useAccount();
+
+  const [address, setAddress] = React.useState<string>('');
+  const [isConnectError, setIsConnectError] = React.useState<boolean>(false);
+
   const onConnectSuccess = (address: string, walletType: string) => {
-    console.log(address);
     const formattedAddress = formatWalletAddress(address);
     localStorage.setItem(
       ENVIRONMENTS.LOCAL_STORAGE_KEY,
@@ -51,9 +52,6 @@ const ConnectWallet: React.FC = () => {
       onSuccess: (r) => {
         validateSignature.run(address, r.message);
       },
-      onError: (er) => {
-        console.log('er', er);
-      },
     },
   );
 
@@ -63,8 +61,8 @@ const ConnectWallet: React.FC = () => {
       const _rs = await api.post(API_PATHS.VALIDATE_SIGNATURE, {
         data: {
           ...signData,
-          address: address,
-          message: message,
+          address,
+          message,
         },
       });
       return _rs;
@@ -72,20 +70,16 @@ const ConnectWallet: React.FC = () => {
     {
       manual: true,
       onSuccess: (r) => {
-        console.log('r', r);
         onConnectSuccess(r.address, WALLET_TYPE.META_MASK);
-      },
-      onError: (er) => {
-        console.log('er', er);
       },
     },
   );
 
   const connectMetamaskRequest = useRequest(connectMetaService, {
     manual: true,
-    onSuccess: (address: string) => {
-      setAddress(address);
-      connectWithAddress.run(address);
+    onSuccess: (r: string) => {
+      setAddress(r);
+      connectWithAddress.run(r);
     },
     onError: (error: any) => {
       console.log('🚀 ~ error', error);

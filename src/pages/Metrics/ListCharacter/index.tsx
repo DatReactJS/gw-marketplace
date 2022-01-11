@@ -34,7 +34,7 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
           </div>
           <ItemListed />
           <div className={styles.linkToMarketplace}>
-            <Text type="body-14-semi-bold">
+            <Text type="body-14-semi-bold" color="accent-500">
               {intl.formatMessage({ id: 'metrics.viewMarketPlace' })}
             </Text>
 

@@ -1,10 +1,15 @@
 import Text from '@/components/Text';
 import React from 'react';
+import { history } from 'umi';
 import styles from './index.less';
 
 interface Props {}
 
 const ActivityItem: React.FC<Props> = (props: Props) => {
+  const handleViewDetailItem = (): void => {
+    history.push('character/123');
+  };
+
   return (
     <div className={styles.containerActivity}>
       <div className={styles.date}>
@@ -23,7 +28,7 @@ const ActivityItem: React.FC<Props> = (props: Props) => {
           <div className={styles.info}>
             <Text type="body-14-semi-bold">
               You attempted to start an auction on
-              <strong>Name</strong>
+              <strong onClick={handleViewDetailItem}>Name</strong>
               starting from 0.2 BNB to 0.19 BNB in 1 days.
             </Text>
           </div>

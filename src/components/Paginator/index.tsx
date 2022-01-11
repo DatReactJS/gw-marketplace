@@ -89,6 +89,8 @@ const Paginator: React.FC<PaginatorProps> = ({
     options.to = totalPages;
   }
 
+  console.log('totalPages', totalPages, 'max', max);
+
   return (
     <div className="Paginator">
       <Button

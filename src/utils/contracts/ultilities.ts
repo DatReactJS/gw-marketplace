@@ -40,7 +40,7 @@ export const getProvider = async () => {
     try {
       await window?.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x61' }], // chainId must be in hexadecimal numbers
+        params: [{ chainId: '0xa869' }], // chainId must be in hexadecimal numbers
       });
     } catch (error: any) {
       if (error.code === 4902) {
@@ -104,12 +104,13 @@ export const preContractRequest = async (
   }
 
   let chainIdReq = await provider.send('eth_chainId');
+  console.log('🚀 ~ file: ultilities.ts ~ line 107 ~ chainIdReq', chainIdReq);
   const chainId = chainIdReq.result;
   if (chainId !== CURRENT_NET.chainId) {
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x61' }], // chainId must be in hexadecimal numbers
+        params: [{ chainId: '0xa869' }], // chainId must be in hexadecimal numbers
       });
     } catch (error: any) {
       if (error.code === 4902) {

@@ -5,7 +5,7 @@ const BLOCKCHAIN_NET = {
   rpcUrls: [ENVIRONMENTS.CHAIN_RPC_URL],
   chainId: ENVIRONMENTS.CHAIN_HASH_ID,
   nativeCurrency: {
-    symbol: 'BNB',
+    symbol: 'AVAX',
     decimals: 18,
   },
   blockExplorerUrls: [ENVIRONMENTS.CHAIN_URL],

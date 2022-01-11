@@ -5,7 +5,7 @@ import styles from './index.less';
 import { history } from 'umi';
 
 interface Props {
-  currentTab?: string;
+  currentTab: TabsEnum;
 }
 
 const ItemListed: React.FC<Props> = (props: Props) => {

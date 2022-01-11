@@ -41,6 +41,7 @@ const Type: React.FC<Props> = ({ onChange, value, placeholder }: Props) => {
       }}
       className={styles.selectType}
       placeholder={placeholder}
+      classNameDropdown={styles.dropdownType}
     />
   );
 };

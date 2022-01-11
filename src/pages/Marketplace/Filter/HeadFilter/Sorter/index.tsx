@@ -50,6 +50,7 @@ const Sorter: React.FC<Props> = ({ onChange, value, placeholder }: Props) => {
       }}
       className={styles.selectSorter}
       placeholder={placeholder}
+      classNameDropdown={styles.dropdownSort}
     />
   );
 };

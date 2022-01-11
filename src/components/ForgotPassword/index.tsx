@@ -1,7 +1,9 @@
 import { isEmail } from '@/utils/common';
+import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
 import Form from 'rc-field-form';
 import React from 'react';
+import { toast } from 'react-toastify';
 import { useIntl } from 'umi';
 import Button from '../Button';
 import FormItem from '../Form';
@@ -37,11 +39,28 @@ const ForgotPassword: React.FC<Props> = ({ onPreVisible }: Props) => {
   const onClickText = () => {
     onPreVisible?.();
     onVisible();
-    // setTimeout(onVisible, onPreVisible ? 400 : 0);
   };
+
+  const resendConfirmationRequest = useRequest(
+    (email: string) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(email);
+        }, 500);
+      });
+    },
+    {
+      manual: true,
+      onSuccess: (email: string) => {
+        toast.success(intl.formatMessage({ id: 'common.success' }));
+        onVisible();
+      },
+    },
+  );
 
   const onFinish = (values: FormValues) => {
     console.log('🚀 ~ values', values);
+    resendConfirmationRequest.run(values.email);
   };
 
   return (
@@ -121,7 +140,11 @@ const ForgotPassword: React.FC<Props> = ({ onPreVisible }: Props) => {
                 }}
               </FormItem>
 
-              <Button htmlType="submit" className={styles.btnConfirm}>
+              <Button
+                htmlType="submit"
+                className={styles.btnConfirm}
+                loading={resendConfirmationRequest.loading}
+              >
                 {intl.formatMessage({ id: 'settings.emailMe' })}
               </Button>
             </Form>

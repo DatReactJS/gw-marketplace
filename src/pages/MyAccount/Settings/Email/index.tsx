@@ -4,9 +4,11 @@ import Input from '@/components/Input';
 import Modal from '@/components/Modal';
 import Text from '@/components/Text';
 import { isEmail } from '@/utils/common';
+import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
 import Form from 'rc-field-form';
 import React from 'react';
+import { toast } from 'react-toastify';
 import { useIntl } from 'umi';
 import styles from './index.less';
 
@@ -41,9 +43,58 @@ const Email: React.FC<Props> = (props: Props) => {
     onVisible();
   };
 
+  const checkEmailRequest = useRequest(
+    (email: string) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(false);
+        }, 500);
+      });
+    },
+    {
+      onSuccess: (result: boolean) => {
+        if (result) {
+          form.setFields([
+            {
+              name: 'email',
+              errors: [intl.formatMessage({ id: 'settings.emailExist' })],
+            },
+          ]);
+        }
+      },
+      manual: true,
+      debounceInterval: 300,
+    },
+  );
+
+  const updateEmailRequest = useRequest(
+    (email: string) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(email);
+        }, 500);
+      });
+    },
+    {
+      manual: true,
+      onSuccess: (result: string) => {
+        setEmail(result);
+        onVisible();
+        toast.success(intl.formatMessage({ id: 'common.success' }));
+      },
+    },
+  );
+
+  const onValuesChange = (values: FormValues) => {
+    if (isEmail(values.email)) {
+      checkEmailRequest.run(values.email);
+    }
+  };
+
   const onFinish = (values: FormValues) => {
-    onVisible();
-    setEmail(values.email);
+    if (isEmail(values.email)) {
+      updateEmailRequest.run(values.email);
+    }
   };
 
   const action: string = !email ? 'add' : 'change';
@@ -89,7 +140,12 @@ const Email: React.FC<Props> = (props: Props) => {
               </Text>
             </div>
 
-            <Form form={form} initialValues={{ email: '' }} onFinish={onFinish}>
+            <Form
+              form={form}
+              initialValues={{ email: '' }}
+              onFinish={onFinish}
+              onValuesChange={onValuesChange}
+            >
               <FormItem shouldUpdate>
                 {() => {
                   const isError: boolean =
@@ -136,9 +192,23 @@ const Email: React.FC<Props> = (props: Props) => {
                 }}
               </FormItem>
 
-              <Button htmlType="submit" className={styles.btnConfirm}>
-                {intl.formatMessage({ id: 'common.confirm' })}
-              </Button>
+              <FormItem shouldUpdate>
+                {() => {
+                  const isError: boolean =
+                    form.getFieldError('email').length > 0;
+                  return (
+                    <Button
+                      htmlType={!isError ? 'submit' : 'button'}
+                      className={styles.btnConfirm}
+                      loading={
+                        checkEmailRequest.loading || updateEmailRequest.loading
+                      }
+                    >
+                      {intl.formatMessage({ id: 'common.confirm' })}
+                    </Button>
+                  );
+                }}
+              </FormItem>
             </Form>
           </div>
         }

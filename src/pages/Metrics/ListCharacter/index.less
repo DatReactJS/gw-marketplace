@@ -1,5 +1,3 @@
-@import '../../../global/colors.less';
-@import '../../../global/fonts.less';
 .listCharacter {
   display: flex;
   max-width: 1232px;
@@ -18,7 +16,7 @@
       height: 28px;
     }
     .headerSelectOption {
-      border: 1px solid @primary-100;
+      border: 1px solid var(--primary-100);
       box-sizing: border-box;
       border-radius: 8px;
       margin-top: 16px;
@@ -31,9 +29,28 @@
     .linkToMarketplace {
       width: 100%;
       display: flex;
+      align-items: center;
       justify-content: flex-end;
       cursor: pointer;
       height: 22px;
+
+      span {
+        margin-top: 2px;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 2px;
+          display: block;
+          background: var(--accent-500);
+          transition: 300ms;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+
       > img {
         margin-left: 8px;
       }
@@ -48,7 +65,7 @@
       height: 28px;
     }
     .headerSelectOption {
-      border: 1px solid @primary-100;
+      border: 1px solid var(--primary-100);
       box-sizing: border-box;
       border-radius: 8px;
       margin-top: 16px;
@@ -69,7 +86,7 @@
   max-width: 608px;
   width: 100%;
   height: 64px;
-  border: 1px solid @primary-100;
+  border: 1px solid var(--primary-100);
   box-sizing: border-box;
   border-radius: 8px;
   display: flex;
@@ -77,8 +94,9 @@
   align-items: center;
   margin-bottom: 8px;
   padding: 8px;
+  transition: all 0.3s;
   &:hover {
-    border: 1px solid @accent-500;
+    border: 1px solid var(--accent-500);
     cursor: pointer;
   }
   .infoCharacter {
@@ -92,7 +110,7 @@
         max-height: 51px;
       }
       .code {
-        background: @accent-500;
+        background: var(--accent-500);
         border-radius: 4px;
         width: fit-content;
         padding: 0px 4px;
@@ -150,15 +168,16 @@
   max-width: 608px;
   width: 100%;
   height: 64px;
-  border: 1px solid @primary-100;
+  border: 1px solid var(--primary-100);
   box-sizing: border-box;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+  transition: all 0.3s;
   &:hover {
-    border: 1px solid @accent-500;
+    border: 1px solid var(--accent-500);
     cursor: pointer;
   }
   .infoCharacter {
@@ -172,7 +191,7 @@
         max-height: 51px;
       }
       .code {
-        background: @accent-500;
+        background: var(--accent-500);
         border-radius: 4px;
         width: fit-content;
         padding: 0px 4px;

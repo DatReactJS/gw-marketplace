@@ -154,7 +154,11 @@ const Deposit: React.FC<Props> = (props: Props) => {
                   </Text>
 
                   <FormItem name="asset">
-                    <Select options={optionsAsset} className={styles.select} />
+                    <Select
+                      options={optionsAsset}
+                      className={styles.select}
+                      classNameDropdown={styles.dropdown}
+                    />
                   </FormItem>
                 </div>
               </div>

@@ -3,6 +3,7 @@ import Text from '@/components/Text';
 import React from 'react';
 import styles from './index.less';
 import { useIntl } from 'umi';
+import classNames from 'classnames';
 
 interface Props {}
 
@@ -38,15 +39,19 @@ const Total: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.total}>
       <div className={styles.optionsDate}>
-        {options.map((item, idx) => {
+        {options.map((item, index: number) => {
           const isActive: boolean = active === item.value;
+
           return (
             <Button
-              className={isActive ? styles.buttonActive : styles.button}
+              className={classNames('body-14-bold', styles.button, {
+                [styles.buttonActive]: isActive,
+              })}
               type={isActive ? 'primary' : 'ghost'}
               onClick={() => {
                 handleActiveDate(item.value);
               }}
+              key={`time-${index}`}
             >
               <Text
                 type="body-14-bold"
@@ -65,7 +70,7 @@ const Total: React.FC<Props> = (props: Props) => {
             <img src="/assets/images/token_big.svg" alt="" />
           </div>
           <div className={styles.title}>
-            <Text type="body-14-semi-bold">
+            <Text type="body-14-bold">
               {intl.formatMessage({ id: 'metrics.totalSale' })}
             </Text>
           </div>
@@ -80,7 +85,7 @@ const Total: React.FC<Props> = (props: Props) => {
             <img src="/assets/images/token_big.svg" alt="" />
           </div>
           <div className={styles.title}>
-            <Text type="body-14-semi-bold">
+            <Text type="body-14-bold">
               {intl.formatMessage({ id: 'metrics.totalVolume' })}
             </Text>
           </div>
@@ -103,7 +108,7 @@ const Total: React.FC<Props> = (props: Props) => {
             <img src="/assets/images/token_big.svg" alt="" />
           </div>
           <div className={styles.title}>
-            <Text type="body-14-semi-bold">
+            <Text type="body-14-bold">
               {intl.formatMessage({ id: 'metrics.totalSold' })}
             </Text>
           </div>

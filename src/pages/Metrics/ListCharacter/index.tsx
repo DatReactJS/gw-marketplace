@@ -12,7 +12,7 @@ interface Props {}
 const ListCharacter: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const [currentPage, setCurrentPage] = React.useState<number>(1);
-  const [currentTab, setCurrentTab] = React.useState<string>(
+  const [currentTab, setCurrentTab] = React.useState<TabsEnum>(
     TabsEnum.CHARACTER,
   );
 

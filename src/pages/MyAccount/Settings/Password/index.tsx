@@ -4,9 +4,12 @@ import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Modal from '@/components/Modal';
 import Text from '@/components/Text';
+import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
+import { trim } from 'lodash';
 import Form from 'rc-field-form';
 import React from 'react';
+import { toast } from 'react-toastify';
 import { useIntl } from 'umi';
 import styles from './index.less';
 
@@ -41,9 +44,26 @@ const Password: React.FC<Props> = (props: Props) => {
     onVisible();
   };
 
+  const updatePasswordRequest = useRequest(
+    (password: string) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(password);
+        }, 500);
+      });
+    },
+    {
+      manual: true,
+      onSuccess: (result: string) => {
+        setPassword(result);
+        onVisible();
+        toast.success(intl.formatMessage({ id: 'common.success' }));
+      },
+    },
+  );
+
   const onFinish = (values: FormValues) => {
-    onVisible();
-    setPassword(values.password);
+    updatePasswordRequest.run(values.password);
   };
 
   const isCreateNew: boolean = false; // TODO: check in query url in email link
@@ -114,7 +134,9 @@ const Password: React.FC<Props> = (props: Props) => {
                           rules={[
                             {
                               validator: (_: any, value: string) => {
-                                if (!value) {
+                                const trimValue: string = trim(value);
+
+                                if (!trimValue) {
                                   return Promise.reject(
                                     intl.formatMessage({
                                       id: 'settings.currentPasswordRequired',
@@ -122,7 +144,7 @@ const Password: React.FC<Props> = (props: Props) => {
                                   );
                                 }
 
-                                if (value !== password) {
+                                if (trimValue !== password) {
                                   return Promise.reject(
                                     intl.formatMessage({
                                       id: 'settings.currentPasswordInvalid',
@@ -237,7 +259,11 @@ const Password: React.FC<Props> = (props: Props) => {
                 }}
               </FormItem>
 
-              <Button htmlType="submit" className={styles.btnConfirm}>
+              <Button
+                htmlType="submit"
+                className={styles.btnConfirm}
+                loading={updatePasswordRequest.loading}
+              >
                 {intl.formatMessage({ id: 'common.confirm' })}
               </Button>
             </Form>

@@ -1,7 +1,6 @@
-import Icon from '../Icon';
 import React from 'react';
-import './index.less';
 import classNames from 'classnames';
+import './index.less';
 
 export interface ButtonProps {
   page: any;
@@ -88,8 +87,6 @@ const Paginator: React.FC<PaginatorProps> = ({
     options.from = totalPages - max;
     options.to = totalPages;
   }
-
-  console.log('totalPages', totalPages, 'max', max);
 
   return (
     <div className="Paginator">

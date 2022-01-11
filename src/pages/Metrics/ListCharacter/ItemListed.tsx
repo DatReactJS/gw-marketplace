@@ -54,7 +54,9 @@ const ItemListed: React.FC<Props> = (props: Props) => {
       <div className={styles.infoPriceCharacter}>
         <div className={styles.detail}>
           <div className={styles.number}>
-            <Text type="headline-20-semi-bold">100</Text>
+            <Text type="headline-20-semi-bold" color="accent-500">
+              100
+            </Text>
           </div>
           <div className={styles.icon}>
             <img src="/assets/images/bnb.svg" alt="" />
@@ -64,7 +66,9 @@ const ItemListed: React.FC<Props> = (props: Props) => {
           </div>
         </div>
         <div className={styles.time}>
-          <Text type="caption-12-light">a few seconds ago</Text>
+          <Text type="caption-12-light" color="primary-100">
+            a few seconds ago
+          </Text>
         </div>
       </div>
     </div>

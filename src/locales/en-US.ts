@@ -180,4 +180,9 @@ export default {
     'We will email you a link to reset your password.',
   'settings.emailMe': 'Email me',
   'settings.createNewPassword': 'Create new password',
+
+  //Claim
+  'claim.claimNow': 'Claim BNB now',
+  'claim.textModal': 'Your locked BNB will be unlock on',
+  'claim.claimable': 'Claimable',
 };

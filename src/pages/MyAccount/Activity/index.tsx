@@ -11,9 +11,11 @@ const Activity: React.FC<Props> = (props: Props) => {
 
   return (
     <div className={styles.containerActivities}>
-      <Text type="title-24-semi-bold" color="primary-100">
-        {intl.formatMessage({ id: 'activity.activitiy' })}
-      </Text>
+      <div className={styles.header}>
+        <Text type="title-24-semi-bold" color="primary-100">
+          {intl.formatMessage({ id: 'activity.activitiy' })}
+        </Text>
+      </div>
       <ActivityItem />
     </div>
   );

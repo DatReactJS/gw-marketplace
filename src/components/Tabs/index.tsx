@@ -1,3 +1,4 @@
+import { useHover } from '@umijs/hooks';
 import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'umi';
@@ -7,9 +8,17 @@ import Ship from '../Icon/Ship';
 import Text from '../Text';
 import styles from './index.less';
 
-interface Props {
+interface TabsProps {
   onChange: (tabs: TabsEnum) => void;
   defaultTab?: TabsEnum;
+}
+
+interface TabItemProps {
+  value: string;
+  label: string;
+  isActive: boolean;
+  icon: React.ReactNode;
+  onChangeTab: (value: TabsEnum) => void;
 }
 
 interface Ref {
@@ -22,8 +31,51 @@ export enum TabsEnum {
   ACCESORY = 'accesory',
 }
 
-const Tabs: React.FC<Props & Ref> = React.forwardRef(
-  (props: Props, ref: Ref['ref']) => {
+const TabItem: React.FC<TabItemProps> = ({
+  icon,
+  isActive,
+  label,
+  onChangeTab,
+  value,
+}) => {
+  const [isHovering, hoverRef] = useHover<HTMLDivElement>();
+
+  return (
+    <div
+      className={classNames(styles.tab, {
+        [styles.tabHover]: isHovering && !isActive,
+      })}
+      onClick={() => onChangeTab(value as TabsEnum)}
+      ref={hoverRef}
+    >
+      <div className={styles.info}>
+        <div
+          className={classNames(styles.icon, {
+            [styles.iconActive]: isActive,
+          })}
+        >
+          {icon}
+        </div>
+        <Text
+          type="body-16-bold"
+          color={isActive ? 'accent-500' : 'primary-100'}
+          className={styles.label}
+        >
+          {label}
+        </Text>
+      </div>
+
+      <div
+        className={classNames(styles.bar, {
+          [styles.barActive]: isActive,
+        })}
+      />
+    </div>
+  );
+};
+
+const Tabs: React.FC<TabsProps & Ref> = React.forwardRef(
+  (props: TabsProps, ref: Ref['ref']) => {
     const { onChange, defaultTab = TabsEnum.CHARACTER } = props;
     const intl = useIntl();
 
@@ -64,38 +116,16 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
 
     return (
       <div className={styles.tabs}>
-        {tabs.map(({ icon, label, value }, index: number) => {
-          const isActive: boolean = activeTab === value;
+        {tabs.map((tab, index: number) => {
+          const isActive: boolean = activeTab === tab.value;
 
           return (
-            <div
-              className={styles.tab}
-              onClick={() => onChangeTab(value)}
+            <TabItem
+              {...tab}
               key={`tab-${index}`}
-            >
-              <div className={styles.info}>
-                <div
-                  className={classNames(styles.icon, {
-                    [styles.iconActive]: isActive,
-                  })}
-                >
-                  {icon}
-                </div>
-                <Text
-                  type="body-16-bold"
-                  color={isActive ? 'accent-500' : 'primary-100'}
-                  className={styles.label}
-                >
-                  {label}
-                </Text>
-              </div>
-
-              <div
-                className={classNames(styles.bar, {
-                  [styles.barActive]: isActive,
-                })}
-              />
-            </div>
+              onChangeTab={onChangeTab}
+              isActive={isActive}
+            />
           );
         })}
       </div>

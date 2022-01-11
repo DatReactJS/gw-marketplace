@@ -1,15 +1,18 @@
 .tabs {
   display: flex;
   gap: 32px;
-  transition: all 0.3s;
 
   .tab {
     cursor: pointer;
 
     .info {
-      // padding: 6px 0;
       display: flex;
       align-items: center;
+
+      .icon > svg > * {
+        transition: all 0.3s;
+      }
+
       .iconActive > svg > * {
         fill: var(--accent-500);
       }
@@ -25,11 +28,27 @@
       height: 3px;
       border-radius: 8px;
       background: var(--primary-100);
+      transition: all 0.3s;
     }
 
     .barActive {
       background: var(--accent-500);
-      transition: all 0.3s;
+    }
+  }
+
+  .tabHover {
+    .info {
+      .icon > svg > * {
+        fill: var(--neutral-0);
+      }
+
+      .label {
+        color: var(--neutral-0);
+      }
+    }
+
+    .bar {
+      background: var(--neutral-0);
     }
   }
 }

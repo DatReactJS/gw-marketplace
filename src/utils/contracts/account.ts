@@ -1,22 +1,20 @@
 import { getRandomMessage } from '@/utils/normalizers';
 import { getProvider, preContractRequest } from './ultilities';
-
+interface SignMessageInterface {
+  mes: string;
+}
 const useAccount = () => {
-  const signMessage = async () => {
+  const signMessage = async (mes: string) => {
+    await window?.ethereum?.request({ method: 'eth_requestAccounts' });
     const provider = await getProvider();
-    await provider.send('eth_requestAccounts');
     const signer = await provider.getSigner();
-    const message = getRandomMessage();
-
-    const signature = await signer.signMessage(message);
+    const signature = await signer.signMessage(mes);
     return {
       signature,
-      message,
     };
   };
-
   return {
-    signMessage: () => preContractRequest(signMessage, undefined, true),
+    signMessage: (mes: string) => preContractRequest(signMessage, mes, true),
   };
 };
 

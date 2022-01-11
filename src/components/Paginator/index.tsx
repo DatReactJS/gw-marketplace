@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
 const screenWidth: number = window.innerWidth;
 
 export interface PaginatorProps {
-  totalPages?: number;
+  totalPages: number;
   currentPage: number;
   onPage: (page: number) => void;
 }
@@ -46,6 +46,14 @@ const Paginator: React.FC<PaginatorProps> = ({
   currentPage,
   onPage,
 }: PaginatorProps) => {
+  if (currentPage < 0) {
+    currentPage = 0;
+  }
+
+  if (currentPage >= totalPages) {
+    currentPage = totalPages - 1;
+  }
+
   const max = 5;
 
   const handlePrev = () => {

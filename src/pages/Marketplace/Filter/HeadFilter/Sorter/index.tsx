@@ -13,12 +13,10 @@ export enum SorterValues {
 interface Props {
   value?: string;
   onChange?: Function;
+  placeholder: string;
 }
 
-const Sorter: React.FC<Props> = ({
-  onChange,
-  value = SorterValues.HIGHEST_ID,
-}: Props) => {
+const Sorter: React.FC<Props> = ({ onChange, value, placeholder }: Props) => {
   const intl = useIntl();
   return (
     <Select
@@ -51,6 +49,7 @@ const Sorter: React.FC<Props> = ({
         }
       }}
       className={styles.selectSorter}
+      placeholder={placeholder}
     />
   );
 };

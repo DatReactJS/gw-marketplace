@@ -54,6 +54,26 @@
     .input {
       margin-top: 4px;
       width: 405px;
+
+      &:focus::placeholder {
+        color: transparent;
+      }
+    }
+
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: var(--primary-100);
+      opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: var(--primary-100);
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: var(--primary-100);
     }
 
     .inputError {

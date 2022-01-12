@@ -1,4 +1,3 @@
-import { getRandomMessage } from '@/utils/normalizers';
 import { getProvider, preContractRequest } from './ultilities';
 interface SignMessageInterface {
   mes: string;

@@ -4,7 +4,9 @@ import ForgotPassword from '@/components/ForgotPassword';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
+import { api, API_PATHS } from '@/utils/apis';
 import { isEmail } from '@/utils/common';
+import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
 import Form from 'rc-field-form';
 import React from 'react';
@@ -36,8 +38,30 @@ const Login: React.FC<Props> = (props: Props) => {
     window.open('https://www.google.com.vn/?hl=vi', '_blank');
   };
 
+  const loginWithEmail = useRequest(
+    (values: any) => {
+      const result = api.post(API_PATHS.LOGIN, {
+        data: {
+          userNameOrEmail: values.email,
+          password: values.password,
+        },
+      });
+      return result;
+    },
+    {
+      manual: true,
+      onSuccess: (r) => {
+        console.log('r', r);
+      },
+      onError: (err) => {
+        console.log('err', err);
+      },
+    },
+  );
+
   const onFinish = (values: { email: string; password: string }) => {
     console.log('🚀 ~ values', values);
+    loginWithEmail.run(values);
   };
 
   return (
@@ -65,7 +89,7 @@ const Login: React.FC<Props> = (props: Props) => {
               className={styles.icon}
             />
             <Text type="body-16-bold" color="accent-500">
-              {intl.formatMessage({ id: 'login.withEmail' })}
+              {intl.formatMessage({ id: 'login.withUserName' })}
             </Text>
           </div>
 
@@ -79,32 +103,9 @@ const Login: React.FC<Props> = (props: Props) => {
               {() => {
                 const isError: boolean = form.getFieldError('email').length > 0;
                 return (
-                  <FormItem
-                    name="email"
-                    rules={[
-                      {
-                        validator: (_: any, value: string) => {
-                          if (!value) {
-                            return Promise.reject(
-                              intl.formatMessage({ id: 'login.emailRequired' }),
-                            );
-                          }
-
-                          const checkValidEmail: boolean = isEmail(value);
-
-                          if (!checkValidEmail) {
-                            return Promise.reject(
-                              intl.formatMessage({ id: 'login.emailInvalid' }),
-                            );
-                          }
-
-                          return Promise.resolve();
-                        },
-                      },
-                    ]}
-                  >
+                  <FormItem name="email">
                     <Input
-                      placeholder={intl.formatMessage({ id: 'login.email' })}
+                      placeholder={intl.formatMessage({ id: 'login.userName' })}
                       className={classNames(styles.input, {
                         [styles.inputError]: isError,
                       })}
@@ -118,7 +119,6 @@ const Login: React.FC<Props> = (props: Props) => {
               {() => {
                 const isError: boolean =
                   form.getFieldError('password').length > 0;
-
                 return (
                   <FormItem
                     name="password"

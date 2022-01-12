@@ -1,4 +1,4 @@
 export const links = {
-  metrics: '/',
-  marketplace: '/marketplace',
+  metrics: '/metrics',
+  marketplace: '/',
 };

@@ -23,3 +23,15 @@ export const isEmail = (email: string): boolean => {
 
   return re.test(String(email).toLowerCase());
 };
+
+export const isValidUsername = (username: string): boolean => {
+  if (username.length < 6 || username.length > 33) return false;
+
+  return /^[a-zA-Z0-9_\.-]+$/.test(username);
+};
+
+export const isValidPassword = (password: string): boolean => {
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+    password,
+  );
+};

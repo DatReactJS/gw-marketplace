@@ -6,7 +6,7 @@ export default [
     routes: [
       {
         exact: true,
-        path: '/',
+        path: '/metrics',
         component: '@/pages/Metrics',
         title: 'navbar.metrics',
         routes: [],
@@ -14,7 +14,7 @@ export default [
       },
       {
         exact: true,
-        path: '/marketplace',
+        path: '/',
         component: '@/pages/Marketplace',
         title: 'navbar.marketplace',
         wrappers: ['@/components/Wrapper'],

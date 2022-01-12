@@ -1,11 +1,10 @@
 import Button from '@/components/Button';
-import ForgotPassword from '@/components/ForgotPassword';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Modal from '@/components/Modal';
 import Text from '@/components/Text';
 import { api, API_PATHS, privateRequest } from '@/utils/apis';
-import { isValidPassword } from '@/utils/common';
+import { isValidPassword, isValidUsername } from '@/utils/common';
 import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
 import { trim } from 'lodash';
@@ -15,19 +14,20 @@ import { toast } from 'react-toastify';
 import { useIntl } from 'umi';
 import styles from './index.less';
 
-interface Props {}
-
-interface FormValues {
-  password: string;
-  confirmPassword: string;
-  currentPassword: string;
+interface Props {
+  refresh: () => void;
 }
 
-const Password: React.FC<Props> = (props: Props) => {
+interface FormValues {
+  username: string;
+  password: string;
+  confirmPassword?: string;
+}
+
+const Init: React.FC<Props> = ({ refresh }: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
 
-  const [password, setPassword] = React.useState<string>('12345678');
   const [visible, setVisible] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -40,25 +40,55 @@ const Password: React.FC<Props> = (props: Props) => {
 
   const onVisible = () => setVisible(!visible);
 
-  const onShow = (event: React.MouseEvent) => {
-    event.preventDefault();
-
-    onVisible();
-  };
-
-  const updatePasswordRequest = useRequest(
-    async (newPassword: string, currentPassword: string) => {
-      const update = await privateRequest(api.post, API_PATHS.UPDATE_PASSWORD, {
-        data: {
-          newPassword,
-          currentPassword,
-        },
+  const checkUsernameRequest = useRequest(
+    async (values: FormValues) => {
+      const check = await privateRequest(api.post, API_PATHS.CHECK_USERNAME, {
+        data: { username: values.username },
       });
 
       return {
-        ...update,
-        password: newPassword,
+        ...check,
+        ...values,
       };
+    },
+    {
+      onSuccess: (result: any) => {
+        if (result?.status) {
+          let message: string = intl.formatMessage({
+            id: 'settings.usernameWrong',
+          });
+          if (result.status === 480) {
+            /**
+             * Username existed with status code 480
+             */
+            message = intl.formatMessage({ id: 'settings.usernameExist' });
+          }
+
+          return form.setFields([
+            {
+              name: 'username',
+              errors: [message],
+            },
+          ]);
+        }
+
+        return initAccountRequest.run({
+          username: result.username,
+          password: result.password,
+        });
+      },
+      manual: true,
+      debounceInterval: 300,
+    },
+  );
+
+  const initAccountRequest = useRequest(
+    async ({ username, password }: FormValues) => {
+      const init = await privateRequest(api.post, API_PATHS.INIT, {
+        data: { username, password },
+      });
+
+      return init;
     },
     {
       manual: true,
@@ -67,51 +97,25 @@ const Password: React.FC<Props> = (props: Props) => {
           return toast.error(intl.formatMessage({ id: 'common.failed' }));
         }
 
-        setPassword(result.password);
-        onVisible();
-        toast.success(intl.formatMessage({ id: 'common.success' }));
+        refresh();
       },
     },
   );
 
-  const onFinish = (values: FormValues) => {
-    updatePasswordRequest.run(values.password, values.currentPassword);
+  const onFinish = ({ confirmPassword, ...values }: FormValues) => {
+    checkUsernameRequest.run(values);
   };
-
-  const isCreateNew: boolean = false; // TODO: check in query url in email link
-  const action = (type?: 'title'): string => {
-    if (isCreateNew && type !== 'title') return 'createNew';
-
-    if (password) return 'change';
-
-    return 'add';
-  };
-  const isChange: boolean = action() === 'change';
 
   return (
-    <div className={styles.password}>
-      <Text type="body-14-semi-bold">
-        {intl.formatMessage({ id: 'settings.password' })}
-      </Text>
-
-      <div className={styles.wrapperInput}>
-        <Input
-          disabled
-          value={password}
-          placeholder={intl.formatMessage({ id: 'settings.password' })}
-          className={styles.inputPassword}
-          type="password"
-        />
-
-        <Button className={styles.btn} onClick={onShow}>
-          {intl.formatMessage({ id: `settings.${action('title')}` })}
-        </Button>
-      </div>
+    <div className={styles.init}>
+      <Button className={styles.btn} onClick={onVisible}>
+        {intl.formatMessage({ id: 'settings.initAccount' })}
+      </Button>
 
       <Modal
         visible={visible}
         onClose={onVisible}
-        className={styles.modalPassword}
+        className={styles.modalInit}
         content={
           <div className={styles.content}>
             <Text
@@ -120,65 +124,85 @@ const Password: React.FC<Props> = (props: Props) => {
               className={styles.title}
             >
               {intl.formatMessage({
-                id: `settings.${action()}Password`,
+                id: 'settings.initAccount',
               })}
             </Text>
 
             <Form
               form={form}
               initialValues={{
+                username: '',
                 password: '',
                 confirmPassword: '',
-                currentPassword: '',
               }}
               onFinish={onFinish}
               className={styles.form}
             >
-              {isChange && (
-                <>
-                  <FormItem shouldUpdate>
-                    {() => {
-                      const isError: boolean =
-                        form.getFieldError('currentPassword').length > 0;
-                      return (
-                        <FormItem
-                          name="currentPassword"
-                          rules={[
-                            {
-                              validator: (_: any, value: string) => {
-                                const trimValue: string = trim(value);
+              <FormItem shouldUpdate>
+                {() => {
+                  const isError: boolean =
+                    form.getFieldError('username').length > 0;
+                  return (
+                    <FormItem
+                      name="username"
+                      rules={[
+                        {
+                          validator: (_: any, value: string) => {
+                            const username: string = trim(value);
 
-                                if (!trimValue) {
-                                  return Promise.reject(
-                                    intl.formatMessage({
-                                      id: 'settings.currentPasswordRequired',
-                                    }),
-                                  );
-                                }
+                            if (!username) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.usernameRequired',
+                                }),
+                              );
+                            }
 
-                                return Promise.resolve();
-                              },
-                            },
-                          ]}
-                        >
-                          <Input
-                            placeholder={intl.formatMessage({
-                              id: 'settings.currentPassword',
-                            })}
-                            className={classNames(styles.input, {
-                              [styles.inputError]: isError,
-                            })}
-                            type="password"
-                            maxLength={64}
-                          />
-                        </FormItem>
-                      );
-                    }}
-                  </FormItem>
+                            if (username.length < 6) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.usernameMin',
+                                }),
+                              );
+                            }
 
-                  <ForgotPassword onPreVisible={onVisible} />
-                </>
-              )}
+                            const checkUsername: boolean = isValidUsername(
+                              username,
+                            );
+
+                            if (!checkUsername) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.usernameInvalid',
+                                }),
+                              );
+                            }
+
+                            return Promise.resolve();
+                          },
+                        },
+                      ]}
+                      normalize={(value: string) => {
+                        if (!value) return '';
+
+                        const text: string = value.replace(/\s/g, '');
+
+                        return text;
+                      }}
+                    >
+                      <Input
+                        maxLength={32}
+                        placeholder={intl.formatMessage({
+                          id: 'settings.username',
+                        })}
+                        className={classNames(styles.input, {
+                          [styles.inputError]: isError,
+                        })}
+                      />
+                    </FormItem>
+                  );
+                }}
+              </FormItem>
 
               <FormItem shouldUpdate>
                 {() => {
@@ -281,7 +305,9 @@ const Password: React.FC<Props> = (props: Props) => {
               <Button
                 htmlType="submit"
                 className={styles.btnConfirm}
-                loading={updatePasswordRequest.loading}
+                loading={
+                  checkUsernameRequest.loading || initAccountRequest.loading
+                }
               >
                 {intl.formatMessage({ id: 'common.confirm' })}
               </Button>
@@ -293,4 +319,4 @@ const Password: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default Password;
+export default Init;

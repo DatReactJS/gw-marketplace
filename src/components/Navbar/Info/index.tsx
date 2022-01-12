@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import Text from '@/components/Text';
+import { useAccountInfoRequest } from '@/utils/hooks/account';
 import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import { formatWalletAddress } from '@/utils/normalizers';
 import React from 'react';
@@ -11,6 +12,7 @@ interface Props {}
 const Info: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const walletInfo = useWalletInfo();
+  // const { data } = useAccountInfoRequest();
 
   const navigateMyAccount = () => {
     history.push('/account');
@@ -22,7 +24,9 @@ const Info: React.FC<Props> = (props: Props) => {
         <img alt="" src="/assets/images/metamask.png" />
 
         <div className={styles.detail}>
-          <Text type="caption-12-semi-bold">{walletInfo?.balance} BNB</Text>
+          <Text type="caption-12-semi-bold">
+            {walletInfo?.balance || 0} BNB
+          </Text>
           <Text type="caption-12-regular" color="primary-100">
             {formatWalletAddress(walletInfo?.address, 8)}
           </Text>

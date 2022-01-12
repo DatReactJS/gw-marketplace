@@ -29,7 +29,7 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
   };
 
   const redirectToMarket = (): void => {
-    history.push('/marketplace');
+    history.push('/');
   };
 
   return (

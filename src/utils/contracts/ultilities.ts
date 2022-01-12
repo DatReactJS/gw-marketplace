@@ -18,12 +18,13 @@ const READ_ONLY_PROVIDER = new ethers.providers.JsonRpcProvider(
 //   },
 // });
 
-type LocalInfo = string | null;
-type LocalInfoObject =
+export type LocalInfo = string | null;
+export type LocalInfoObject =
   | {
       address: string;
       formattedAddress: string;
       walletType: string;
+      token: string;
     }
   | undefined;
 

@@ -1,5 +1,7 @@
 import { extend } from 'umi-request';
 import { ENVIRONMENTS } from '../constants/environments';
+import { LocalInfo, LocalInfoObject } from '../contracts/ultilities';
+import TokenManagement from '../TokenManagement';
 import ERROR_CODES from './error_code';
 
 // Local
@@ -11,15 +13,94 @@ export const WEB_PATHS = {
   APP_CONFIG: '/assets/configs/appConfig.json',
 };
 
-// Swagger
-export const api = extend({
-  prefix: ENVIRONMENTS.API_URL,
+// Game
+export const apiMeta = extend({
+  prefix: ENVIRONMENTS.API_META_URL,
   errorHandler: (res: any) => {
-    if (res?.code && ERROR_CODES[res.code]) {
-      throw ERROR_CODES[res.code];
+    if (res?.data?.code && ERROR_CODES[res?.data?.code]) {
+      throw ERROR_CODES[res?.data?.code];
     }
   },
 });
+
+/**
+ * Swagger https://api.kingdomquest.io/swagger/index.html
+ */
+
+export const api = extend({
+  prefix: ENVIRONMENTS.API_URL,
+  errorHandler: (error: any) => {
+    if (error?.code && ERROR_CODES[error.code]) {
+      throw ERROR_CODES[error.code];
+    }
+  },
+});
+
+api.interceptors.response.use(
+  async (response) => {
+    const data = await response.clone().json();
+    if (!response.ok) {
+      console.error(data);
+
+      return data;
+    }
+
+    return response;
+  },
+  { global: false },
+);
+
+export const injectBearer = (token: string, configs: any) => {
+  if (!configs) {
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  }
+
+  if (configs.headers) {
+    return {
+      ...configs,
+      headers: {
+        ...configs.headers,
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  }
+
+  return {
+    ...configs,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
+const TokenManager = new TokenManagement({
+  isTokenValid: () => true,
+  getAccessToken: () => {
+    const localInfo: LocalInfo = localStorage.getItem(
+      ENVIRONMENTS.LOCAL_STORAGE_KEY,
+    );
+    let localInfoObject: LocalInfoObject;
+
+    if (localInfo) {
+      localInfoObject = JSON.parse(localInfo);
+    }
+
+    return localInfoObject?.token || '';
+  },
+});
+
+export const privateRequest = async (
+  request: any,
+  url: string,
+  configs?: any,
+) => {
+  const token: string = (await TokenManager.getToken()) as string;
+  return request(url, injectBearer(token, configs));
+};
 
 export const API_PATHS = {
   // Login
@@ -32,22 +113,12 @@ export const API_PATHS = {
     `ClaimReward?Token=${token}&Amount=${amount}`,
 
   // Account
-  INFO: '/Info',
-  INIT: '/Init',
-  CHECK_USERNAME: '/CheckUsername',
-  UPDATE_USERNAME: '/UpdateUsername',
-  CHECK_EMAIL: '/CheckEmail',
-  UPDATE_EMAIL: '/UpdateEmail',
-  UPDATE_PASSWORD: '/UpdatePassword',
-  RESEND_CONFIRMATION_EMAIL: '/ResendConfirmationEmail',
+  INFO: '/Account/Info',
+  INIT: '/Account/Init',
+  CHECK_USERNAME: '/Account/CheckUsername',
+  UPDATE_USERNAME: '/Account/UpdateUsername',
+  CHECK_EMAIL: '/Account/CheckEmail',
+  UPDATE_EMAIL: '/Account/UpdateEmail',
+  UPDATE_PASSWORD: '/Account/UpdatePassword',
+  RESEND_CONFIRMATION_EMAIL: '/Account/ResendConfirmationEmail',
 };
-
-// Game
-export const apiMeta = extend({
-  prefix: ENVIRONMENTS.API_META_URL,
-  errorHandler: (res: any) => {
-    if (res?.data?.code && ERROR_CODES[res?.data?.code]) {
-      throw ERROR_CODES[res?.data?.code];
-    }
-  },
-});

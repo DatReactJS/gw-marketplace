@@ -16,10 +16,8 @@ export const walletAtom = atom({
   key: `${ENVIRONMENTS.LOCAL_STORAGE_KEY}_WALLET_STATE`,
   default: {
     userInfo: {
-      name: undefined,
-      nftAddress: undefined,
-      myAddress: '',
-      loading: true,
+      username: '',
+      email: '',
     },
     walletInfo: {
       formattedAddress: initialInfo?.formattedAddress,
@@ -37,7 +35,7 @@ export const useCurrentAccountAddress = () => {
   return walletState?.walletInfo?.address;
 };
 
-export const useInGameInfo = () => {
+export const useAccountInfo = () => {
   const walletState = useRecoilValue(walletAtom);
   return walletState?.userInfo;
 };
@@ -94,10 +92,8 @@ export const useWallet = () => {
     // }
     setWalletState({
       userInfo: {
-        name: undefined,
-        nftAddress: undefined,
-        myAddress: '',
-        loading: true,
+        username: '',
+        email: '',
       },
       walletInfo: {
         formattedAddress: undefined,

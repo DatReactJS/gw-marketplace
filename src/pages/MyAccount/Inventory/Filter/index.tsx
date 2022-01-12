@@ -1,5 +1,5 @@
 import { TabsEnum } from '@/components/Tabs';
-import { SorterValues } from '@/pages/Marketplace/Filter/HeadFilter/Sorter';
+// import { SorterValues } from '@/pages/Marketplace/Filter/HeadFilter/Sorter';
 import { TypeValues } from '@/pages/Marketplace/Filter/HeadFilter/Type';
 import { useMount } from '@umijs/hooks';
 import { isNumber } from 'lodash';
@@ -82,10 +82,10 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
     const onResetFilter = (nextTab?: TabsEnum) => {
       const currentQuery: Record<string, string> = location.query;
 
-      const sort: SorterValues = form.getFieldValue('sort');
+      // const sort: SorterValues = form.getFieldValue('sort');
       const type: TypeValues = form.getFieldValue('type');
       const newQuery: {
-        sort?: SorterValues;
+        // sort?: SorterValues;
         type?: TypeValues;
         page?: string;
         tab: TabsEnum;
@@ -101,10 +101,10 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
 
       form.resetFields();
 
-      if (sort !== SorterValues.HIGHEST_ID) {
-        form.setFieldsValue({ sort });
-        newQuery.sort = sort;
-      }
+      // if (sort !== SorterValues.HIGHEST_ID) {
+      //   form.setFieldsValue({ sort });
+      //   newQuery.sort = sort;
+      // }
 
       if (type !== TypeValues.ALL) {
         form.setFieldsValue({ type });
@@ -122,9 +122,9 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
     const getValuesFilters = (values: Record<string, any>) => {
       if (!values) return {};
 
-      if (values?.sort === SorterValues.HIGHEST_ID) {
-        delete values.sort;
-      }
+      // if (values?.sort === SorterValues.HIGHEST_ID) {
+      //   delete values.sort;
+      // }
 
       if (values?.type === TypeValues.ALL) {
         delete values.type;

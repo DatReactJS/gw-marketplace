@@ -34,8 +34,8 @@ export default {
   'common.amount': 'Amount',
   'common.amount.required': 'Amount is required',
 
-  'common.price.required': 'Price is required',
-  'common.price.zero': 'Price must be greater than 0',
+  'common.price.required': 'Amount is required',
+  'common.price.zero': 'Amount must be greater than 0',
   'common.price.min': 'Price must be greater than or equal {minPrice}',
   'common.price.max': 'Price must be less than or equal {maxPrice}',
 
@@ -154,9 +154,14 @@ export default {
 
   // General settings
   'settings.gereral': 'General Settings',
-  'settings.name': 'Name',
-  'settings.nameExist': 'Name have been existed',
-  'settings.nameRequired': 'Name is required',
+  'settings.username': 'Username',
+  'settings.initAccount': 'Init Account',
+  'settings.usernameExist': 'Username have been existed',
+  'settings.usernameRequired': 'Username is required',
+  'settings.usernameMin': 'Username must be greater than 6 characters',
+  'settings.usernameWrong': 'Username is invalid',
+  'settings.usernameInvalid':
+    'Username can contain letters, number, and . _ - symbols',
   'settings.saveChange': 'Save change',
   'settings.verifyEmail': 'Verify your email',
   'settings.verifyEmailDescription':
@@ -178,6 +183,8 @@ export default {
     'We will send verification code to your new email. Please verify it before you can this email to login.',
   'settings.change': 'Change',
   'settings.password': 'Password',
+  'settings.passwordInvalid':
+    'Password must be at least 1 digit, 1 lower case, 1 upper case and 1 special character',
   'settings.passwordRequired': 'Password is required',
   'settings.addPassword': 'Add Password',
   'settings.changePassword': 'Change Password',

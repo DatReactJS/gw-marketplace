@@ -1,25 +1,20 @@
 import Loading from '@/components/Loading';
 import Text from '@/components/Text';
-import { useRequest } from '@umijs/hooks';
 import React from 'react';
 import { useIntl } from 'umi';
 import Email from './Email';
 import styles from './index.less';
-import Name from './Name';
+import Username from './Username';
 import Password from './Password';
+import { useAccountInfoRequest } from '@/utils/hooks/account';
+import Init from './Init';
 
 interface Props {}
 
 const Settings: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
 
-  const { loading, data, refresh } = useRequest(() => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(1);
-      }, 500);
-    });
-  });
+  const { loading, data, refresh } = useAccountInfoRequest();
 
   const renderContent = () => {
     if (loading) {
@@ -29,9 +24,15 @@ const Settings: React.FC<Props> = (props: Props) => {
     if (data && !loading) {
       return (
         <>
-          <Name name="David" />
-          <Email email="david@gmail.com" />
-          <Password />
+          {data?.username ? (
+            <>
+              <Username username={data.username} />
+              <Password />
+              <Email email={data?.email} />
+            </>
+          ) : (
+            <Init refresh={refresh} />
+          )}
         </>
       );
     }

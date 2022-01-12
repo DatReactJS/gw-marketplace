@@ -3,6 +3,7 @@ import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Modal from '@/components/Modal';
 import Text from '@/components/Text';
+import { api, API_PATHS, privateRequest } from '@/utils/apis';
 import { isEmail } from '@/utils/common';
 import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
@@ -49,40 +50,39 @@ const Email: React.FC<Props> = (props: Props) => {
   };
 
   const checkEmailRequest = useRequest(
-    (email: string) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(false);
-        }, 500);
+    async (emailValue: string) => {
+      const check = await privateRequest(api.post, API_PATHS.CHECK_EMAIL, {
+        data: { email: emailValue },
       });
+
+      return {
+        ...check,
+        email: emailValue,
+      };
     },
     {
-      onSuccess: (result: boolean) => {
-        if (result) {
-          form.setFields([
+      onSuccess: (result: any) => {
+        if (result?.status) {
+          return form.setFields([
             {
               name: 'email',
               errors: [intl.formatMessage({ id: 'settings.emailExist' })],
             },
           ]);
         }
+
+        verifyRef.current?.setEmail?.(result.email);
+        verifyRef.current?.onVisible?.();
+        onVisible();
       },
       manual: true,
       debounceInterval: 300,
     },
   );
 
-  const onValuesChange = (values: FormValues) => {
-    if (isEmail(values.email)) {
-      checkEmailRequest.run(values.email);
-    }
-  };
-
   const onFinish = (values: FormValues) => {
     if (isEmail(values.email)) {
-      verifyRef.current?.setEmail?.(values.email);
-      verifyRef.current?.onVisible?.();
-      onVisible();
+      checkEmailRequest.run(values.email);
     }
   };
 
@@ -129,12 +129,7 @@ const Email: React.FC<Props> = (props: Props) => {
               </Text>
             </div>
 
-            <Form
-              form={form}
-              initialValues={{ email: '' }}
-              onFinish={onFinish}
-              onValuesChange={onValuesChange}
-            >
+            <Form form={form} initialValues={{ email: '' }} onFinish={onFinish}>
               <FormItem shouldUpdate>
                 {() => {
                   const isError: boolean =

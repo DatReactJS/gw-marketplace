@@ -62,11 +62,11 @@ const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
           )}
         </div>
 
-        <FormItem name="sort" preserve>
+        {/* <FormItem name="sort" preserve>
           <Sorter
             placeholder={intl.formatMessage({ id: 'filter.sorter.highestID' })}
           />
-        </FormItem>
+        </FormItem> */}
       </div>
     </div>
   );

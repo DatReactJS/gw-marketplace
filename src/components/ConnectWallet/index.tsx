@@ -20,7 +20,10 @@ const ConnectWallet: React.FC = () => {
   const [address, setAddress] = React.useState<string>('');
   const [isConnectError, setIsConnectError] = React.useState<boolean>(false);
 
-  const onConnectSuccess = (address: string, walletType: string) => {
+  const onConnectSuccess = (
+    { address, token }: { address: string; token: string },
+    walletType: string,
+  ) => {
     const formattedAddress = formatWalletAddress(address);
     localStorage.setItem(
       ENVIRONMENTS.LOCAL_STORAGE_KEY,
@@ -28,6 +31,7 @@ const ConnectWallet: React.FC = () => {
         walletType,
         address,
         formattedAddress,
+        token,
       }),
     );
     setWalletState({
@@ -70,7 +74,10 @@ const ConnectWallet: React.FC = () => {
     {
       manual: true,
       onSuccess: (r) => {
-        onConnectSuccess(r.address, WALLET_TYPE.META_MASK);
+        onConnectSuccess(
+          { address: r?.address, token: r?.token },
+          WALLET_TYPE.META_MASK,
+        );
       },
     },
   );

@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
-import { formatWalletAddress } from '@/utils/normalizers';
-import { useMount } from '@umijs/hooks';
+import { useMount, useRequest } from '@umijs/hooks';
 import { useWallet } from './wallet';
 import { atom, useRecoilState } from 'recoil';
 import { ENVIRONMENTS } from '@/utils/constants/environments';
+import { api, API_PATHS } from '@/utils/apis';
+import useAccount from '@/utils/contracts/account';
+import { formatWalletAddress } from '@/utils/normalizers';
 
 export const useProvider = () => {
   const { disconnectWallet, walletState, setWalletState } = useWallet();
+  const account = useAccount();
 
   const walletType = walletState?.walletType;
 
@@ -14,62 +17,91 @@ export const useProvider = () => {
     if (walletState.cacheInfo) {
       if (!walletState?.cacheInfo?.walletType) {
         disconnectWallet();
-      } else if (window?.ethereum) {
+      }
+
+      if (window?.ethereum) {
         const result = await window.ethereum.send('eth_requestAccounts');
         if (
-          result &&
-          result?.result[0] &&
-          result.result[0].toLowerCase() ===
-            walletState?.cacheInfo?.address.toLowerCase()
+          result?.result?.[0].toLowerCase?.() ===
+          walletState?.cacheInfo?.address.toLowerCase()
         ) {
-          setWalletState({
+          return setWalletState({
             ...walletState,
             walletType: walletState.cacheInfo.walletType,
           });
-        } else {
-          disconnectWallet();
         }
-      } else {
-        disconnectWallet();
+        return disconnectWallet();
       }
+
+      return disconnectWallet();
     }
   });
 
-  const saveUserInfo = (account: string) => {
-    const formattedAddress = formatWalletAddress(account);
-    localStorage.setItem(
-      ENVIRONMENTS.LOCAL_STORAGE_KEY,
-      JSON.stringify({
-        address: account,
-        formattedAddress,
-        walletType,
-      }),
-    );
-    setWalletState({
-      ...walletState,
-      userInfo: {
-        name: undefined,
-        nftAddress: undefined,
-        myAddress: '',
-        loading: true,
+  const connectWithAddress = useRequest(
+    async (addressWallet: string) => {
+      const login = await api.post(API_PATHS.LOGIN_WITH_ADDRESS, {
+        data: {
+          address: addressWallet,
+        },
+      });
+
+      return {
+        ...login,
+        address: addressWallet,
+      };
+    },
+    {
+      manual: true,
+      onSuccess: (r) => {
+        validateSignature.run(r.address, r.message);
       },
-      walletInfo: {
-        ...walletState.walletInfo,
-        address: account,
-        formattedAddress,
+    },
+  );
+
+  const validateSignature = useRequest(
+    async (address: any, message: string) => {
+      const signData = await account.signMessage(message);
+      const _rs = await api.post(API_PATHS.VALIDATE_SIGNATURE, {
+        data: {
+          ...signData,
+          address,
+          message,
+        },
+      });
+      return _rs;
+    },
+    {
+      manual: true,
+      onSuccess: (r) => {
+        if (r) {
+          const address: string = r?.address;
+          const token: string = r?.token;
+          const formattedAddress = formatWalletAddress(address);
+          localStorage.setItem(
+            ENVIRONMENTS.LOCAL_STORAGE_KEY,
+            JSON.stringify({
+              walletType,
+              address,
+              formattedAddress,
+              token,
+            }),
+          );
+          setWalletState({
+            ...walletState,
+            // @ts-ignore
+            walletType,
+            // @ts-ignore
+            walletInfo: { address, formattedAddress },
+          });
+        }
       },
-    });
-  };
+    },
+  );
 
   useEffect(() => {
     if (window?.ethereum) {
       window?.ethereum.on('accountsChanged', (accounts: any) => {
-        const account = accounts[0];
-        if (account) {
-          saveUserInfo(account);
-        } else {
-          disconnectWallet();
-        }
+        connectWithAddress.run(accounts[0]);
       });
       window?.ethereum.on('chainChanged', () => {
         window.location.reload();

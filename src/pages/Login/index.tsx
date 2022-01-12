@@ -5,9 +5,14 @@ import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { api, API_PATHS } from '@/utils/apis';
-import { isEmail } from '@/utils/common';
+import { isValidUsername } from '@/utils/common';
+import { ENVIRONMENTS } from '@/utils/constants/environments';
+import { WALLET_TYPE } from '@/utils/constants/wallet';
+import { useWallet } from '@/utils/hooks/connect/wallet';
+import { formatWalletAddress } from '@/utils/normalizers';
 import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
+import { trim } from 'lodash';
 import Form from 'rc-field-form';
 import React from 'react';
 import { useIntl } from 'umi';
@@ -18,6 +23,7 @@ interface Props {}
 const Login: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
+  const { walletState, setWalletState } = useWallet();
 
   const [showFormLogin, setShowFormLogin] = React.useState<boolean>(false);
   const [isLoginError, setIsLoginError] = React.useState<boolean>(false);
@@ -38,9 +44,9 @@ const Login: React.FC<Props> = (props: Props) => {
     window.open('https://www.google.com.vn/?hl=vi', '_blank');
   };
 
-  const loginWithEmail = useRequest(
-    (values: any) => {
-      const result = api.post(API_PATHS.LOGIN, {
+  const loginWithUsername = useRequest(
+    async (values: any) => {
+      const result = await api.post(API_PATHS.LOGIN, {
         data: {
           userNameOrEmail: values.email,
           password: values.password,
@@ -51,17 +57,33 @@ const Login: React.FC<Props> = (props: Props) => {
     {
       manual: true,
       onSuccess: (r) => {
-        console.log('r', r);
-      },
-      onError: (err) => {
-        console.log('err', err);
+        if (r) {
+          const address: string = r?.address;
+          const walletType: string = WALLET_TYPE.META_MASK;
+          const formattedAddress = formatWalletAddress(address);
+          localStorage.setItem(
+            ENVIRONMENTS.LOCAL_STORAGE_KEY,
+            JSON.stringify({
+              walletType,
+              address,
+              formattedAddress,
+              token: r?.token,
+            }),
+          );
+          setWalletState({
+            ...walletState,
+            // @ts-ignore
+            walletType,
+            // @ts-ignore
+            walletInfo: { address, formattedAddress },
+          });
+        }
       },
     },
   );
 
   const onFinish = (values: { email: string; password: string }) => {
-    console.log('🚀 ~ values', values);
-    loginWithEmail.run(values);
+    loginWithUsername.run(values);
   };
 
   return (
@@ -96,16 +118,42 @@ const Login: React.FC<Props> = (props: Props) => {
           <Form
             form={form}
             className={styles.form}
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: 'huynn97a', password: '123456Aa@' }}
             onFinish={onFinish}
           >
             <FormItem shouldUpdate>
               {() => {
                 const isError: boolean = form.getFieldError('email').length > 0;
                 return (
-                  <FormItem name="email">
+                  <FormItem
+                    name="email"
+                    rules={[
+                      {
+                        validator: (_: any, value: string) => {
+                          const username: string = trim(value);
+
+                          if (!username) {
+                            return Promise.reject(
+                              intl.formatMessage({
+                                id: 'login.usernameRequired',
+                              }),
+                            );
+                          }
+
+                          return Promise.resolve();
+                        },
+                      },
+                    ]}
+                    normalize={(value: string) => {
+                      if (!value) return '';
+
+                      const text: string = value.replace(/\s/g, '');
+
+                      return text;
+                    }}
+                  >
                     <Input
-                      placeholder={intl.formatMessage({ id: 'login.userName' })}
+                      placeholder={intl.formatMessage({ id: 'login.username' })}
                       className={classNames(styles.input, {
                         [styles.inputError]: isError,
                       })}
@@ -165,6 +213,7 @@ const Login: React.FC<Props> = (props: Props) => {
               className={classNames(styles.btnLogin, {
                 [styles.btnLoginHide]: !showFormLogin,
               })}
+              loading={loginWithUsername.loading}
             >
               {intl.formatMessage({ id: 'login.logIn' })}
             </Button>

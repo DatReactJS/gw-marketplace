@@ -6,10 +6,10 @@ import Text from '../Text';
 import styles from './index.less';
 
 interface Props {
-  onBuy: () => void;
+  onCancel: () => void;
 }
 
-const BuyNow: React.FC<Props> = ({ onBuy }: Props) => {
+const CancelSell: React.FC<Props> = ({ onCancel }: Props) => {
   const intl = useIntl();
 
   const [visible, setVisible] = React.useState<boolean>(false);
@@ -20,13 +20,13 @@ const BuyNow: React.FC<Props> = ({ onBuy }: Props) => {
     event.preventDefault();
     onVisible();
 
-    onBuy();
+    onCancel();
   };
 
   return (
-    <div className={styles.buyNow}>
+    <div className={styles.cancelSell}>
       <Button className={styles.btn} onClick={onVisible}>
-        {intl.formatMessage({ id: 'common.buyNow' })}
+        {intl.formatMessage({ id: 'common.cancelSell' })}
       </Button>
 
       <Modal
@@ -41,11 +41,11 @@ const BuyNow: React.FC<Props> = ({ onBuy }: Props) => {
             />
 
             <Text type="title-24-semi-bold">
-              {intl.formatMessage({ id: 'common.confirmPayment' })}
+              {intl.formatMessage({ id: 'common.cancelSell' })}
             </Text>
 
             <Text type="body-14-regular" color="primary-100">
-              {intl.formatMessage({ id: 'common.buy.description' })}
+              {intl.formatMessage({ id: 'common.cancelSell.description' })}
             </Text>
 
             <Button className={styles.btnConfirm} onClick={onConfirm}>
@@ -53,10 +53,10 @@ const BuyNow: React.FC<Props> = ({ onBuy }: Props) => {
             </Button>
           </div>
         }
-        className={styles.modalBuyNow}
+        className={styles.modalCancelSell}
       />
     </div>
   );
 };
 
-export default BuyNow;
+export default CancelSell;

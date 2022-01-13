@@ -51,54 +51,60 @@
       }
     }
 
-    .wrapper {
+    .form {
       display: flex;
-      &Amount {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .wrapper {
         display: flex;
-        flex-direction: column;
-        margin-right: 16px;
-      }
+        &Amount {
+          display: flex;
+          flex-direction: column;
+          margin-right: 16px;
+        }
 
-      &Asset {
-        .select {
-          width: 88px;
-          margin-top: 3px;
+        &Asset {
+          .select {
+            width: 88px;
+            margin-top: 3px;
+          }
         }
       }
-    }
 
-    .input {
-      margin-top: 4px;
-      width: 306px;
+      .input {
+        margin-top: 4px;
+        width: 306px;
 
-      &:focus::placeholder {
-        color: transparent;
+        &:focus::placeholder {
+          color: transparent;
+        }
       }
-    }
 
-    ::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: var(--primary-100);
-      opacity: 1; /* Firefox */
-    }
+      ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: var(--primary-100);
+        opacity: 1; /* Firefox */
+      }
 
-    :-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
-      color: var(--primary-100);
-    }
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: var(--primary-100);
+      }
 
-    ::-ms-input-placeholder {
-      /* Microsoft Edge */
-      color: var(--primary-100);
-    }
+      ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: var(--primary-100);
+      }
 
-    .inputError {
-      border: 1px solid var(--warning);
-    }
+      .inputError {
+        border: 1px solid var(--warning);
+      }
 
-    .btnNext {
-      width: 405px;
-      margin-top: 24px;
+      .btnNext {
+        width: 69px;
+        margin-top: 24px;
+      }
     }
   }
 

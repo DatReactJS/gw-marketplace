@@ -82,9 +82,9 @@ const Transaction: React.FC<Props & Ref> = React.forwardRef(
         case Status.SUCCESS:
           return <Success hash={hash} />;
         case Status.FAILED:
-          return <Failed error={error} />;
+          return <Failed error={error} onClose={onClose} />;
         case Status.PROCESSING:
-          return <Processing />;
+          return <Processing hash={hash} />;
         case Status.REJECTED:
           return <Rejected onClose={onClose} />;
         case Status.INSUFFICIENT_BALANCE:

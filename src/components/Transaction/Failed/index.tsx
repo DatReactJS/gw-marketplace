@@ -7,9 +7,10 @@ import styles from './index.less';
 
 interface Props {
   error?: StatusError;
+  onClose: () => void;
 }
 
-const Failed: React.FC<Props> = ({ error }: Props) => {
+const Failed: React.FC<Props> = ({ error, onClose }: Props) => {
   const intl = useIntl();
 
   const goLogin = (event: React.MouseEvent) => {
@@ -32,20 +33,26 @@ const Failed: React.FC<Props> = ({ error }: Props) => {
         {intl.formatMessage({ id: 'common.purchaseFailed' })}
       </Text>
 
-      <Text type="body-14-regular" color="primary-100">
-        {intl.formatMessage({ id: 'common.funds' })}
-      </Text>
-
       {error === StatusError.AUTHENTICATED && (
-        <Button className={styles.btn} onClick={goLogin}>
-          {intl.formatMessage({ id: 'login.logIn' })}
-        </Button>
+        <>
+          <Text type="body-14-regular" color="primary-100">
+            {intl.formatMessage({ id: 'common.connectError' })}
+          </Text>
+          <Button className={styles.btn} onClick={goLogin}>
+            {intl.formatMessage({ id: 'login.logIn' })}
+          </Button>
+        </>
       )}
 
       {error === StatusError.INSUFFICIENT_BALANCE && (
-        <Button className={styles.btn} onClick={goAccount}>
-          {intl.formatMessage({ id: 'common.deposit' })}
-        </Button>
+        <>
+          <Text type="body-14-regular" color="primary-100">
+            {intl.formatMessage({ id: 'common.funds' })}
+          </Text>
+          <Button className={styles.btnClose} onClick={onClose}>
+            {intl.formatMessage({ id: 'common.close' })}
+          </Button>
+        </>
       )}
     </div>
   );

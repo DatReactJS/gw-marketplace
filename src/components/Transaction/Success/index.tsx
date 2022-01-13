@@ -20,6 +20,10 @@ const Success: React.FC<Props> = ({ hash }: Props) => {
     history.push(`/account/inventory?tab=${path}`);
   };
 
+  const onViewTransaction = () => {
+    window.open(`${process.env.APP__CHAIN_URL}tx/${hash}`, '_blank');
+  };
+
   return (
     <div className={styles.success}>
       <img
@@ -33,8 +37,15 @@ const Success: React.FC<Props> = ({ hash }: Props) => {
       </Text>
 
       <Text type="body-14-regular" color="primary-100">
-        {intl.formatMessage({ id: 'common.description' })}
+        {intl.formatMessage({ id: 'common.checkTransactionID' })}
       </Text>
+
+      <div className={styles.transactionID} onClick={onViewTransaction}>
+        <Text type="caption-12-semi-bold">
+          0x9nq30x2609nt0x9nq30789548696x2609nt085
+        </Text>
+        <img alt="" src="/assets/images/ic-open-link.png" />
+      </div>
 
       <Button className={styles.btn} onClick={goInventory}>
         {intl.formatMessage({ id: 'common.goInventory' })}

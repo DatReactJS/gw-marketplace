@@ -22,21 +22,22 @@ const Sorter: React.FC<Props> = ({ onChange, value, placeholder }: Props) => {
     <Select
       options={[
         {
-          value: SorterValues.HIGHEST_ID,
-          label: intl.formatMessage({ id: 'filter.sorter.highestID' }),
-        },
-        {
           value: SorterValues.LOWEST_ID,
           label: intl.formatMessage({ id: 'filter.sorter.lowestID' }),
         },
         {
-          value: SorterValues.HIGHEST_PRICE,
-          label: intl.formatMessage({ id: 'filter.sorter.highestPrice' }),
+          value: SorterValues.HIGHEST_ID,
+          label: intl.formatMessage({ id: 'filter.sorter.highestID' }),
         },
         {
           value: SorterValues.LOWEST_PRICE,
           label: intl.formatMessage({ id: 'filter.sorter.lowestPrice' }),
         },
+        {
+          value: SorterValues.HIGHEST_PRICE,
+          label: intl.formatMessage({ id: 'filter.sorter.highestPrice' }),
+        },
+
         {
           value: SorterValues.LASTEST,
           label: intl.formatMessage({ id: 'filter.sorter.lastest' }),

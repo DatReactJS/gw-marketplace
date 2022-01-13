@@ -104,6 +104,7 @@ const Deposit: React.FC<Props> = (props: Props) => {
               form={form}
               initialValues={{ amount: '', asset: 'BNB' }}
               onFinish={onFinish}
+              className={styles.form}
             >
               <div className={styles.wrapper}>
                 <div className={styles.wrapperAmount}>

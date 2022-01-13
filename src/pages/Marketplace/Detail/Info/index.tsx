@@ -1,4 +1,5 @@
 import BuyNow from '@/components/BuyNow';
+import CancelSell from '@/components/CancelSell';
 import Sell from '@/components/Sell';
 import Text from '@/components/Text';
 import Transaction, { Status, StatusError } from '@/components/Transaction';
@@ -22,6 +23,10 @@ const Info: React.FC<Props> = ({ refresh }: Props) => {
     () => {
       return new Promise((resolve, reject) => {
         transactionRef?.current.onVisible();
+
+        setTimeout(() => {
+          transactionRef?.current.changeStatus({ status: Status.PROCESSING });
+        }, 1000);
         setTimeout(() => {
           resolve(1);
         }, 3000);
@@ -71,6 +76,10 @@ const Info: React.FC<Props> = ({ refresh }: Props) => {
     return testingRequest.run();
   };
 
+  const onCancel = () => {
+    return testingRequest.run();
+  };
+
   return (
     <div className={styles.info}>
       <div className={styles.head}>
@@ -90,6 +99,7 @@ const Info: React.FC<Props> = ({ refresh }: Props) => {
         </div>
         <BuyNow onBuy={onBuy} />
         <Sell onSell={onSell} />
+        <CancelSell onCancel={onCancel} />
       </div>
 
       <About />

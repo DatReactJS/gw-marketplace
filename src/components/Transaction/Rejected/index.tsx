@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import Text from '@/components/Text';
 import classNames from 'classnames';
 import React from 'react';
-import { useIntl } from 'umi';
+import { history, useIntl } from 'umi';
 import styles from './index.less';
 
 interface Props {
@@ -12,21 +12,25 @@ interface Props {
 const Rejected: React.FC<Props> = ({ onClose }: Props) => {
   const intl = useIntl();
 
-  const handleClose = (event: React.MouseEvent) => {
+  const goLogin = (event: React.MouseEvent) => {
     event.preventDefault();
 
-    onClose();
+    history.push('/login');
   };
 
   return (
     <div className={styles.rejected}>
-      <Text type="p-18-semi-bold">Content Rejected</Text>
+      <img alt="" src="/assets/images/danger_big.svg" className={styles.icon} />
 
-      <Button
-        className={classNames('p-30-semi-bold', styles.btn)}
-        onClick={handleClose}
-      >
-        {intl.formatMessage({ id: 'common.close' })}
+      <Text type="title-24-semi-bold">
+        {intl.formatMessage({ id: 'common.error' })}
+      </Text>
+
+      <Text type="body-14-regular" color="primary-100">
+        {intl.formatMessage({ id: 'common.somethingWrong' })}
+      </Text>
+      <Button className={styles.btn} onClick={goLogin}>
+        {intl.formatMessage({ id: 'login.logIn' })}
       </Button>
     </div>
   );

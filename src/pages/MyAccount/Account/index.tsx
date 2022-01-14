@@ -43,8 +43,8 @@ const Account: React.FC<Props> = (props: Props) => {
       <div className={styles.info}>
         <div className={styles.left}>
           <div className={styles.bnb}>
-            <Text type="title-30-semi-bold">{walletInfo.balance}</Text>
-            <img alt="" src="/assets/images/bnb.svg" />
+            <Text type="title-30-semi-bold">{walletInfo.balance || 0}</Text>
+            <img alt="" src="/assets/images/ic-kingdom-coin.png" />
           </div>
 
           <Text type="body-16-regular" className={styles.usd}>
@@ -71,12 +71,12 @@ const Account: React.FC<Props> = (props: Props) => {
         <div className={styles.right}>
           <div className={styles.top}>
             <div className={styles.amount}>
-              <img alt="" src="/assets/images/bnb.svg" />
-              <Text type="body-16-regular">10 BNB</Text>
+              <img alt="" src="/assets/images/ic-kingdom-coin-lg.png" />
+              <Text type="body-16-regular">10 KGC</Text>
             </div>
             <div className={styles.amount}>
-              <img alt="" src="/assets/images/bnb.svg" />
-              <Text type="body-16-regular">10 KGC</Text>
+              <img alt="" src="/assets/images/ic-avax.png" />
+              <Text type="body-16-regular">10 AVAX</Text>
             </div>
           </div>
 

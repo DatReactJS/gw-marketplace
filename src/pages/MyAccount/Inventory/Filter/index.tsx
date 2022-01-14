@@ -42,6 +42,26 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
         newValues.classes = [values.classes];
       }
 
+      if (values?.vit) {
+        newValues.vit = values.vit.map((vit: string) => +vit);
+      }
+
+      if (values?.str) {
+        newValues.str = values.str.map((str: string) => +str);
+      }
+
+      if (values?.agi) {
+        newValues.agi = values.agi.map((agi: string) => +agi);
+      }
+
+      if (values?.int) {
+        newValues.int = values.int.map((int: string) => +int);
+      }
+
+      if (values?.spd) {
+        newValues.spd = values.spd.map((spd: string) => +spd);
+      }
+
       if (values?.hp) {
         newValues.hp = values.hp.map((hp: string) => +hp);
       }
@@ -52,10 +72,6 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
 
       if (values?.def) {
         newValues.def = values.def.map((def: string) => +def);
-      }
-
-      if (values?.spd) {
-        newValues.spd = values.spd.map((spd: string) => +spd);
       }
 
       return newValues;
@@ -160,6 +176,41 @@ const Filter: React.FC<Props & Ref> = React.forwardRef(
       if (tab === TabsEnum.CHARACTER) {
         if (values?.classes?.length > 0) {
           count += values.classes.length;
+        }
+
+        if (
+          (values?.vit?.[0] && +values.vit[0] > 100) ||
+          (values?.vit?.[1] && +values.vit[1] < 1000)
+        ) {
+          count += 1;
+        }
+
+        if (
+          (values?.str?.[0] && +values.str[0] > 100) ||
+          (values?.str?.[1] && +values.str[1] < 1000)
+        ) {
+          count += 1;
+        }
+
+        if (
+          (values?.agi?.[0] && +values.agi[0] > 100) ||
+          (values?.agi?.[1] && +values.agi[1] < 1000)
+        ) {
+          count += 1;
+        }
+
+        if (
+          (values?.int?.[0] && +values.int[0] > 100) ||
+          (values?.int?.[1] && +values.int[1] < 1000)
+        ) {
+          count += 1;
+        }
+
+        if (
+          (values?.spd?.[0] && +values.spd[0] > 100) ||
+          (values?.spd?.[1] && +values.spd[1] < 1000)
+        ) {
+          count += 1;
         }
       }
 

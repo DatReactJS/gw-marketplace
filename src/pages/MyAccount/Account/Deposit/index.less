@@ -43,7 +43,7 @@
       }
 
       .kingdom {
-        width: 182px;
+        width: 209px;
 
         img {
           margin-right: 8px;
@@ -56,25 +56,23 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      .wrapper {
-        display: flex;
-        &Amount {
-          display: flex;
-          flex-direction: column;
-          margin-right: 16px;
-        }
 
-        &Asset {
-          .select {
-            width: 88px;
-            margin-top: 3px;
-          }
+      .wrapperAmount {
+        position: relative;
+
+        .kgc {
+          position: absolute;
+          right: 10px;
+          top: 36px;
         }
       }
 
       .input {
         margin-top: 4px;
         width: 306px;
+        border: 1px solid #979797;
+        box-sizing: border-box;
+        border-radius: 4px;
 
         &:focus::placeholder {
           color: transparent;
@@ -107,19 +105,4 @@
       }
     }
   }
-
-  :global {
-    .rc-select {
-      background: var(--primary-500);
-      border: 1px solid var(--primary-500);
-
-      .rc-select-selection-item {
-        color: transparent;
-      }
-    }
-  }
-}
-
-.dropdown {
-  z-index: 1111;
 }

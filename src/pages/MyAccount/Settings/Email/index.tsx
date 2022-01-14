@@ -1,7 +1,6 @@
 import Button from '@/components/Button';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
-import Modal from '@/components/Modal';
 import Text from '@/components/Text';
 import { api, API_PATHS, privateRequest } from '@/utils/apis';
 import { isEmail } from '@/utils/common';
@@ -15,6 +14,8 @@ import Verify from './Verify';
 
 interface Props {
   email: string;
+  isVerified: boolean;
+  refresh: () => void;
 }
 
 interface FormValues {
@@ -26,7 +27,7 @@ const Email: React.FC<Props> = (props: Props) => {
   const [form] = Form.useForm();
   const verifyRef: any = React.useRef();
 
-  const [email, setEmail] = React.useState<string>(props.email);
+  const [initEmail, setInitEmail] = React.useState<string>(props.email);
   const [visible, setVisible] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -39,14 +40,8 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onVisible = () => setVisible(!visible);
 
-  const onShow = (event: React.MouseEvent) => {
-    event.preventDefault();
-
-    onVisible();
-  };
-
   const onSaveEmail = (newEmail: string) => {
-    setEmail(newEmail);
+    setInitEmail(newEmail);
   };
 
   const checkEmailRequest = useRequest(
@@ -70,23 +65,58 @@ const Email: React.FC<Props> = (props: Props) => {
             },
           ]);
         }
-
-        verifyRef.current?.setEmail?.(result.email);
-        verifyRef.current?.onVisible?.();
-        onVisible();
       },
       manual: true,
       debounceInterval: 300,
     },
   );
 
-  const onFinish = (values: FormValues) => {
-    if (isEmail(values.email)) {
+  const resendEmailRequest = useRequest(
+    (emailValue: string) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({ email: emailValue });
+        }, 500);
+      });
+    },
+    {
+      manual: true,
+      onSuccess: (result: any) => {
+        verifyRef.current?.setEmail?.(result.email);
+        verifyRef.current?.onVisible?.();
+        onVisible();
+      },
+    },
+  );
+
+  const handleResend = (event: React.MouseEvent) => {
+    event.preventDefault();
+    const emailValue: string = form.getFieldValue('email');
+
+    if (emailValue === initEmail) {
+      resendEmailRequest.run(emailValue);
+    }
+  };
+
+  const preSubmit = (values: FormValues): boolean => {
+    if (values.email !== initEmail && isEmail(values.email)) return true;
+
+    return false;
+  };
+
+  const onValuesChange = (values: FormValues) => {
+    if (preSubmit(values)) {
       checkEmailRequest.run(values.email);
     }
   };
 
-  const action: string = !email ? 'add' : 'change';
+  const onFinish = (values: FormValues) => {
+    if (preSubmit(values)) {
+      verifyRef.current?.setEmail?.(values.email);
+      verifyRef.current?.onVisible?.();
+      onVisible();
+    }
+  };
 
   return (
     <div className={styles.email}>
@@ -94,109 +124,97 @@ const Email: React.FC<Props> = (props: Props) => {
         {intl.formatMessage({ id: 'settings.email' })}
       </Text>
 
-      <div className={styles.wrapperInput}>
-        <Input
-          disabled
-          value={email}
-          placeholder={intl.formatMessage({ id: 'settings.email' })}
-          className={styles.inputEmail}
-        />
+      <Form
+        form={form}
+        initialValues={{ email: props.email }}
+        onFinish={onFinish}
+        onValuesChange={onValuesChange}
+      >
+        <div className={styles.wrapperInput}>
+          <FormItem shouldUpdate>
+            {() => {
+              const isError: boolean = form.getFieldError('email').length > 0;
+              const emailValue: string = form.getFieldValue('email');
+              return (
+                <FormItem
+                  name="email"
+                  rules={[
+                    {
+                      validator: (_: any, value: string) => {
+                        if (!value) {
+                          return Promise.reject(
+                            intl.formatMessage({
+                              id: 'settings.emailRequired',
+                            }),
+                          );
+                        }
 
-        <Button className={styles.btn} onClick={onShow}>
-          {intl.formatMessage({ id: `settings.${action}` })}
-        </Button>
-      </div>
+                        const checkValidEmail: boolean = isEmail(value);
 
-      <Modal
-        visible={visible}
-        onClose={onVisible}
-        className={styles.modalEmail}
-        content={
-          <div className={styles.content}>
-            <Text
-              type="title-24-bold"
-              color="accent-500"
-              className={styles.title}
-            >
-              {intl.formatMessage({
-                id: `settings.${action}Email`,
-              })}
-            </Text>
+                        if (!checkValidEmail) {
+                          return Promise.reject(
+                            intl.formatMessage({
+                              id: 'settings.emailInvalid',
+                            }),
+                          );
+                        }
 
-            <div className={styles.description}>
-              <Text type="body-14-regular" color="primary-100">
-                {intl.formatMessage({ id: 'settings.addEmailDescription' })}
-              </Text>
-            </div>
+                        return Promise.resolve();
+                      },
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={intl.formatMessage({
+                      id: 'settings.email',
+                    })}
+                    className={classNames(styles.input, {
+                      [styles.inputError]: isError,
+                      [styles.inputInit]: emailValue === initEmail,
+                    })}
+                  />
+                </FormItem>
+              );
+            }}
+          </FormItem>
 
-            <Form form={form} initialValues={{ email: '' }} onFinish={onFinish}>
-              <FormItem shouldUpdate>
-                {() => {
-                  const isError: boolean =
-                    form.getFieldError('email').length > 0;
-                  return (
-                    <FormItem
-                      name="email"
-                      rules={[
-                        {
-                          validator: (_: any, value: string) => {
-                            if (!value) {
-                              return Promise.reject(
-                                intl.formatMessage({
-                                  id: 'settings.emailRequired',
-                                }),
-                              );
-                            }
-
-                            const checkValidEmail: boolean = isEmail(value);
-
-                            if (!checkValidEmail) {
-                              return Promise.reject(
-                                intl.formatMessage({
-                                  id: 'settings.emailInvalid',
-                                }),
-                              );
-                            }
-
-                            return Promise.resolve();
-                          },
-                        },
-                      ]}
-                    >
-                      <Input
-                        placeholder={intl.formatMessage({
-                          id: 'settings.email',
-                        })}
-                        className={classNames(styles.input, {
-                          [styles.inputError]: isError,
-                        })}
-                      />
-                    </FormItem>
-                  );
-                }}
-              </FormItem>
-
-              <FormItem shouldUpdate>
-                {() => {
-                  const isError: boolean =
-                    form.getFieldError('email').length > 0;
-                  return (
+          <FormItem shouldUpdate>
+            {() => {
+              const emailValue: string = form.getFieldValue('email');
+              const isError: boolean = form.getFieldError('email').length > 0;
+              const checkValidEmail: boolean = isEmail(emailValue);
+              const isDisabled: boolean =
+                isError ||
+                !emailValue ||
+                emailValue === initEmail ||
+                !checkValidEmail;
+              return (
+                <div className={styles.allBtn}>
+                  <Button
+                    htmlType="submit"
+                    className={styles.btnSaveChange}
+                    disabled={isDisabled}
+                    loading={checkEmailRequest.loading}
+                  >
+                    {intl.formatMessage({ id: 'settings.change' })}
+                  </Button>
+                  {!props.isVerified && initEmail && emailValue === initEmail && (
                     <Button
-                      htmlType={!isError ? 'submit' : 'button'}
-                      className={styles.btnConfirm}
-                      loading={checkEmailRequest.loading}
+                      onClick={handleResend}
+                      className={styles.btnResend}
+                      loading={resendEmailRequest.loading}
                     >
-                      {intl.formatMessage({ id: 'common.confirm' })}
+                      {intl.formatMessage({ id: 'settings.resend' })}
                     </Button>
-                  );
-                }}
-              </FormItem>
-            </Form>
-          </div>
-        }
-      />
+                  )}
+                </div>
+              );
+            }}
+          </FormItem>
+        </div>
+      </Form>
 
-      <Verify ref={verifyRef} onSaveEmail={onSaveEmail} />
+      <Verify ref={verifyRef} refresh={props.refresh} />
     </div>
   );
 };

@@ -1,29 +1,10 @@
-import { useHover } from '@umijs/hooks';
-import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'umi';
 import Accessory from '../Icon/Accesory';
 import Character from '../Icon/Character';
 import Ship from '../Icon/Ship';
-import Text from '../Text';
 import styles from './index.less';
-
-interface TabsProps {
-  onChange: (tabs: TabsEnum) => void;
-  defaultTab?: TabsEnum;
-}
-
-interface TabItemProps {
-  value: string;
-  label: string;
-  isActive: boolean;
-  icon: React.ReactNode;
-  onChangeTab: (value: TabsEnum) => void;
-}
-
-interface Ref {
-  ref?: React.Ref<any>;
-}
+import TabItem from './TabItem';
 
 export enum TabsEnum {
   CHARACTER = 'character',
@@ -31,55 +12,26 @@ export enum TabsEnum {
   ACCESORY = 'accesory',
 }
 
-const TabItem: React.FC<TabItemProps> = ({
-  icon,
-  isActive,
-  label,
-  onChangeTab,
-  value,
-}) => {
-  const [isHovering, hoverRef] = useHover<HTMLDivElement>();
+interface Props {
+  onChange: (tabs: TabsEnum) => void;
+  defaultTab?: TabsEnum;
+}
+interface TabItem {
+  icon: React.ReactNode;
+  label: string;
+  value: TabsEnum;
+}
 
-  return (
-    <div
-      className={classNames(styles.tab, {
-        [styles.tabHover]: isHovering && !isActive,
-      })}
-      onClick={() => onChangeTab(value as TabsEnum)}
-      ref={hoverRef}
-    >
-      <div className={styles.info}>
-        <div
-          className={classNames(styles.icon, {
-            [styles.iconActive]: isActive,
-          })}
-        >
-          {icon}
-        </div>
-        <Text
-          type="body-16-bold"
-          color={isActive ? 'accent-500' : 'primary-100'}
-          className={styles.label}
-        >
-          {label}
-        </Text>
-      </div>
+interface Ref {
+  ref?: React.Ref<any>;
+}
 
-      <div
-        className={classNames(styles.bar, {
-          [styles.barActive]: isActive,
-        })}
-      />
-    </div>
-  );
-};
-
-const Tabs: React.FC<TabsProps & Ref> = React.forwardRef(
-  (props: TabsProps, ref: Ref['ref']) => {
+const Tabs: React.FC<Props & Ref> = React.forwardRef(
+  (props: Props, ref: Ref['ref']) => {
     const { onChange, defaultTab = TabsEnum.CHARACTER } = props;
     const intl = useIntl();
 
-    const tabs = [
+    const tabs: TabItem[] = [
       {
         icon: <Character />,
         label: intl.formatMessage({ id: 'common.character' }),
@@ -97,7 +49,9 @@ const Tabs: React.FC<TabsProps & Ref> = React.forwardRef(
       },
     ];
 
-    const [activeTab, setActiveTab] = React.useState<TabsEnum>(defaultTab);
+    const [activeTab, setActiveTab] = React.useState<TabsEnum>(
+      TabsEnum.CHARACTER,
+    );
 
     const onChangeTab = (newTab: TabsEnum) => {
       setActiveTab(newTab);
@@ -116,7 +70,7 @@ const Tabs: React.FC<TabsProps & Ref> = React.forwardRef(
 
     return (
       <div className={styles.tabs}>
-        {tabs.map((tab, index: number) => {
+        {tabs.map((tab: TabItem, index: number) => {
           const isActive: boolean = activeTab === tab.value;
 
           return (

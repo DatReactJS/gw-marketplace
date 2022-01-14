@@ -1,4 +1,3 @@
-import Select from '@/components/Select';
 import Button from '@/components/Button';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
@@ -17,27 +16,6 @@ interface Props {}
 interface FormValues {
   amount: string;
 }
-
-export const optionsAsset = [
-  {
-    label: 'BNB',
-    value: 'BNB',
-    prefix: (
-      <img
-        alt=""
-        src="/assets/images/ic-BNB-medium.png"
-        style={{ marginRight: 3 }}
-      />
-    ),
-  },
-  {
-    label: 'KGC',
-    value: 'KGC',
-    prefix: (
-      <img alt="" src="/assets/images/Warrior.png" style={{ marginRight: 3 }} />
-    ),
-  },
-];
 
 const Deposit: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
@@ -96,72 +74,60 @@ const Deposit: React.FC<Props> = (props: Props) => {
 
               <div className={styles.kingdom}>
                 <img alt="" src="/assets/images/ic-logo.png" />
-                <Text type="body-14-semi-bold">KingDom Quest</Text>
+                <Text type="body-14-semi-bold">KingDom Gold Coin</Text>
               </div>
             </div>
 
             <Form
               form={form}
-              initialValues={{ amount: '', asset: 'BNB' }}
+              initialValues={{ amount: '' }}
               onFinish={onFinish}
               className={styles.form}
             >
-              <div className={styles.wrapper}>
-                <div className={styles.wrapperAmount}>
-                  <Text type="body-14-semi-bold">
-                    {intl.formatMessage({ id: 'common.amount' })}
-                  </Text>
+              <div className={styles.wrapperAmount}>
+                <Text type="body-14-semi-bold">
+                  {intl.formatMessage({ id: 'common.amount' })}
+                </Text>
 
-                  <FormItem shouldUpdate>
-                    {() => {
-                      const isError: boolean =
-                        form.getFieldError('amount').length > 0;
+                <FormItem shouldUpdate>
+                  {() => {
+                    const isError: boolean =
+                      form.getFieldError('amount').length > 0;
 
-                      return (
-                        <FormItem
-                          name="amount"
-                          normalize={(value: string) => {
-                            if (!value) return '';
+                    return (
+                      <FormItem
+                        name="amount"
+                        normalize={(value: string) => {
+                          if (!value) return '';
 
-                            return normalizeInputAmount(value);
-                          }}
-                          rules={[
-                            {
-                              required: true,
-                              whitespace: true,
-                              message: intl.formatMessage({
-                                id: 'common.amount.required',
-                              }),
-                            },
-                          ]}
-                        >
-                          <Input
-                            type="number"
-                            min={0}
-                            placeholder="0"
-                            className={classNames(styles.input, {
-                              [styles.inputError]: isError,
-                            })}
-                          />
-                        </FormItem>
-                      );
-                    }}
-                  </FormItem>
-                </div>
+                          return normalizeInputAmount(value);
+                        }}
+                        rules={[
+                          {
+                            required: true,
+                            whitespace: true,
+                            message: intl.formatMessage({
+                              id: 'common.amount.required',
+                            }),
+                          },
+                        ]}
+                      >
+                        <Input
+                          type="number"
+                          min={0}
+                          placeholder="0"
+                          className={classNames(styles.input, {
+                            [styles.inputError]: isError,
+                          })}
+                        />
+                      </FormItem>
+                    );
+                  }}
+                </FormItem>
 
-                <div className={styles.wrapperAsset}>
-                  <Text type="body-14-semi-bold">
-                    {intl.formatMessage({ id: 'common.asset' })}
-                  </Text>
-
-                  <FormItem name="asset">
-                    <Select
-                      options={optionsAsset}
-                      className={styles.select}
-                      classNameDropdown={styles.dropdown}
-                    />
-                  </FormItem>
-                </div>
+                <Text type="body-14-semi-bold" className={styles.kgc}>
+                  KGC
+                </Text>
               </div>
 
               <Button htmlType="submit" className={styles.btnNext}>

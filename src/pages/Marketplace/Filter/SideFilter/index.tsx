@@ -4,15 +4,19 @@ import Text from '@/components/Text';
 import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'umi';
+import Agility from './Agility';
 import Attack from './Attack';
 import BuffAmount from './BuffAmount';
 import Classes from './Classes';
 import Defend from './Defend';
 import HP from './HP';
 import styles from './index.less';
+import Intelligence from './Intelligence';
 import Rarities from './Rarities';
 import Speed from './Speed';
 import Stats from './Stats';
+import Strength from './Strength';
+import Vitality from './Vitality';
 
 interface Props {
   total: number;
@@ -52,17 +56,34 @@ const SideFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
 
         <div className={styles.allFilter}>
           {tab === TabsEnum.CHARACTER && (
-            <>
-              {' '}
-              <FormItem name="classes" preserve>
-                <Classes />
-              </FormItem>
-            </>
+            <FormItem name="classes" preserve>
+              <Classes />
+            </FormItem>
           )}
 
           <FormItem name="rarities" preserve>
             <Rarities />
           </FormItem>
+
+          {tab === TabsEnum.CHARACTER && (
+            <>
+              <FormItem name="vit" preserve>
+                <Vitality />
+              </FormItem>
+              <FormItem name="str" preserve>
+                <Strength />
+              </FormItem>
+              <FormItem name="agi" preserve>
+                <Agility />
+              </FormItem>
+              <FormItem name="int" preserve>
+                <Intelligence />
+              </FormItem>
+              <FormItem name="spd" preserve>
+                <Speed />
+              </FormItem>
+            </>
+          )}
 
           {tab === TabsEnum.SHIP && (
             <>

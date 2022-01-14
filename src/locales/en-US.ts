@@ -40,6 +40,7 @@ export default {
   'common.asset': 'Asset',
   'common.amount': 'Amount',
   'common.amount.required': 'Amount is required',
+  'common.commingSoon': 'Comming Soon',
 
   'common.price.required': 'Amount is required',
   'common.price.zero': 'Amount must be greater than 0',
@@ -77,7 +78,7 @@ export default {
   'login.logIn': 'Log in',
   'login.withMetamask': 'Login with Meta Mask',
   'login.withEmail': 'Login with Email',
-  'login.withUserName': 'Login with Username',
+  'login.withUserName': 'Login with Account',
   'login.byContinue': 'By continuing, you agree to our',
   'login.termOfUse': 'Terms of Use',
   'login.email': 'Email',
@@ -165,7 +166,8 @@ export default {
   // General settings
   'settings.gereral': 'General Settings',
   'settings.username': 'Username',
-  'settings.initAccount': 'Init Account',
+  'settings.initAccount': 'CREATE MY ACCOUNT',
+  'settings.createAccount': 'Create Account',
   'settings.usernameExist': 'Username have been existed',
   'settings.usernameRequired': 'Username is required',
   'settings.usernameMin': 'Username must be greater than 6 characters',
@@ -173,11 +175,15 @@ export default {
   'settings.usernameInvalid':
     'Username can contain letters, number, and . _ - symbols',
   'settings.saveChange': 'Save change',
+  'settings.verifyEmailAddress': 'Verify your email address',
+  'settings.verifyEmailAddressDesc':
+    'Verify your email below to complete your setup.',
   'settings.verifyEmail': 'Verify your email',
   'settings.verifyEmailDescription':
-    'We have sent you a verification code in email {email}',
+    'We sent an email to {email} with a verification link. Please wait 60s to continue. ',
   'settings.verifyTime': 'Please verify it in 15 minutes',
   'settings.verifySuccess': 'Verify successful',
+  'settings.verifyError': 'Invalid email. Please try!',
   'settings.verifyDescription': 'You can login with this email',
   'settings.code': 'Code',
   'settings.codeRequired': 'Code is required',
@@ -191,6 +197,7 @@ export default {
   'settings.changeEmail': 'Change email',
   'settings.addEmailDescription':
     'We will send verification code to your new email. Please verify it before you can this email to login.',
+  'settings.resend': 'Resend',
   'settings.change': 'Change',
   'settings.password': 'Password',
   'settings.passwordInvalid':

@@ -107,7 +107,7 @@ const Login: React.FC<Props> = (props: Props) => {
           <div className={styles.title} onClick={onToggleFormLogin}>
             <img
               alt=""
-              src="/assets/images/gmail.svg"
+              src="/assets/images/ic-account.png"
               className={styles.icon}
             />
             <Text type="body-16-bold" color="accent-500">
@@ -118,7 +118,7 @@ const Login: React.FC<Props> = (props: Props) => {
           <Form
             form={form}
             className={styles.form}
-            initialValues={{ email: 'huynn97a', password: '123456Aa@' }}
+            initialValues={{ email: '', password: '' }}
             onFinish={onFinish}
           >
             <FormItem shouldUpdate>

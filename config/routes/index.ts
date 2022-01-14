@@ -25,18 +25,18 @@ export default [
         component: '@/pages/Marketplace/Detail',
         title: 'marketplace.character.detail',
       },
-      {
-        exact: true,
-        path: '/ship/:id',
-        component: '@/pages/Marketplace/Detail',
-        title: 'marketplace.ship.detail',
-      },
-      {
-        exact: true,
-        path: '/accesory/:id',
-        component: '@/pages/Marketplace/Detail',
-        title: 'marketplace.accesory.detail',
-      },
+      // {
+      //   exact: true,
+      //   path: '/ship/:id',
+      //   component: '@/pages/Marketplace/Detail',
+      //   title: 'marketplace.ship.detail',
+      // },
+      // {
+      //   exact: true,
+      //   path: '/accesory/:id',
+      //   component: '@/pages/Marketplace/Detail',
+      //   title: 'marketplace.accesory.detail',
+      // },
       {
         exact: true,
         path: '/login',

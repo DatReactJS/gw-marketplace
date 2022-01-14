@@ -124,7 +124,7 @@ const Init: React.FC<Props> = ({ refresh }: Props) => {
               className={styles.title}
             >
               {intl.formatMessage({
-                id: 'settings.initAccount',
+                id: 'settings.createAccount',
               })}
             </Text>
 

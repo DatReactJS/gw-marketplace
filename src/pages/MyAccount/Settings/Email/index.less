@@ -3,58 +3,31 @@
 
   .wrapperInput {
     display: flex;
-    align-items: center;
     margin-top: 4px;
 
-    .inputEmail {
-      width: 368px;
-    }
-
-    .btn {
-      width: 176px;
-      margin-left: 16px;
-    }
-  }
-}
-
-.modalEmail {
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .title {
-      margin-top: -16px;
-    }
-
-    .description {
-      margin-top: 16px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
     .input {
+      height: 40px;
       width: 368px;
     }
 
-    :global {
-      .eye-password {
-        top: 24px;
-      }
-    }
-
-    .inputPassword {
-      margin-top: 16px;
+    .inputInit {
+      color: var(--primary-100);
     }
 
     .inputError {
       border: 1px solid var(--warning);
     }
 
-    .btnConfirm {
-      margin-top: 24px;
-      width: 368px;
+    .allBtn {
+      margin-left: 16px;
+      display: flex;
+      .btnSaveChange {
+        width: 176px;
+      }
+      .btnResend {
+        width: 176px;
+        margin-left: 16px;
+      }
     }
   }
 }

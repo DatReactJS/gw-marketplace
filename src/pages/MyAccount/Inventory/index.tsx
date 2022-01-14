@@ -18,7 +18,7 @@ const Inventory: React.FC<Props> = (props: Props) => {
   const walletInfo = useWalletInfo();
 
   const currentPage: number = +location.query?.page - 1 || 0;
-  const tab: TabsEnum = location.query?.tab || TabsEnum.CHARACTER;
+  const tab: TabsEnum = TabsEnum.CHARACTER;
 
   useMount(() => history.push({ query: { ...location.query, tab } }));
 

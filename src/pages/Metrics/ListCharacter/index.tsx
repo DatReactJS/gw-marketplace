@@ -70,7 +70,7 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
         </div>
       </div>
       <div className={styles.pagination}>
-        <Paginator currentPage={currentPage} totalPages={50} onPage={onPage} />
+        <Paginator currentPage={currentPage} totalPages={10} onPage={onPage} />
       </div>
     </>
   );

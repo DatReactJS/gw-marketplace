@@ -46,12 +46,12 @@ const Paginator: React.FC<PaginatorProps> = ({
   currentPage,
   onPage,
 }: PaginatorProps) => {
-  if (currentPage < 0) {
-    currentPage = 0;
+  if (currentPage < 1) {
+    currentPage = 1;
   }
 
-  if (currentPage >= totalPages) {
-    currentPage = totalPages - 1;
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
   }
 
   const max = 5;
@@ -63,13 +63,13 @@ const Paginator: React.FC<PaginatorProps> = ({
   };
 
   const handleNext = () => {
-    if (totalPages && currentPage + 1 > totalPages - 1) return;
+    if (totalPages && currentPage + 1 > totalPages) return;
 
     onPage && onPage(currentPage + 1);
   };
 
   const handlePage = (page: number) => {
-    onPage && currentPage !== page - 1 && onPage(page - 1);
+    onPage && currentPage !== page && onPage(page);
   };
 
   if (!totalPages) {
@@ -79,17 +79,24 @@ const Paginator: React.FC<PaginatorProps> = ({
   const displayPrevDots = totalPages > max && currentPage > 1;
   const displayNextDots = totalPages > max && currentPage < totalPages - 1;
   const lastPage = totalPages;
+  const firstPage = 1;
+  const pageBufferSize = 2;
   const options = {
-    from: currentPage,
-    to: currentPage + max,
+    from: Math.max(1, currentPage - pageBufferSize),
+    to: Math.min(currentPage + pageBufferSize, totalPages),
   };
-
-  if (currentPage + max > totalPages) {
-    options.from = totalPages - max;
+  if (totalPages <= 7) {
+    options.from = 1;
     options.to = totalPages;
-  }
+  } else {
+    if (currentPage - 1 <= pageBufferSize) {
+      options.to = 1 + pageBufferSize * 2;
+    }
 
-  console.log('totalPages', totalPages, 'max', max);
+    if (totalPages - currentPage <= pageBufferSize) {
+      options.from = totalPages - pageBufferSize * 2;
+    }
+  }
 
   return (
     <div className="Paginator">
@@ -99,13 +106,21 @@ const Paginator: React.FC<PaginatorProps> = ({
         }
         onPage={handlePrev}
         isActive
-        className={classNames('prev', { 'arrow-disabled': currentPage === 0 })}
+        className={classNames('prev', { 'arrow-disabled': currentPage === 1 })}
       />
 
       <div className="number">
+        {options.from !== 1 && totalPages > 7 && (
+          <Button
+            page={firstPage}
+            onPage={handlePage}
+            isActive={false}
+            className="pagesNumber body-14-bold"
+          />
+        )}
         {screenWidth > 414 && (
           <>
-            {totalPages > 5 && displayPrevDots && (
+            {currentPage > 4 && totalPages > 7 && displayPrevDots && (
               <div className="ellipsis">
                 <span>...</span>
               </div>
@@ -114,40 +129,45 @@ const Paginator: React.FC<PaginatorProps> = ({
         )}
 
         {totalPages < max
-          ? new Array(totalPages)
-              .fill('paginationItem')
-              .map((_, i) => (
+          ? new Array(totalPages).fill('paginationItem').map((_, i) => {
+              return (
                 <Button
-                  page={i + 1}
+                  page={i}
                   onPage={handlePage}
                   key={`$pagination-${i + options.from}`}
                   isActive={i === currentPage}
                   className="pagesNumber body-14-bold"
                 />
-              ))
-          : new Array(options.to - options.from)
+              );
+            })
+          : new Array(options.to - options.from + 1)
               .fill('paginationItem')
-              .map((_, i) => (
-                <Button
-                  page={i + options.from + 1}
-                  onPage={handlePage}
-                  key={`$pagination-${i + options.from}`}
-                  isActive={i + options.from === currentPage}
-                  className="pagesNumber body-14-bold"
-                />
-              ))}
+              .map((_, i) => {
+                return (
+                  <Button
+                    page={i + options.from}
+                    onPage={handlePage}
+                    key={`$pagination-${i + options.from}`}
+                    isActive={i + options.from === currentPage}
+                    className="pagesNumber body-14-bold"
+                  />
+                );
+              })}
 
         {screenWidth > 414 && (
           <>
-            {currentPage < totalPages - max && lastPage && displayNextDots && (
-              <div className="ellipsis">
-                <span>...</span>
-              </div>
-            )}
+            {currentPage <= totalPages - max + 1 &&
+              lastPage &&
+              displayNextDots &&
+              totalPages > 7 && (
+                <div className="ellipsis">
+                  <span>...</span>
+                </div>
+              )}
           </>
         )}
 
-        {currentPage < totalPages - max && lastPage && displayNextDots && (
+        {options.to !== totalPages && (
           <Button
             page={lastPage}
             onPage={handlePage}
@@ -164,7 +184,7 @@ const Paginator: React.FC<PaginatorProps> = ({
         onPage={handleNext}
         isActive
         className={classNames('next', {
-          'arrow-disabled': currentPage >= totalPages - 1,
+          'arrow-disabled': currentPage >= totalPages,
         })}
       />
     </div>

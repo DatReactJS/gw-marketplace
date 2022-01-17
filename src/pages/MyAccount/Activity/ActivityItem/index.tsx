@@ -7,7 +7,7 @@ interface Props {}
 
 const ActivityItem: React.FC<Props> = (props: Props) => {
   const handleViewDetailItem = (): void => {
-    history.push('character/123');
+    history.push('/character/123');
   };
 
   return (

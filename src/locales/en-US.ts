@@ -221,4 +221,7 @@ export default {
   'claim.claimNow': 'Claim BNB now',
   'claim.textModal': 'Your locked BNB will be unlock on',
   'claim.claimable': 'Claimable',
+  'claim.claim': 'Claim',
+  'claim.claimHistory': 'Claim History ',
+  'claim.claimConfirm': 'Confirm',
 };

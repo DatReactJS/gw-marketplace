@@ -46,10 +46,7 @@ const Email: React.FC<Props> = (props: Props) => {
         data: { email: emailValue },
       });
 
-      return {
-        ...check,
-        email: emailValue,
-      };
+      return check;
     },
     {
       onSuccess: (result: any) => {
@@ -71,14 +68,14 @@ const Email: React.FC<Props> = (props: Props) => {
     (emailValue: string) => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve({ email: emailValue });
+          resolve(1);
         }, 500);
       });
     },
     {
       manual: true,
       onSuccess: (result: any) => {
-        verifyRef.current?.setEmail?.(result.email);
+        verifyRef.current?.setEmail?.(resendEmailRequest.params[0]);
         verifyRef.current?.onVisible?.();
         onVisible();
       },
@@ -89,15 +86,15 @@ const Email: React.FC<Props> = (props: Props) => {
     (emailValue: string) => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve({ email: emailValue });
+          resolve(1);
         }, 500);
       });
     },
     {
       manual: true,
       onSuccess: (result: any) => {
-        setInitEmail(result.email);
-        verifyRef.current?.setEmail?.(result.email);
+        setInitEmail(changeEmailRequest.params[0]);
+        verifyRef.current?.setEmail?.(changeEmailRequest.params[0]);
         verifyRef.current?.onVisible?.();
         onVisible();
       },

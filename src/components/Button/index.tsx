@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps & Ref> = React.forwardRef(
       block = false,
       danger = false,
       icon,
-      htmlType,
+      htmlType = 'button',
       ...rest
     }: ButtonProps = props;
 

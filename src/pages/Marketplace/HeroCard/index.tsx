@@ -1,19 +1,19 @@
+import { TabsEnum } from '@/components/Tabs';
 import Text from '@/components/Text';
 import React from 'react';
-import { history, useLocation } from 'umi';
+import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
 
 interface Props {}
 
 const HeroCard: React.FC<Props> = (props: Props) => {
   const location: any = useLocation();
+  const intl = useIntl();
 
-  const heroType: string = location.query?.tab;
+  const heroType: string = location.query?.tab || TabsEnum.CHARACTER;
 
   const navigateDetail = () => {
-    if (heroType) {
-      history.push(`/${heroType}/1`);
-    }
+    history.push(`/${heroType}/1`);
   };
 
   return (
@@ -41,6 +41,10 @@ const HeroCard: React.FC<Props> = (props: Props) => {
 
         <Text type="body-14-regular">$1,200</Text>
       </div>
+
+      {/* <Text type="body-14-semi-bold" color="warning" className={styles.expired}>
+        {intl.formatMessage({ id: 'common.expired' })}
+      </Text> */}
     </div>
   );
 };

@@ -41,6 +41,9 @@ export default {
   'common.amount': 'Amount',
   'common.amount.required': 'Amount is required',
   'common.commingSoon': 'Comming Soon',
+  'common.expired': 'Expired',
+  'common.expireAfter': 'Expire after',
+  'common.expired.required': 'Expire is required',
 
   'common.price.required': 'Amount is required',
   'common.price.zero': 'Amount must be greater than 0',

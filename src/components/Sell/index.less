@@ -16,6 +16,20 @@
       margin-top: -16px;
     }
 
+    .form {
+      position: relative;
+
+      .expired {
+        position: absolute;
+        right: 0;
+        top: 68px;
+
+        .selectTime {
+          width: 134px;
+        }
+      }
+    }
+
     .wrapperInput {
       position: relative;
 
@@ -58,7 +72,23 @@
 
     .btnSell {
       width: 369px;
+      margin-top: 48px;
+    }
+
+    .btnSellHasError {
       margin-top: 24px;
     }
+
+    .btnSellHasErrorExpired {
+      margin-top: 48px;
+    }
+
+    .btnSellHasErrorExpired2 {
+      margin-top: 68px;
+    }
   }
+}
+
+.dropdownSelectTime {
+  z-index: 1111;
 }

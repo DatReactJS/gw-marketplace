@@ -40,10 +40,6 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onVisible = () => setVisible(!visible);
 
-  const onSaveEmail = (newEmail: string) => {
-    setInitEmail(newEmail);
-  };
-
   const checkEmailRequest = useRequest(
     async (emailValue: string) => {
       const check = await privateRequest(api.post, API_PATHS.CHECK_EMAIL, {
@@ -89,6 +85,25 @@ const Email: React.FC<Props> = (props: Props) => {
     },
   );
 
+  const changeEmailRequest = useRequest(
+    (emailValue: string) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({ email: emailValue });
+        }, 500);
+      });
+    },
+    {
+      manual: true,
+      onSuccess: (result: any) => {
+        setInitEmail(result.email);
+        verifyRef.current?.setEmail?.(result.email);
+        verifyRef.current?.onVisible?.();
+        onVisible();
+      },
+    },
+  );
+
   const handleResend = (event: React.MouseEvent) => {
     event.preventDefault();
     const emailValue: string = form.getFieldValue('email');
@@ -112,9 +127,7 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onFinish = (values: FormValues) => {
     if (preSubmit(values)) {
-      verifyRef.current?.setEmail?.(values.email);
-      verifyRef.current?.onVisible?.();
-      onVisible();
+      changeEmailRequest.run(values.email);
     }
   };
 
@@ -126,7 +139,7 @@ const Email: React.FC<Props> = (props: Props) => {
 
       <Form
         form={form}
-        initialValues={{ email: props.email }}
+        initialValues={{ email: initEmail }}
         onFinish={onFinish}
         onValuesChange={onValuesChange}
       >
@@ -194,7 +207,9 @@ const Email: React.FC<Props> = (props: Props) => {
                     htmlType="submit"
                     className={styles.btnSaveChange}
                     disabled={isDisabled}
-                    loading={checkEmailRequest.loading}
+                    loading={
+                      checkEmailRequest.loading || changeEmailRequest.loading
+                    }
                   >
                     {intl.formatMessage({ id: 'settings.change' })}
                   </Button>

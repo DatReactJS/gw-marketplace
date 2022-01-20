@@ -34,7 +34,10 @@ const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
   return (
     <div className={styles.headFilter}>
       <FormItem name="type" preserve>
-        <Type placeholder={intl.formatMessage({ id: 'filter.type.all' })} />
+        <Type
+          placeholder={intl.formatMessage({ id: 'filter.type.all' })}
+          isInventory
+        />
       </FormItem>
 
       <div className={styles.right}>

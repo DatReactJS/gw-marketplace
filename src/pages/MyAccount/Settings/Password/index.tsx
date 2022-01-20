@@ -55,10 +55,7 @@ const Password: React.FC<Props> = (props: Props) => {
         },
       });
 
-      return {
-        ...update,
-        password: newPassword,
-      };
+      return update;
     },
     {
       manual: true,
@@ -67,7 +64,7 @@ const Password: React.FC<Props> = (props: Props) => {
           return toast.error(intl.formatMessage({ id: 'common.failed' }));
         }
 
-        setPassword(result.password);
+        setPassword(updatePasswordRequest.params[0]);
         onVisible();
         toast.success(intl.formatMessage({ id: 'common.success' }));
       },

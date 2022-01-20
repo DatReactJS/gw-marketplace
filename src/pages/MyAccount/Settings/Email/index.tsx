@@ -40,20 +40,13 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onVisible = () => setVisible(!visible);
 
-  const onSaveEmail = (newEmail: string) => {
-    setInitEmail(newEmail);
-  };
-
   const checkEmailRequest = useRequest(
     async (emailValue: string) => {
       const check = await privateRequest(api.post, API_PATHS.CHECK_EMAIL, {
         data: { email: emailValue },
       });
 
-      return {
-        ...check,
-        email: emailValue,
-      };
+      return check;
     },
     {
       onSuccess: (result: any) => {
@@ -75,14 +68,33 @@ const Email: React.FC<Props> = (props: Props) => {
     (emailValue: string) => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve({ email: emailValue });
+          resolve(1);
         }, 500);
       });
     },
     {
       manual: true,
       onSuccess: (result: any) => {
-        verifyRef.current?.setEmail?.(result.email);
+        verifyRef.current?.setEmail?.(resendEmailRequest.params[0]);
+        verifyRef.current?.onVisible?.();
+        onVisible();
+      },
+    },
+  );
+
+  const changeEmailRequest = useRequest(
+    (emailValue: string) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(1);
+        }, 500);
+      });
+    },
+    {
+      manual: true,
+      onSuccess: (result: any) => {
+        setInitEmail(changeEmailRequest.params[0]);
+        verifyRef.current?.setEmail?.(changeEmailRequest.params[0]);
         verifyRef.current?.onVisible?.();
         onVisible();
       },
@@ -112,9 +124,7 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const onFinish = (values: FormValues) => {
     if (preSubmit(values)) {
-      verifyRef.current?.setEmail?.(values.email);
-      verifyRef.current?.onVisible?.();
-      onVisible();
+      changeEmailRequest.run(values.email);
     }
   };
 
@@ -126,7 +136,7 @@ const Email: React.FC<Props> = (props: Props) => {
 
       <Form
         form={form}
-        initialValues={{ email: props.email }}
+        initialValues={{ email: initEmail }}
         onFinish={onFinish}
         onValuesChange={onValuesChange}
       >
@@ -194,7 +204,9 @@ const Email: React.FC<Props> = (props: Props) => {
                     htmlType="submit"
                     className={styles.btnSaveChange}
                     disabled={isDisabled}
-                    loading={checkEmailRequest.loading}
+                    loading={
+                      checkEmailRequest.loading || changeEmailRequest.loading
+                    }
                   >
                     {intl.formatMessage({ id: 'settings.change' })}
                   </Button>

@@ -273,7 +273,7 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
         <SideFilter onClear={onResetFilter} total={numberFilter} tab={tab} />
 
         <div className={styles.content}>
-          <HeadFilter />
+          <HeadFilter total={1208} />
           {children}
         </div>
       </Form>

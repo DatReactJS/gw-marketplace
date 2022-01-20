@@ -12,27 +12,39 @@ interface Props {
   value?: string;
   onChange?: Function;
   placeholder: string;
+  isInventory?: boolean;
 }
 
-const Type: React.FC<Props> = ({ onChange, value, placeholder }: Props) => {
+const Type: React.FC<Props> = ({
+  onChange,
+  value,
+  placeholder,
+  isInventory = false,
+}: Props) => {
   const intl = useIntl();
+
+  const options = [
+    {
+      value: TypeValues.ALL,
+      label: intl.formatMessage({ id: 'filter.type.all' }),
+    },
+    {
+      value: TypeValues.FOR_SALE,
+      label: intl.formatMessage({ id: 'filter.type.forSale' }),
+    },
+    {
+      value: TypeValues.NOT_FOR_SALE,
+      label: intl.formatMessage({ id: 'filter.type.notForSale' }),
+    },
+  ].filter((option) => {
+    if (!isInventory) return !!option;
+
+    return option.value !== TypeValues.NOT_FOR_SALE;
+  });
 
   return (
     <Select
-      options={[
-        {
-          value: TypeValues.ALL,
-          label: intl.formatMessage({ id: 'filter.type.all' }),
-        },
-        {
-          value: TypeValues.FOR_SALE,
-          label: intl.formatMessage({ id: 'filter.type.forSale' }),
-        },
-        {
-          value: TypeValues.NOT_FOR_SALE,
-          label: intl.formatMessage({ id: 'filter.type.notForSale' }),
-        },
-      ]}
+      options={options}
       value={value}
       onChange={(newValue) => {
         if (onChange) {

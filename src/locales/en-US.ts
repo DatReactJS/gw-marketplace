@@ -109,6 +109,8 @@ export default {
 
   // Filter
   'filter.filter': 'Filter',
+  'filter.item': '{total} item',
+  'filter.items': '{total} items',
   'filter.total': 'Filter ({total})',
   'filter.clear': 'Clear filter',
   'filter.class': 'CLASS',

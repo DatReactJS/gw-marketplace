@@ -11,8 +11,8 @@ interface Props {}
 
 const ClaimTokens: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
-  const [visible, setVisible] = useState(false);
-  const [tokenActive, setTokenActive] = useState({});
+  const [visible, setVisible] = useState<boolean>(false);
+  const [tokenActive, setTokenActive] = useState<any>({});
 
   const onToggle = (): void => {
     setVisible(!visible);
@@ -85,7 +85,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
         {dataFake &&
           dataFake.map((item, idx) => {
             return (
-              <div className={styles.divClaim}>
+              <div className={styles.divClaim} key={idx}>
                 <div className={styles.icon}>
                   <img src={item.iconUrl} alt="" />
                 </div>

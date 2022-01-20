@@ -1,5 +1,6 @@
 import { TabsEnum } from '@/components/Tabs';
 import Text from '@/components/Text';
+import classNames from 'classnames';
 import React from 'react';
 import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
@@ -17,7 +18,15 @@ const HeroCard: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <div className={styles.heroCard} onClick={navigateDetail}>
+    <div
+      className={classNames(styles.heroCard, {
+        [styles.common]: false,
+        [styles.rare]: false,
+        [styles.epic]: false,
+        [styles.legendary]: true,
+      })}
+      onClick={navigateDetail}
+    >
       <img alt="" src="/assets/images/char/char1.png" className={styles.img} />
 
       <div className={styles.info}>

@@ -17,7 +17,7 @@ const Stats: React.FC<Props> = (props: Props) => {
       <div className={styles.box}>
         <div className={styles.block}>
           <Text type="caption-12-semi-bold" color="primary-100">
-            STA
+            VIT
           </Text>
 
           <div className={styles.property}>

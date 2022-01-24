@@ -20,6 +20,15 @@ interface FormValues {
   expired: string;
 }
 
+enum TimeExpired {
+  CLEAR = '0',
+  ONE_DAY = '1',
+  THEE_DAY = '3',
+  WEEK = '7',
+  TWO_WEEK = '15',
+  MONTH = '30',
+}
+
 const Sell: React.FC<Props> = ({ onSell }: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
@@ -44,11 +53,12 @@ const Sell: React.FC<Props> = ({ onSell }: Props) => {
   };
 
   const optionsExpired: { label: string; value: string }[] = [
-    { label: '1 day', value: '1' },
-    { label: '3 days', value: '3' },
-    { label: '7 days', value: '7' },
-    { label: '15 days', value: '15' },
-    { label: '30 days', value: '30' },
+    // { label: 'Clear sort', value: TimeExpired.CLEAR },
+    { label: '1 day', value: TimeExpired.ONE_DAY },
+    { label: '3 days', value: TimeExpired.THEE_DAY },
+    { label: '7 days', value: TimeExpired.WEEK },
+    { label: '15 days', value: TimeExpired.TWO_WEEK },
+    { label: '30 days', value: TimeExpired.MONTH },
   ];
 
   return (
@@ -154,15 +164,51 @@ const Sell: React.FC<Props> = ({ onSell }: Props) => {
                       }),
                     },
                   ]}
+                  shouldUpdate={(
+                    p: { expired: boolean },
+                    n: { expired: boolean },
+                  ) => p.expired !== n.expired}
                 >
-                  <Select
-                    options={optionsExpired}
-                    className={styles.selectTime}
-                    classNameDropdown={styles.dropdownSelectTime}
-                    placeholder={intl.formatMessage({
-                      id: 'common.expireAfter',
-                    })}
-                  />
+                  {({
+                    value,
+                    onChange,
+                  }: {
+                    value: string;
+                    onChange: Function;
+                  }) => {
+                    const indexClear: number = optionsExpired.findIndex(
+                      (e) => e.value === TimeExpired.CLEAR,
+                    );
+
+                    if (value && indexClear < 0) {
+                      optionsExpired.unshift({
+                        label: 'Clear sort',
+                        value: TimeExpired.CLEAR,
+                      });
+                    }
+
+                    if (!value && indexClear >= 0) {
+                      optionsExpired.splice(indexClear, 1);
+                    }
+
+                    return (
+                      <Select
+                        options={optionsExpired}
+                        className={styles.selectTime}
+                        classNameDropdown={styles.dropdownSelectTime}
+                        placeholder={intl.formatMessage({
+                          id: 'common.expireAfter',
+                        })}
+                        value={value}
+                        onChange={(newValue) => {
+                          if (newValue === TimeExpired.CLEAR) {
+                            return form.setFieldsValue({ expired: undefined });
+                          }
+                          onChange(newValue);
+                        }}
+                      />
+                    );
+                  }}
                 </FormItem>
               </div>
             </Form>

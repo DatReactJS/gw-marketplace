@@ -92,7 +92,7 @@ const Info: React.FC<Props> = ({ refresh }: Props) => {
             >
               0.5
             </Text>
-            <img alt="" src="/assets/images/bnb.svg" />
+            <img alt="" src="/assets/images/ic-avax.png" />
           </div>
 
           <Text type="body-14-regular">$1,200</Text>

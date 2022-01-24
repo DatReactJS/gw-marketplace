@@ -62,7 +62,11 @@ const About: React.FC<Props> = (props: Props) => {
 
           <div className={styles.property}>
             <Text type="body-16-bold">NamNQLC</Text>
-            <Text type="body-14-regular" className={styles.txt}>
+            <Text
+              type="body-14-regular"
+              className={styles.txt}
+              color="primary-100"
+            >
               (0xx6...78hvfg597a62fd50a5bd766e7d85fe09638bd)
             </Text>
           </div>

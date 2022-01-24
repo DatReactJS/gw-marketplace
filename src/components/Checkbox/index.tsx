@@ -4,7 +4,6 @@ import styles from './index.less';
 import './index.less';
 import classNames from 'classnames';
 import 'rc-checkbox/assets/index.css';
-import Icon from '../Icon';
 interface CheckBoxProps {
   children?: React.ReactNode;
   className?: string;

@@ -1,6 +1,7 @@
 .inventory {
-  max-width: 1136px;
+  // max-width: 1136px;
   margin: 0 auto;
+  position: relative;
 
   .tabs {
     padding: 32px 0 8px;
@@ -8,29 +9,35 @@
     z-index: 2;
     background-color: var(--primary-400);
     position: fixed;
-    width: 1136px;
+    // width: 1136px;
+    width: 100%;
   }
 
   .loading {
-    padding: 72px 0;
+    padding-left: 273px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .heroContainer {
-    max-width: 1136px;
+    // max-width: 1136px;
     margin: 72px auto 16px;
   }
 
   .heroContainerFlex {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .heroCard {
-    flex: 0 24%;
+    flex: 0 1;
     width: 272px;
     height: 312px;
     margin-bottom: 16px;
+    margin-right: 16px;
     cursor: pointer;
   }
 

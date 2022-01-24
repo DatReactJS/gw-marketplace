@@ -1,6 +1,9 @@
 .marketplace {
-  max-width: 1440px;
+  // max-width: 1440px;
   margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
 
   .tabs {
     padding: 8px 16px;
@@ -8,29 +11,35 @@
     z-index: 2;
     background-color: var(--primary-400);
     position: fixed;
-    width: 1440px;
+    // width: 1440px;
+    width: 100%;
   }
 
   .loading {
-    padding: 108px 0;
+    padding-left: 272px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .heroContainer {
-    max-width: 1136px;
-    margin: 108px auto 16px;
+    // max-width: 1136px;
+    margin: 116px auto 16px;
   }
 
   .heroContainerFlex {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .heroCard {
-    flex: 0 24%;
+    flex: 0 1;
     width: 272px;
     height: 312px;
     margin-bottom: 16px;
+    margin-right: 16px;
     cursor: pointer;
   }
 

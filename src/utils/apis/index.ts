@@ -1,8 +1,6 @@
-import { history } from 'umi';
 import { extend } from 'umi-request';
 import { ENVIRONMENTS } from '../constants/environments';
 import { LocalInfo, LocalInfoObject } from '../contracts/ultilities';
-import { useWallet } from '../hooks/connect/wallet';
 import TokenManagement from '../TokenManagement';
 import ERROR_CODES from './error_code';
 
@@ -32,9 +30,16 @@ export const apiMeta = extend({
 export const api = extend({
   prefix: ENVIRONMENTS.API_URL,
   errorHandler: (error: any) => {
+    console.log(
+      '🚀 ~ error',
+      error,
+      error?.code,
+      error?.message,
+      error?.response,
+    );
     if (error?.message?.match('Failed to fetch')) {
       localStorage.clear();
-      return history.push('/login');
+      return window.location.reload();
     }
 
     if (error?.code && ERROR_CODES[error.code]) {

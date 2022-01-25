@@ -25,7 +25,7 @@ const Info: React.FC<Props> = (props: Props) => {
 
         <div className={styles.detail}>
           <Text type="caption-12-semi-bold">
-            {walletInfo?.balance || 0} BNB
+            {Math.abs(walletInfo?.balance || 0)} KGC
           </Text>
           <Text type="caption-12-regular" color="primary-100">
             {formatWalletAddress(walletInfo?.address, 8)}

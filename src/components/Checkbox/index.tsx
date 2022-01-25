@@ -11,6 +11,7 @@ interface CheckBoxProps {
   disabled?: boolean;
   checked?: boolean;
   onChange?: any;
+  tickAccent?: boolean;
 }
 
 interface Ref {
@@ -26,6 +27,7 @@ const RcCheckBox: React.FC<CheckBoxProps & Ref> = React.forwardRef(
       children,
       checked,
       onChange,
+      tickAccent = false,
       ...rest
     } = props;
 
@@ -43,8 +45,11 @@ const RcCheckBox: React.FC<CheckBoxProps & Ref> = React.forwardRef(
             checked={checked}
             {...rest}
           />
-
-          <img alt="" src="/assets/images/ic-tick.png" />
+          {tickAccent ? (
+            <img alt="" src="/assets/images/ic-tick-accent.png" />
+          ) : (
+            <img alt="" src="/assets/images/ic-tick.png" />
+          )}
         </div>
 
         {children}

@@ -92,6 +92,7 @@ export default {
   'login.password': 'Password',
   'login.passwordRequired': 'Password is required',
   'login.forgotPassword': 'Forgot password?',
+  'login.rememberMe': 'Remember me',
   'login.showQR': 'Show QR',
   'login.withQrCode': 'Log in with QR Code',
   'login.dontShare': 'DO NOT share this QR code to anyone!',

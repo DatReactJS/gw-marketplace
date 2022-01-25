@@ -1,11 +1,11 @@
 import Button from '@/components/Button';
+import RcCheckBox from '@/components/Checkbox';
 import ConnectWallet from '@/components/ConnectWallet';
 import ForgotPassword from '@/components/ForgotPassword';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
 import Text from '@/components/Text';
 import { api, API_PATHS } from '@/utils/apis';
-import { isValidUsername } from '@/utils/common';
 import { ENVIRONMENTS } from '@/utils/constants/environments';
 import { WALLET_TYPE } from '@/utils/constants/wallet';
 import { useWallet } from '@/utils/hooks/connect/wallet';
@@ -17,8 +17,15 @@ import Form from 'rc-field-form';
 import React from 'react';
 import { useIntl } from 'umi';
 import styles from './index.less';
+import QR from './QR';
 
 interface Props {}
+
+interface FormValues {
+  email: string;
+  password: string;
+  remember: boolean;
+}
 
 const Login: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
@@ -45,7 +52,7 @@ const Login: React.FC<Props> = (props: Props) => {
   };
 
   const loginWithUsername = useRequest(
-    async (values: any) => {
+    async (values: FormValues) => {
       const result = await api.post(API_PATHS.LOGIN, {
         data: {
           userNameOrEmail: values.email,
@@ -82,7 +89,7 @@ const Login: React.FC<Props> = (props: Props) => {
     },
   );
 
-  const onFinish = (values: { email: string; password: string }) => {
+  const onFinish = (values: FormValues) => {
     loginWithUsername.run(values);
   };
 
@@ -94,6 +101,8 @@ const Login: React.FC<Props> = (props: Props) => {
 
       <div className={styles.main}>
         <ConnectWallet />
+
+        <QR />
 
         <div
           className={classNames(styles.loginEmail, {
@@ -118,7 +127,7 @@ const Login: React.FC<Props> = (props: Props) => {
           <Form
             form={form}
             className={styles.form}
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: '', password: '', remember: false }}
             onFinish={onFinish}
           >
             <FormItem shouldUpdate>
@@ -196,7 +205,37 @@ const Login: React.FC<Props> = (props: Props) => {
               }}
             </FormItem>
 
-            <ForgotPassword />
+            <div className={styles.extra}>
+              <div className={styles.checkbox}>
+                <FormItem name="remember">
+                  {({
+                    value,
+                    onChange,
+                  }: {
+                    value: boolean;
+                    onChange: Function;
+                  }) => {
+                    return (
+                      <RcCheckBox
+                        onChange={() => onChange(!value)}
+                        checked={!!value}
+                        className={styles.check}
+                        tickAccent
+                      >
+                        <Text
+                          type="caption-12-semi-bold"
+                          color="accent-500"
+                          onClick={() => onChange(!value)}
+                        >
+                          {intl.formatMessage({ id: 'login.rememberMe' })}
+                        </Text>
+                      </RcCheckBox>
+                    );
+                  }}
+                </FormItem>
+              </div>
+              <ForgotPassword />
+            </div>
 
             {showFormLogin && isLoginError && (
               <Text

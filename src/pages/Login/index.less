@@ -79,6 +79,46 @@
         text-align: center;
       }
 
+      .extra {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+
+        .checkbox {
+          margin-left: 16px;
+
+          .check {
+            :global {
+              .checkbox {
+                margin-right: 2px;
+              }
+              .rc-checkbox {
+                margin-top: 3px;
+                .rc-checkbox-inner {
+                  width: 13px;
+                  height: 13px;
+                  border-radius: 0;
+                  background-color: var(--neutral-0);
+                  border: 1px solid transparent;
+                }
+
+                &.rc-checkbox-checked {
+                  .rc-checkbox-inner {
+                    background: var(--neutral-0);
+                    border: 1px solid transparent;
+                  }
+
+                  & + img {
+                    left: 35%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
       .btnLogin {
         width: 368px;
         position: absolute;

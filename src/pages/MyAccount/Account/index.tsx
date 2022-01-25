@@ -43,7 +43,9 @@ const Account: React.FC<Props> = (props: Props) => {
       <div className={styles.info}>
         <div className={styles.left}>
           <div className={styles.bnb}>
-            <Text type="title-30-semi-bold">{walletInfo.balance || 0}</Text>
+            <Text type="title-30-semi-bold">
+              {Math.abs(walletInfo.balance || 0)}
+            </Text>
             <img alt="" src="/assets/images/ic-kingdom-coin.png" />
           </div>
 

@@ -67,7 +67,7 @@ const Total: React.FC<Props> = (props: Props) => {
       <div className={styles.totalWrapper}>
         <div className={styles.totalSale}>
           <div className={styles.icon}>
-            <img src="/assets/images/token_big.svg" alt="" />
+            <img src="/assets/images/ic-kingdom-coin-xl.png" alt="" />
           </div>
           <div className={styles.title}>
             <Text type="body-14-bold">
@@ -82,7 +82,7 @@ const Total: React.FC<Props> = (props: Props) => {
         </div>
         <div className={styles.totalVolume}>
           <div className={styles.icon}>
-            <img src="/assets/images/token_big.svg" alt="" />
+            <img src="/assets/images/ic-kingdom-coin-xl.png" alt="" />
           </div>
           <div className={styles.title}>
             <Text type="body-14-bold">
@@ -105,7 +105,7 @@ const Total: React.FC<Props> = (props: Props) => {
         </div>
         <div className={styles.totalSold}>
           <div className={styles.icon}>
-            <img src="/assets/images/token_big.svg" alt="" />
+            <img src="/assets/images/ic-kingdom-coin-xl.png" alt="" />
           </div>
           <div className={styles.title}>
             <Text type="body-14-bold">

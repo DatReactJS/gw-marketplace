@@ -46,7 +46,7 @@ const Account: React.FC<Props> = (props: Props) => {
             <Text type="title-30-semi-bold">
               {Math.abs(walletInfo.balance || 0)}
             </Text>
-            <img alt="" src="/assets/images/ic-kingdom-coin.png" />
+            <img alt="" src="/assets/images/ic-kingdom-coin-lg.png" />
           </div>
 
           <Text type="body-16-regular" className={styles.usd}>
@@ -73,19 +73,19 @@ const Account: React.FC<Props> = (props: Props) => {
         <div className={styles.right}>
           <div className={styles.top}>
             <div className={styles.amount}>
-              <img alt="" src="/assets/images/ic-kingdom-coin-lg.png" />
-              <Text type="body-16-regular">10 KGC</Text>
-            </div>
-            <div className={styles.amount}>
               <img alt="" src="/assets/images/ic-avax.png" />
               <Text type="body-16-regular">10 AVAX</Text>
+            </div>
+            <div className={styles.amount}>
+              <img alt="" src="/assets/images/ic-usdt.png" />
+              <Text type="body-16-regular">10 USDT</Text>
             </div>
           </div>
 
           <div className={styles.bottom}>
             <div className={styles.amount}>
-              <img alt="" src="/assets/images/char/char2_small.png" />
-              <Text type="body-14-regular">
+              <img alt="" src="/assets/images/ic-character.png" />
+              <Text type="body-16-regular">
                 {intl.formatMessage(
                   { id: `account.characters` },
                   { amount: 10 },
@@ -93,14 +93,14 @@ const Account: React.FC<Props> = (props: Props) => {
               </Text>
             </div>
             <div className={styles.amount}>
-              <img alt="" src="/assets/images/ship/ship1_small.png" />
-              <Text type="body-14-regular">
+              <img alt="" src="/assets/images/ic-ship.png" />
+              <Text type="body-16-regular">
                 {intl.formatMessage({ id: `account.ships` }, { amount: 10 })}
               </Text>
             </div>
             <div className={styles.amount}>
-              <img alt="" src="/assets/images/ship/ship1_small.png" />
-              <Text type="body-14-regular">
+              <img alt="" src="/assets/images/ic-accessory.png" />
+              <Text type="body-16-regular">
                 {intl.formatMessage(
                   { id: `account.accesorys` },
                   { amount: 10 },

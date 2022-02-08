@@ -56,30 +56,30 @@ const SideFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
 
         <div className={styles.allFilter}>
           {tab === TabsEnum.CHARACTER && (
-            <FormItem name="classes" preserve>
+            <FormItem name="classes">
               <Classes />
             </FormItem>
           )}
 
-          <FormItem name="rarities" preserve>
+          <FormItem name="rarities">
             <Rarities />
           </FormItem>
 
           {tab === TabsEnum.CHARACTER && (
             <>
-              <FormItem name="vit" preserve>
+              <FormItem name="vit">
                 <Vitality />
               </FormItem>
-              <FormItem name="str" preserve>
+              <FormItem name="str">
                 <Strength />
               </FormItem>
-              <FormItem name="agi" preserve>
+              <FormItem name="agi">
                 <Agility />
               </FormItem>
-              <FormItem name="int" preserve>
+              <FormItem name="int">
                 <Intelligence />
               </FormItem>
-              <FormItem name="spd" preserve>
+              <FormItem name="spd">
                 <Speed />
               </FormItem>
             </>
@@ -87,7 +87,7 @@ const SideFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
 
           {tab === TabsEnum.SHIP && (
             <>
-              <FormItem name="buffAmount" preserve>
+              <FormItem name="buffAmount">
                 <BuffAmount />
               </FormItem>
             </>
@@ -95,23 +95,23 @@ const SideFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
 
           {tab === TabsEnum.ACCESORY && (
             <>
-              <FormItem name="stat" preserve>
+              <FormItem name="stat">
                 <Stats />
               </FormItem>
 
-              <FormItem name="hp" preserve>
+              <FormItem name="hp">
                 <HP />
               </FormItem>
 
-              <FormItem name="atk" preserve>
+              <FormItem name="atk">
                 <Attack />
               </FormItem>
 
-              <FormItem name="def" preserve>
+              <FormItem name="def">
                 <Defend />
               </FormItem>
 
-              <FormItem name="spd" preserve>
+              <FormItem name="spd">
                 <Speed />
               </FormItem>
             </>

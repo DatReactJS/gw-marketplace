@@ -23,12 +23,12 @@ const HeadFilter: React.FC<Props> = ({ total }: Props) => {
         )}
       </Text>
       <div className={styles.filter}>
-        <FormItem name="type" preserve>
+        <FormItem name="type">
           <Type
             placeholder={intl.formatMessage({ id: 'filter.type.forSale' })}
           />
         </FormItem>
-        <FormItem name="sort" preserve>
+        <FormItem name="sort">
           <Sorter
             placeholder={intl.formatMessage({ id: 'filter.sorter.highestID' })}
           />

@@ -33,7 +33,7 @@ const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
 
   return (
     <div className={styles.headFilter}>
-      <FormItem name="type" preserve>
+      <FormItem name="type">
         <Type
           placeholder={intl.formatMessage({ id: 'filter.type.all' })}
           isInventory
@@ -65,7 +65,7 @@ const HeadFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
           )}
         </div>
 
-        {/* <FormItem name="sort" preserve>
+        {/* <FormItem name="sort">
           <Sorter
             placeholder={intl.formatMessage({ id: 'filter.sorter.highestID' })}
           />

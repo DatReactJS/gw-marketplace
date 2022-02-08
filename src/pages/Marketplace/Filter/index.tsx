@@ -147,6 +147,70 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
         delete values.type;
       }
 
+      if (
+        Array.isArray(values?.vit) &&
+        values.vit[0] === 100 &&
+        values.vit[1] === 1000
+      ) {
+        delete values.vit;
+      }
+
+      if (
+        Array.isArray(values?.str) &&
+        values.str[0] === 100 &&
+        values.str[1] === 1000
+      ) {
+        delete values.str;
+      }
+
+      if (
+        Array.isArray(values?.agi) &&
+        values.agi[0] === 100 &&
+        values.agi[1] === 1000
+      ) {
+        delete values.agi;
+      }
+
+      if (
+        Array.isArray(values?.int) &&
+        values.int[0] === 100 &&
+        values.int[1] === 1000
+      ) {
+        delete values.int;
+      }
+
+      if (
+        Array.isArray(values?.spd) &&
+        values.spd[0] === 100 &&
+        values.spd[1] === 1000
+      ) {
+        delete values.spd;
+      }
+
+      if (
+        Array.isArray(values?.hp) &&
+        values.hp[0] === 100 &&
+        values.hp[1] === 1000
+      ) {
+        delete values.hp;
+      }
+
+      if (
+        Array.isArray(values?.def) &&
+        values.def[0] === 100 &&
+        values.def[1] === 1000
+      ) {
+        delete values.def;
+      }
+
+      if (
+        Array.isArray(values?.atk) &&
+        values.atk[0] === 100 &&
+        values.atk[1] === 1000
+      ) {
+        delete values.atk;
+      }
+
       const newValues = Object.keys(values).reduce((acc, key) => {
         if (values[key] || +values[key] === 0) {
           return {

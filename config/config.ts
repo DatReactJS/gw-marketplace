@@ -21,7 +21,7 @@ export default defineConfig({
     title: true,
     baseSeparator: '-',
   },
-  hash: true,
+  // hash: true,
   fastRefresh: {},
   define: defineEnv(),
   outputPath: outputPath,

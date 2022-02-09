@@ -7,10 +7,10 @@ import {
 export const downloadExtention = (typeWallet: string) => {
   switch (typeWallet) {
     case WALLET_TYPE.META_MASK:
-      window.open('https://metamask.io/download', '_blank');
+      window?.open('https://metamask.io/download', '_blank');
       break;
     case WALLET_TYPE.COIN_98:
-      window.open('https://coin98.com/wallet', '_blank');
+      window?.open('https://coin98.com/wallet', '_blank');
       break;
     default:
       break;
@@ -31,7 +31,7 @@ export const connectMetaService = async () => {
     });
   }
 
-  const accounts = await window.ethereum.send('eth_requestAccounts');
+  const accounts = await window?.ethereum.send('eth_requestAccounts');
 
   return accounts.result[0];
 };

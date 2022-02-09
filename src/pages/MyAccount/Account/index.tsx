@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import Text from '@/components/Text';
+import { useAccountInfoRequest } from '@/utils/hooks/account';
 import { useBNBPrice } from '@/utils/hooks/bnb';
 import { useWalletInfo } from '@/utils/hooks/connect/wallet';
 import { formatWalletAddress } from '@/utils/normalizers';
@@ -16,6 +17,7 @@ interface Props {}
 const Account: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
   const walletInfo = useWalletInfo();
+  const { data } = useAccountInfoRequest();
 
   const bnbPrice = useBNBPrice();
 
@@ -74,11 +76,15 @@ const Account: React.FC<Props> = (props: Props) => {
           <div className={styles.top}>
             <div className={styles.amount}>
               <img alt="" src="/assets/images/ic-avax.png" />
-              <Text type="body-16-regular">10 AVAX</Text>
+              <Text type="body-16-regular">{`${
+                data?.avaxReward || 0
+              } AVAX`}</Text>
             </div>
             <div className={styles.amount}>
               <img alt="" src="/assets/images/ic-usdt.png" />
-              <Text type="body-16-regular">10 USDT</Text>
+              <Text type="body-16-regular">{`${
+                data?.usdtReward || 0
+              } USDT`}</Text>
             </div>
           </div>
 

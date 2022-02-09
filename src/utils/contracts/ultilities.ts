@@ -37,7 +37,7 @@ export const getProvider = async () => {
     return READ_ONLY_PROVIDER;
   }
 
-  if (window?.ethereum && window.ethereum?.chainId !== CURRENT_NET.chainId) {
+  if (window?.ethereum && window?.ethereum?.chainId !== CURRENT_NET.chainId) {
     try {
       await window?.ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -59,8 +59,8 @@ export const getProvider = async () => {
     return READ_ONLY_PROVIDER;
   }
 
-  if (window.ethereum && !ETHER_PROVIDER) {
-    ETHER_PROVIDER = new ethers.providers.Web3Provider(window.ethereum);
+  if (window?.ethereum && !ETHER_PROVIDER) {
+    ETHER_PROVIDER = new ethers.providers.Web3Provider(window?.ethereum);
     return ETHER_PROVIDER;
   }
 
@@ -76,7 +76,7 @@ export const preContractRequest = async (
   params?: any,
   withSigner?: boolean,
 ) => {
-  const localInfo: LocalInfo = localStorage.getItem(
+  const localInfo: LocalInfo = window?.localStorage.getItem(
     ENVIRONMENTS.LOCAL_STORAGE_KEY,
   );
   let localInfoObject: LocalInfoObject;

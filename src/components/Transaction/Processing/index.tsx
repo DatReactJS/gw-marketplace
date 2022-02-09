@@ -11,7 +11,7 @@ const Processing: React.FC<Props> = ({ hash }: Props) => {
   const intl = useIntl();
 
   const onViewTransaction = () => {
-    window.open(`${process.env.APP__CHAIN_URL}tx/${hash}`, '_blank');
+    window?.open(`${process.env.APP__CHAIN_URL}tx/${hash}`, '_blank');
   };
 
   return (

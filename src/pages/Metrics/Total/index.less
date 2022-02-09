@@ -1,5 +1,5 @@
 .total {
-  width: 100%;
+  // width: 100%;
   height: auto;
   .optionsDate {
     width: fit-content;
@@ -36,6 +36,20 @@
     display: flex;
     justify-content: space-around;
     margin-top: 32px;
+    // @media (max-width: 768px) {
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
+    // }
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .totalSale,
+      .totalVolume {
+        margin-bottom: 36px;
+      }
+    }
     .totalSale {
       width: fit-content;
       display: flex;

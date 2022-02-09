@@ -5,6 +5,7 @@ import Character from '../Icon/Character';
 import Ship from '../Icon/Ship';
 import styles from './index.less';
 import TabItem from './TabItem';
+import RCSelect from '@/components/Select';
 
 export enum TabsEnum {
   CHARACTER = 'character',
@@ -70,18 +71,27 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
 
     return (
       <div className={styles.tabs}>
-        {tabs.map((tab: TabItem, index: number) => {
-          const isActive: boolean = activeTab === tab.value;
+        <div className={styles.SelectReponsive}>
+          <RCSelect
+            options={tabs}
+            className={styles.select}
+            defaultValue={TabsEnum.CHARACTER}
+          />
+        </div>
+        <div className={styles.TabsReponsive}>
+          {tabs.map((tab: TabItem, index: number) => {
+            const isActive: boolean = activeTab === tab.value;
 
-          return (
-            <TabItem
-              {...tab}
-              key={`tab-${index}`}
-              onChangeTab={onChangeTab}
-              isActive={isActive}
-            />
-          );
-        })}
+            return (
+              <TabItem
+                {...tab}
+                key={`tab-${index}`}
+                onChangeTab={onChangeTab}
+                isActive={isActive}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   },

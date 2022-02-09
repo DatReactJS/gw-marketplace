@@ -8,10 +8,30 @@
   @media (max-width: 1200px) {
     display: block;
   }
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
   .recentlyListed {
     max-width: 608px;
     width: 100%;
     height: auto;
+    @media (max-width: 1200px) {
+      margin: auto;
+    }
+    @media (max-width: 768px) {
+      margin-bottom: 40px;
+    }
+    .flex {
+      @media (max-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .headerSelectOption {
+          border: none;
+          margin: 0;
+        }
+      }
+    }
     .titleRecentlyListed {
       height: 28px;
     }
@@ -61,6 +81,20 @@
     width: 100%;
     height: auto;
     margin-left: 16px;
+    @media (max-width: 1200px) {
+      margin: auto;
+    }
+    .flex {
+      @media (max-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .headerSelectOption {
+          border: none;
+          margin: 0;
+        }
+      }
+    }
     .titleRecentlySold {
       height: 28px;
     }
@@ -95,12 +129,19 @@
   margin-bottom: 8px;
   padding: 8px;
   transition: all 0.3s;
+  @media (max-width: 768px) {
+    height: auto;
+    align-items: flex-start;
+  }
   &:hover {
     border: 1px solid var(--accent-500);
     cursor: pointer;
   }
   .infoCharacter {
     display: flex;
+    @media (max-width: 768px) {
+      display: block;
+    }
 
     .characterCode {
       display: flex;
@@ -125,12 +166,16 @@
       margin-left: 33px;
       display: flex;
       align-items: center;
+      @media (max-width: 768px) {
+        margin-left: 10px;
+      }
       .detailPower {
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin-right: 26px;
         align-items: center;
+
         .detail {
           margin-top: 4px;
           height: 20px;
@@ -174,18 +219,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
   transition: all 0.3s;
+  padding: 8px;
+  @media (max-width: 768px) {
+    height: auto;
+    align-items: flex-start;
+  }
   &:hover {
     border: 1px solid var(--accent-500);
     cursor: pointer;
   }
   .infoCharacter {
     display: flex;
+    @media (max-width: 768px) {
+      display: block;
+    }
     .characterCode {
       display: flex;
       align-items: center;
-      padding-left: 8px;
       .avatar {
         max-width: 48px;
         max-height: 51px;
@@ -204,6 +255,10 @@
     }
     .buyer {
       margin-left: 32px;
+      @media (max-width: 768px) {
+        margin-bottom: 12px;
+        margin-left: 10px;
+      }
       .title {
         height: 20px;
       }
@@ -216,6 +271,9 @@
     }
     .seller {
       margin-left: 46px;
+      @media (max-width: 768px) {
+        margin-left: 10px;
+      }
       .title {
         height: 20px;
       }
@@ -228,7 +286,6 @@
     }
   }
   .infoPriceCharacter {
-    padding: 8px 8px 8px 0px;
     .detail {
       display: flex;
       align-items: center;

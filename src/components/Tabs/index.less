@@ -1,4 +1,33 @@
 .tabs {
   display: flex;
   gap: 32px;
+  .SelectReponsive {
+    display: none;
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+  .TabsReponsive {
+    display: contents;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  .select {
+    background: var(--primary-300) !important;
+    border: none;
+    border-radius: 8px;
+    height: 38px;
+    max-width: 148px;
+    &:global {
+      &.rc-select-selector {
+        .rc-select-item {
+          background: var(--primary-300);
+        }
+        &.rc-select-dropdown {
+          border: none;
+        }
+      }
+    }
+  }
 }

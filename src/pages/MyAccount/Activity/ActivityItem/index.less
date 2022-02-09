@@ -11,6 +11,20 @@
     margin-top: 12px;
     display: flex;
     align-items: center;
+    @media (max-width: 768px) {
+      align-items: flex-start;
+    }
+    .detailFlex {
+      display: flex;
+      align-items: center;
+      @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        align-items: center;
+        .image {
+          margin: 0;
+        }
+      }
+    }
     .dateActivity {
       height: 22px;
     }
@@ -39,6 +53,9 @@
       }
       .link {
         display: flex;
+        @media (max-width: 768px) {
+          display: none;
+        }
         .linkLeft {
           height: 20px;
           cursor: pointer;

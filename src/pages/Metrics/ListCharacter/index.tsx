@@ -36,13 +36,15 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
     <>
       <div className={styles.listCharacter}>
         <div className={styles.recentlyListed}>
-          <div className={styles.titleRecentlyListed}>
-            <Text type="headline-20-semi-bold">
-              {intl.formatMessage({ id: 'metrics.recentlyListed' })}
-            </Text>
-          </div>
-          <div className={styles.headerSelectOption}>
-            <Tabs onChange={handleChangeTabRecentlyListed} />
+          <div className={styles.flex}>
+            <div className={styles.titleRecentlyListed}>
+              <Text type="headline-20-semi-bold">
+                {intl.formatMessage({ id: 'metrics.recentlyListed' })}
+              </Text>
+            </div>
+            <div className={styles.headerSelectOption}>
+              <Tabs onChange={handleChangeTabRecentlyListed} />
+            </div>
           </div>
           <ItemListed currentTab={currentTab} />
           <div className={styles.linkToMarketplace}>
@@ -58,17 +60,20 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
           </div>
         </div>
         <div className={styles.recentlySold}>
-          <div className={styles.titleRecentlySold}>
-            <Text type="headline-20-semi-bold">
-              {intl.formatMessage({ id: 'metrics.recentlySold' })}
-            </Text>
-          </div>
-          <div className={styles.headerSelectOption}>
-            <Tabs onChange={handleChangeTabRecentlySold} />
+          <div className={styles.flex}>
+            <div className={styles.titleRecentlySold}>
+              <Text type="headline-20-semi-bold">
+                {intl.formatMessage({ id: 'metrics.recentlySold' })}
+              </Text>
+            </div>
+            <div className={styles.headerSelectOption}>
+              <Tabs onChange={handleChangeTabRecentlySold} />
+            </div>
           </div>
           <ItemSold />
         </div>
       </div>
+
       <div className={styles.pagination}>
         <Paginator currentPage={currentPage} totalPages={10} onPage={onPage} />
       </div>

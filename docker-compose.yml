@@ -2,8 +2,8 @@ version: '3.5'
 
 services:
   app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: ghcr.io/namnh240795agiletech/kingdomfe
     ports:
-      - 8000:7001
+      - 5434:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf

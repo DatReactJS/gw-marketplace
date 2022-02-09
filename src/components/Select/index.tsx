@@ -11,8 +11,11 @@ export interface OptionSelect {
   label: string;
   prefix?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
+  icon: React.ReactNode;
+  isComming?: boolean;
 }
 interface SelectProps {
+  defaultValue?: string | number | undefined;
   options?: OptionSelect[];
   className?: string;
   placeholder?: string;
@@ -24,19 +27,37 @@ interface SelectProps {
 }
 
 const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
-  const { options = [], className, classNameDropdown, icon, ...rest } = props;
+  const {
+    options = [],
+    className,
+    classNameDropdown,
+    icon,
+    onChange,
+    defaultValue,
+    ...rest
+  } = props;
 
   return (
     <div className="checkbox-container">
       <Select
         className={cls(['rcselect', className])}
         dropdownClassName={cls(['menu', classNameDropdown])}
+        onChange={onChange}
         {...rest}
+        defaultValue={defaultValue}
       >
         {options.map(
-          ({ label, value, prefix, suffix }: OptionSelect, index: number) => {
+          (
+            { label, value, prefix, suffix, icon, isComming }: OptionSelect,
+            index: number,
+          ) => {
             return (
-              <Option value={value} key={`${label}-${value}-${index}`}>
+              <Option
+                value={value}
+                key={`${label}-${value}-${index}`}
+                className={isComming ? 'disable' : ''}
+              >
+                {icon}
                 {prefix}
                 {label}
                 {suffix}

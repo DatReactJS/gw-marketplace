@@ -4,7 +4,14 @@
   overflow-y: scroll;
   margin-top: 16px;
   box-shadow: 0px 0px 20px rgba(33, 35, 48, 0.2);
-
+  @media (max-width: 480px) {
+    display: none;
+  }
+  &.active {
+    display: block;
+    z-index: 9;
+    width: calc(100% - 32px);
+  }
   .content {
     width: 256px;
     // height: 740px;
@@ -12,6 +19,9 @@
     box-sizing: border-box;
     border-radius: 8px;
     padding: 16px;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
 
     .head {
       display: flex;

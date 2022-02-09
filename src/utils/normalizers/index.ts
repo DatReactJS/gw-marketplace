@@ -1,6 +1,4 @@
-import toNumber from 'lodash/toNumber';
-import toLower from 'lodash/toLower';
-import cloneDeep from 'lodash/cloneDeep';
+import { toNumber, toLower, cloneDeep } from 'lodash';
 import numeral from 'numeral';
 import { BigNumber, ethers } from 'ethers';
 
@@ -101,6 +99,6 @@ export const getPriceBaseWhiteList = ({
 };
 
 export const walletAddressLink = (address: string) => {
-  window.open(`${process.env.APP__CHAIN_URL}/address/${address}`, '_blank');
+  window?.open(`${process.env.APP__CHAIN_URL}/address/${address}`, '_blank');
   return;
 };

@@ -32,8 +32,6 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-const screenWidth: number = window.innerWidth;
-
 export interface PaginatorProps {
   totalPages: number;
   currentPage: number;
@@ -117,15 +115,6 @@ const Paginator: React.FC<PaginatorProps> = ({
             className="pagesNumber body-14-bold"
           />
         )}
-        {screenWidth > 414 && (
-          <>
-            {currentPage > 4 && totalPages > 7 && displayPrevDots && (
-              <div className="ellipsis">
-                <span>...</span>
-              </div>
-            )}
-          </>
-        )}
 
         {totalPages < max
           ? new Array(totalPages).fill('paginationItem').map((_, i) => {
@@ -152,19 +141,6 @@ const Paginator: React.FC<PaginatorProps> = ({
                   />
                 );
               })}
-
-        {screenWidth > 414 && (
-          <>
-            {currentPage <= totalPages - max + 1 &&
-              lastPage &&
-              displayNextDots &&
-              totalPages > 7 && (
-                <div className="ellipsis">
-                  <span>...</span>
-                </div>
-              )}
-          </>
-        )}
 
         {options.to !== totalPages && (
           <Button

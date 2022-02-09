@@ -38,8 +38,8 @@ export const api = extend({
       error?.response,
     );
     if (error?.message?.match('Failed to fetch')) {
-      localStorage.clear();
-      return window.location.reload();
+      window?.localStorage.clear();
+      return window?.location.reload();
     }
 
     if (error?.code && ERROR_CODES[error.code]) {
@@ -92,7 +92,7 @@ export const injectBearer = (token: string, configs: any) => {
 const TokenManager = new TokenManagement({
   isTokenValid: () => true,
   getAccessToken: () => {
-    const localInfo: LocalInfo = localStorage.getItem(
+    const localInfo: LocalInfo = window?.localStorage.getItem(
       ENVIRONMENTS.LOCAL_STORAGE_KEY,
     );
     let localInfoObject: LocalInfoObject;

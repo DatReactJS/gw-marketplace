@@ -1,1 +1,1 @@
-console.warn = console.info;
+console.warn = () => {};

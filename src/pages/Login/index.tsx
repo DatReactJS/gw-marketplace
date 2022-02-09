@@ -48,7 +48,7 @@ const Login: React.FC<Props> = (props: Props) => {
   };
 
   const onTermOfUse = () => {
-    window.open('https://www.google.com.vn/?hl=vi', '_blank');
+    window?.open('https://www.google.com.vn/?hl=vi', '_blank');
   };
 
   const loginWithUsername = useRequest(
@@ -68,7 +68,7 @@ const Login: React.FC<Props> = (props: Props) => {
           const address: string = r?.address;
           const walletType: string = WALLET_TYPE.META_MASK;
           const formattedAddress = formatWalletAddress(address);
-          localStorage.setItem(
+          window?.localStorage.setItem(
             ENVIRONMENTS.LOCAL_STORAGE_KEY,
             JSON.stringify({
               walletType,

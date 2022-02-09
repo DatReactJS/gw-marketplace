@@ -1,4 +1,4 @@
-FROM node:14.16.0 as build
+FROM node:14.19.0-alpine3.14 as builder
 
 WORKDIR /app
 
@@ -10,12 +10,16 @@ COPY . .
 
 RUN npm run build
 
-# NGINX
-FROM nginx:1.21.3-alpine as prod
+FROM node:14.19.0-alpine3.14 as runtime
 
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY /nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /src
 
-EXPOSE 80
+COPY --from=builder /app/node_modules /src/node_modules
+COPY --from=builder /app/dist /src/dist
+COPY --from=builder /app/server.js /src
+COPY --from=builder /app/serverHelper.js /src
+COPY --from=builder /app/.env /src
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 7001
+
+CMD ["node", "server.js"]

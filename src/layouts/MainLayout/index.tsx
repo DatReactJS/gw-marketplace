@@ -25,7 +25,7 @@ const Provider: React.FC<Props> = ({ children }: Props) => {
   useBNB();
 
   React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
 
   if (loading) {

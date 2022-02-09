@@ -77,7 +77,7 @@ export const useProvider = () => {
           const address: string = r?.address;
           const token: string = r?.token;
           const formattedAddress = formatWalletAddress(address);
-          localStorage.setItem(
+          window?.localStorage.setItem(
             ENVIRONMENTS.LOCAL_STORAGE_KEY,
             JSON.stringify({
               walletType,

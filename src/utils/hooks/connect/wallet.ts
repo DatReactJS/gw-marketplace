@@ -4,8 +4,10 @@ import { useRequest } from '@umijs/hooks';
 import { utils } from 'ethers';
 import numeral from 'numeral';
 import { atom, useRecoilState, useRecoilValue } from 'recoil';
+import { isBrowser } from 'umi';
 
-const infoCache = window?.localStorage.getItem(ENVIRONMENTS.LOCAL_STORAGE_KEY);
+const infoCache =
+  isBrowser() && window?.localStorage.getItem(ENVIRONMENTS.LOCAL_STORAGE_KEY);
 
 let initialInfo;
 if (infoCache) {

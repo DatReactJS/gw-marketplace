@@ -3,6 +3,7 @@
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
+    "dev": "cross-env UMI_UI=none NODE_ENV=development concurrently \"umi dev\" \"nodemon server.js\"",
     "postinstall": "umi generate tmp",
     "deploy:hosting": "firebase deploy --only hosting",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
@@ -25,6 +26,7 @@
     "@umijs/preset-react": "1.x",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
+    "dotenv": "^16.0.0",
     "ethers": "^5.5.2",
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",
@@ -51,11 +53,24 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@umijs/test": "^3.4.15",
+    "cross-env": "^7.0.3",
     "lint-staged": "^10.0.7",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15",
+    "numeral": "^2.0.6",
     "prettier": "^2.2.0",
     "react": "17.x",
     "react-dom": "17.x",
+    "serve": "^13.0.2",
     "typescript": "^4.1.2",
-    "yorkie": "^2.0.0"
+    "yorkie": "^2.0.0",
+    "koa": "^2.13.4",
+    "koa-compress": "^5.1.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
+    "koa2-proxy-middleware": "^0.0.4",
+    "concurrently": "^5.2.0",
+    "got": "^11.5.0",
+    "http-proxy-middleware": "^1.0.5"
   }
 }

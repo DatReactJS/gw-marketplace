@@ -25,7 +25,7 @@ const ConnectWallet: React.FC = () => {
     walletType: string,
   ) => {
     const formattedAddress = formatWalletAddress(address);
-    localStorage.setItem(
+    window?.localStorage?.setItem(
       ENVIRONMENTS.LOCAL_STORAGE_KEY,
       JSON.stringify({
         walletType,

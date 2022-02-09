@@ -101,6 +101,6 @@ export const getPriceBaseWhiteList = ({
 };
 
 export const walletAddressLink = (address: string) => {
-  window.open(`${process.env.APP__CHAIN_URL}/address/${address}`, '_blank');
+  window?.open(`${process.env.APP__CHAIN_URL}/address/${address}`, '_blank');
   return;
 };

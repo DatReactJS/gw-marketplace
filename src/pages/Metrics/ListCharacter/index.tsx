@@ -17,7 +17,6 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
   );
 
   const handleChangeTabRecentlyListed = (tab: TabsEnum) => {
-    console.log('🚀 ~ tab', tab);
     setCurrentTab(tab);
   };
 
@@ -25,7 +24,6 @@ const ListCharacter: React.FC<Props> = (props: Props) => {
 
   const onPage = (pape: number) => {
     setCurrentPage(pape);
-    console.log('🚀 ~ pape', pape);
   };
 
   const redirectToMarket = (): void => {

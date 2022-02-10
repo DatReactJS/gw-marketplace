@@ -44,6 +44,7 @@ export default [
         title: 'navbar.login',
         wrappers: ['@/components/Wrapper'],
       },
+
       {
         path: '/account',
         component: '@/layouts/MainLayout/MyAccountSider',
@@ -75,6 +76,20 @@ export default [
           },
           {
             path: '/account/settings',
+            component: '@/pages/MyAccount/Settings',
+            title: 'menu.accountSettings',
+            wrappers: ['@/components/Wrapper'],
+          },
+        ],
+        wrappers: ['@/components/Wrapper'],
+      },
+      {
+        path: '/email',
+        component: '@/layouts/MainLayout/MyAccountSider',
+        title: 'menu.account',
+        routes: [
+          {
+            path: '/email',
             component: '@/pages/MyAccount/Settings',
             title: 'menu.accountSettings',
             wrappers: ['@/components/Wrapper'],

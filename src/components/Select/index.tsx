@@ -11,7 +11,7 @@ export interface OptionSelect {
   label: string;
   prefix?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   isComming?: boolean;
 }
 interface SelectProps {

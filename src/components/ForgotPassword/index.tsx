@@ -1,3 +1,4 @@
+import { api, API_PATHS, privateRequest } from '@/utils/apis';
 import { isEmail } from '@/utils/common';
 import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
@@ -42,24 +43,25 @@ const ForgotPassword: React.FC<Props> = ({ onPreVisible }: Props) => {
   };
 
   const resendConfirmationRequest = useRequest(
-    (email: string) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(email);
-        }, 500);
-      });
+    async (email: string) => {
+      const send = await api.get(API_PATHS.SEND_RESET_PASSWORD_EMAIL(email));
+
+      return send;
     },
     {
       manual: true,
-      onSuccess: (email: string) => {
-        toast.success(intl.formatMessage({ id: 'common.success' }));
-        onVisible();
+      onSuccess: (result) => {
+        if (result !== undefined) {
+          toast.success(intl.formatMessage({ id: 'common.success' }));
+          return onVisible();
+        }
+
+        toast.error(intl.formatMessage({ id: 'common.failed' }));
       },
     },
   );
 
   const onFinish = (values: FormValues) => {
-    console.log('🚀 ~ values', values);
     resendConfirmationRequest.run(values.email);
   };
 

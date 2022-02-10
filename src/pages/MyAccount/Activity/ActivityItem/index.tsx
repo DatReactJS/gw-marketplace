@@ -41,11 +41,6 @@ const ActivityItem: React.FC<Props> = (props: Props) => {
                 View transaction status here
               </Text>
             </div>
-            <div className={styles.linkRight}>
-              <Text type="caption-12-regular" color="primary-100">
-                View transaction status here
-              </Text>
-            </div>
           </div>
         </div>
       </div>

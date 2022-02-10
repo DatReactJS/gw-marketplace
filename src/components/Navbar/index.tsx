@@ -11,7 +11,7 @@ import Info from './Info';
 const Navbar: React.FC = () => {
   const intl = useIntl();
   const { walletState, getWalletBalanceRequest } = useWallet();
-  const [isShowNav, setIsShowNav] = useState(false);
+  const [isShowNav, setIsShowNav] = useState<boolean>(false);
   const isConnected = useIsConnected();
 
   React.useEffect(() => {
@@ -26,13 +26,17 @@ const Navbar: React.FC = () => {
     history.push('/login');
     setIsShowNav(false);
   };
+
   const handleMenu = () => {
     setIsShowNav(!isShowNav);
   };
-  const allNavLinks: string[] = Object.keys(links);
+
   const handleClickMenu = (value: boolean) => {
     setIsShowNav(value);
   };
+
+  const allNavLinks: string[] = Object.keys(links);
+
   return (
     <>
       <header className="header-navbar">

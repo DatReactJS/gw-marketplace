@@ -196,8 +196,10 @@ export default {
   'settings.codeWrong': 'Wrong verification code',
   'settings.email': 'Email',
   'settings.emailExist': 'Email have been existed',
+  'settings.emailNotToBeSame': 'Email not to be the same previous email',
   'settings.emailRequired': 'Email is required',
   'settings.emailInvalid': 'Email is not valid',
+  'settings.emailRegistered': 'Email is already registered',
   'settings.add': 'Add',
   'settings.addEmail': 'Add email',
   'settings.changeEmail': 'Change email',
@@ -209,6 +211,7 @@ export default {
   'settings.passwordInvalid':
     'Password must be at least 1 digit, 1 lower case, 1 upper case and 1 special character',
   'settings.passwordRequired': 'Password is required',
+  'settings.passwordIncorrect': 'Password is incorrect',
   'settings.addPassword': 'Add Password',
   'settings.changePassword': 'Change Password',
   'settings.repeatPassword': 'Repeat password',

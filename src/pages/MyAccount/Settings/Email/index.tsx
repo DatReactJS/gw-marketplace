@@ -1,9 +1,10 @@
 import Button from '@/components/Button';
 import FormItem from '@/components/Form';
 import Input from '@/components/Input';
+import Modal from '@/components/Modal';
 import Text from '@/components/Text';
 import { api, API_PATHS, privateRequest } from '@/utils/apis';
-import { isEmail } from '@/utils/common';
+import { isEmail, isValidPassword } from '@/utils/common';
 import { useRequest } from '@umijs/hooks';
 import classNames from 'classnames';
 import Form from 'rc-field-form';
@@ -14,20 +15,18 @@ import Verify from './Verify';
 
 interface Props {
   email: string;
-  isVerified: boolean;
-  refresh: () => void;
 }
 
 interface FormValues {
   email: string;
+  password: string;
 }
 
-const Email: React.FC<Props> = (props: Props) => {
+const Email: React.FC<Props> = ({ email }: Props) => {
   const intl = useIntl();
   const [form] = Form.useForm();
   const verifyRef: any = React.useRef();
 
-  const [initEmail, setInitEmail] = React.useState<string>(props.email);
   const [visible, setVisible] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -41,9 +40,9 @@ const Email: React.FC<Props> = (props: Props) => {
   const onVisible = () => setVisible(!visible);
 
   const checkEmailRequest = useRequest(
-    async (emailValue: string) => {
+    async () => {
       const check = await privateRequest(api.post, API_PATHS.CHECK_EMAIL, {
-        data: { email: emailValue },
+        data: { email: form.getFieldValue('email') },
       });
 
       return check;
@@ -65,36 +64,66 @@ const Email: React.FC<Props> = (props: Props) => {
   );
 
   const resendEmailRequest = useRequest(
-    (emailValue: string) => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(1);
-        }, 500);
-      });
+    async () => {
+      const resend = await privateRequest(
+        api.get,
+        API_PATHS.RESEND_CONFIRMATION_EMAIL,
+      );
+
+      return resend;
     },
     {
       manual: true,
       onSuccess: (result: any) => {
-        verifyRef.current?.setEmail?.(resendEmailRequest.params[0]);
+        verifyRef.current?.setEmail?.(email);
         verifyRef.current?.onVisible?.();
-        onVisible();
       },
     },
   );
 
   const changeEmailRequest = useRequest(
-    (emailValue: string) => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(1);
-        }, 500);
+    async (values: FormValues) => {
+      const change = await privateRequest(api.post, API_PATHS.UPDATE_EMAIL, {
+        data: { email: values.email, currentPassword: values.password },
       });
+
+      return change;
     },
     {
       manual: true,
       onSuccess: (result: any) => {
-        setInitEmail(changeEmailRequest.params[0]);
-        verifyRef.current?.setEmail?.(changeEmailRequest.params[0]);
+        if (result?.status) {
+          switch (result.status) {
+            case 491:
+              return form.setFields([
+                {
+                  name: 'password',
+                  errors: [
+                    intl.formatMessage({ id: 'settings.passwordIncorrect' }),
+                  ],
+                },
+              ]);
+            case 473:
+              return form.setFields([
+                {
+                  name: 'email',
+                  errors: [intl.formatMessage({ id: 'settings.emailInvalid' })],
+                },
+              ]);
+            case 481:
+              return form.setFields([
+                {
+                  name: 'email',
+                  errors: [
+                    intl.formatMessage({ id: 'settings.emailRegistered' }),
+                  ],
+                },
+              ]);
+            default:
+              return;
+          }
+        }
+        verifyRef.current?.setEmail?.(changeEmailRequest.params[0].email);
         verifyRef.current?.onVisible?.();
         onVisible();
       },
@@ -103,29 +132,25 @@ const Email: React.FC<Props> = (props: Props) => {
 
   const handleResend = (event: React.MouseEvent) => {
     event.preventDefault();
-    const emailValue: string = form.getFieldValue('email');
-
-    if (emailValue === initEmail) {
-      resendEmailRequest.run(emailValue);
-    }
-  };
-
-  const preSubmit = (values: FormValues): boolean => {
-    if (values.email !== initEmail && isEmail(values.email)) return true;
-
-    return false;
-  };
-
-  const onValuesChange = (values: FormValues) => {
-    if (preSubmit(values)) {
-      checkEmailRequest.run(values.email);
-    }
+    resendEmailRequest.run();
   };
 
   const onFinish = (values: FormValues) => {
-    if (preSubmit(values)) {
-      changeEmailRequest.run(values.email);
+    changeEmailRequest.run(values);
+  };
+
+  const onShow = (event: React.MouseEvent) => {
+    event.preventDefault();
+
+    onVisible();
+  };
+
+  const action = (): string => {
+    if (email) {
+      return 'change';
     }
+
+    return 'add';
   };
 
   return (
@@ -134,99 +159,159 @@ const Email: React.FC<Props> = (props: Props) => {
         {intl.formatMessage({ id: 'settings.email' })}
       </Text>
 
-      <Form
-        form={form}
-        initialValues={{ email: initEmail }}
-        onFinish={onFinish}
-        onValuesChange={onValuesChange}
-      >
-        <div className={styles.wrapperInput}>
-          <FormItem shouldUpdate>
-            {() => {
-              const isError: boolean = form.getFieldError('email').length > 0;
-              const emailValue: string = form.getFieldValue('email');
-              return (
-                <FormItem
-                  name="email"
-                  rules={[
-                    {
-                      validator: (_: any, value: string) => {
-                        if (!value) {
-                          return Promise.reject(
-                            intl.formatMessage({
-                              id: 'settings.emailRequired',
-                            }),
-                          );
-                        }
+      <div className={styles.wrapperInput}>
+        <Input
+          disabled
+          value={email}
+          placeholder={intl.formatMessage({ id: 'settings.email' })}
+          className={styles.inputEmail}
+        />
 
-                        const checkValidEmail: boolean = isEmail(value);
+        <Button className={styles.btn} onClick={onShow}>
+          {intl.formatMessage({ id: `settings.${action()}` })}
+        </Button>
+        {email && (
+          <Button
+            onClick={handleResend}
+            className={styles.btnResend}
+            loading={resendEmailRequest.loading}
+            type="outline"
+          >
+            {intl.formatMessage({ id: 'settings.resend' })}
+          </Button>
+        )}
+      </div>
 
-                        if (!checkValidEmail) {
-                          return Promise.reject(
-                            intl.formatMessage({
-                              id: 'settings.emailInvalid',
-                            }),
-                          );
-                        }
+      <Modal
+        visible={visible}
+        onClose={onVisible}
+        className={styles.modalEmail}
+        content={
+          <div className={styles.content}>
+            <Text
+              type="title-24-bold"
+              color="accent-500"
+              className={styles.title}
+            >
+              {intl.formatMessage({
+                id: `settings.${action()}Email`,
+              })}
+            </Text>
 
-                        return Promise.resolve();
-                      },
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder={intl.formatMessage({
-                      id: 'settings.email',
-                    })}
-                    className={classNames(styles.input, {
-                      [styles.inputError]: isError,
-                      [styles.inputInit]: emailValue === initEmail,
-                    })}
-                  />
-                </FormItem>
-              );
-            }}
-          </FormItem>
+            <Form
+              form={form}
+              initialValues={{ email: '', password: '' }}
+              onFinish={onFinish}
+              className={styles.form}
+            >
+              <FormItem shouldUpdate>
+                {() => {
+                  const isError: boolean =
+                    form.getFieldError('email').length > 0;
+                  return (
+                    <FormItem
+                      name="email"
+                      rules={[
+                        {
+                          validator: (_: any, value: string) => {
+                            if (!value) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.emailRequired',
+                                }),
+                              );
+                            }
 
-          <FormItem shouldUpdate>
-            {() => {
-              const emailValue: string = form.getFieldValue('email');
-              const isError: boolean = form.getFieldError('email').length > 0;
-              const checkValidEmail: boolean = isEmail(emailValue);
-              const isDisabled: boolean =
-                isError ||
-                !emailValue ||
-                emailValue === initEmail ||
-                !checkValidEmail;
-              return (
-                <div className={styles.allBtn}>
-                  <Button
-                    htmlType="submit"
-                    className={styles.btnSaveChange}
-                    disabled={isDisabled}
-                    loading={
-                      checkEmailRequest.loading || changeEmailRequest.loading
-                    }
-                  >
-                    {intl.formatMessage({ id: 'settings.change' })}
-                  </Button>
-                  {!props.isVerified && initEmail && emailValue === initEmail && (
-                    <Button
-                      onClick={handleResend}
-                      className={styles.btnResend}
-                      loading={resendEmailRequest.loading}
+                            if (value === email) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.emailNotToBeSame',
+                                }),
+                              );
+                            }
+
+                            const checkValidEmail: boolean = isEmail(value);
+
+                            if (!checkValidEmail) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.emailInvalid',
+                                }),
+                              );
+                            }
+
+                            return Promise.resolve();
+                          },
+                        },
+                      ]}
                     >
-                      {intl.formatMessage({ id: 'settings.resend' })}
-                    </Button>
-                  )}
-                </div>
-              );
-            }}
-          </FormItem>
-        </div>
-      </Form>
+                      <Input
+                        placeholder={intl.formatMessage({
+                          id: 'settings.email',
+                        })}
+                        className={classNames(styles.input, {
+                          [styles.inputError]: isError,
+                        })}
+                        onBlur={checkEmailRequest.run}
+                      />
+                    </FormItem>
+                  );
+                }}
+              </FormItem>
 
-      <Verify ref={verifyRef} refresh={props.refresh} />
+              <FormItem shouldUpdate>
+                {() => {
+                  const isError: boolean =
+                    form.getFieldError('password').length > 0;
+                  return (
+                    <FormItem
+                      name="password"
+                      rules={[
+                        {
+                          validator: (_: any, value: string) => {
+                            if (!value) {
+                              return Promise.reject(
+                                intl.formatMessage({
+                                  id: 'settings.passwordRequired',
+                                }),
+                              );
+                            }
+
+                            return Promise.resolve();
+                          },
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder={intl.formatMessage({
+                          id: 'settings.password',
+                        })}
+                        className={classNames(styles.input, {
+                          [styles.inputError]: isError,
+                        })}
+                        type="password"
+                        maxLength={64}
+                      />
+                    </FormItem>
+                  );
+                }}
+              </FormItem>
+
+              <Button
+                htmlType="submit"
+                className={styles.btnConfirm}
+                loading={
+                  checkEmailRequest.loading || changeEmailRequest.loading
+                }
+              >
+                {intl.formatMessage({ id: 'common.confirm' })}
+              </Button>
+            </Form>
+          </div>
+        }
+      />
+
+      <Verify ref={verifyRef} />
     </div>
   );
 };

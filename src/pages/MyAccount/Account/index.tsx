@@ -27,8 +27,14 @@ const Account: React.FC<Props> = (props: Props) => {
   const onCopied = () => {
     const address = walletInfo?.address;
     if (address) {
-      navigator.clipboard?.writeText?.(address);
-      toast.success(intl.formatMessage({ id: 'common.copied' }));
+      window?.navigator?.clipboard
+        ?.writeText?.(address)
+        .then(() => {
+          toast.success(intl.formatMessage({ id: 'common.copied' }));
+        })
+        .catch((error: Error) => {
+          console.log('🚀 ~ error', error);
+        });
     }
   };
 

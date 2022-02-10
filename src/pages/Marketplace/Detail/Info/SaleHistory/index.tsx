@@ -36,7 +36,7 @@ const SaleHistory: React.FC<Props> = (props: Props) => {
               </div>
               <div className={styles.seller}>
                 <Text type="caption-12-regular" color="primary-100">
-                  {intl.formatMessage({ id: 'marketplace.detail.buyer' })}
+                  {intl.formatMessage({ id: 'marketplace.detail.seller' })}
                 </Text>
                 <Text type="body-14-semi-bold">ChiNQLC</Text>
                 <Text type="caption-12-regular" color="primary-100">

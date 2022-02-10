@@ -42,9 +42,9 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
       <Select
         className={cls(['rcselect', className])}
         dropdownClassName={cls(['menu', classNameDropdown])}
+        defaultValue={defaultValue}
         onChange={onChange}
         {...rest}
-        defaultValue={defaultValue}
       >
         {options.map(
           (
@@ -59,7 +59,6 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
               >
                 {icon}
                 {prefix}
-                {icon}
                 {label}
                 {suffix}
               </Option>

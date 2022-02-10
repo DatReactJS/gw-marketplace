@@ -2,8 +2,18 @@
   // max-width: 1440px;
   margin: 0 auto;
   padding: 0 0 24px 16px;
-
+  @media (max-width: 768px) {
+    padding: 0 19px 24px 19px;
+  }
+  .siderBar {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
   .main {
     padding-left: 272px;
+    @media (max-width: 768px) {
+      padding-left: 0;
+    }
   }
 }

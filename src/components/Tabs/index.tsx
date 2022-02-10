@@ -5,6 +5,7 @@ import Character from '../Icon/Character';
 import Ship from '../Icon/Ship';
 import styles from './index.less';
 import TabItem from './TabItem';
+import RCSelect from '@/components/Select';
 
 export enum TabsEnum {
   CHARACTER = 'character',

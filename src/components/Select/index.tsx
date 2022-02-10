@@ -59,6 +59,7 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
               >
                 {icon}
                 {prefix}
+                {icon}
                 {label}
                 {suffix}
               </Option>

@@ -75,7 +75,6 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
             options={tabs}
             className={styles.select}
             defaultValue={TabsEnum.CHARACTER}
-            classNameDropdown={styles.selectDropdown}
           />
         </div>
         <div className={styles.TabsReponsive}>

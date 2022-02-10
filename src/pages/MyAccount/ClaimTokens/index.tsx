@@ -145,7 +145,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <div className={styles.containerClaimTokensWrapper}>
+    <>
       <div className={styles.containerClaimTokens}>
         {dataFake &&
           dataFake.map((item, idx) => {
@@ -181,7 +181,7 @@ const ClaimTokens: React.FC<Props> = (props: Props) => {
         <ClaimHistory />
       </div>
       <Modal visible={visible} onClose={onToggle} content={contentModal()} />
-    </div>
+    </>
   );
 };
 

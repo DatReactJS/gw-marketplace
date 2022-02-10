@@ -10,7 +10,6 @@ const Logo: React.FC<Props> = ({ type }: Props) => {
   const level: string = `logo_${type}`;
 
   const handleClickLogo = () => {
-    console.log('🚀 ~ handleClickLogo');
     history.push('/');
   };
 

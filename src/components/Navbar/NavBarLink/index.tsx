@@ -7,7 +7,7 @@ interface Props {
   link: string;
   title?: string;
   className?: string;
-  onClick?: any;
+  onClick?: (value: boolean) => void;
 }
 
 const NavBarLink: React.FC<Props> = ({
@@ -17,8 +17,9 @@ const NavBarLink: React.FC<Props> = ({
   onClick,
 }: Props) => {
   const handleClickLink = () => {
-    onClick(false);
+    onClick?.(false);
   };
+
   return (
     <NavLink to={link} exact className={classNames(styles.navLink, className)}>
       <span

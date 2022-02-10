@@ -1,15 +1,14 @@
 import Modal from '@/components/Modal';
 import { useRequest } from '@umijs/hooks';
 import React from 'react';
+import { history, useLocation } from 'umi';
 import Failed from './Failed';
 import styles from './index.less';
 import Info from './Info';
 import Processing from './Processing';
 import Success from './Success';
 
-interface Props {
-  refresh: () => void;
-}
+interface Props {}
 
 interface Ref {
   ref: React.Ref<any>;
@@ -23,10 +22,30 @@ export enum StatusVerify {
 }
 
 const Verify: React.FC<Props & Ref> = React.forwardRef(
-  ({ refresh }: Props, ref: Ref['ref']) => {
-    const [status, setStatus] = React.useState<StatusVerify>(StatusVerify.INFO);
+  (props: Props, ref: Ref['ref']) => {
+    const location: any = useLocation();
+
     const [email, setEmail] = React.useState('');
-    const [visible, setVisible] = React.useState<boolean>(false);
+
+    const checkIsVisible = (): boolean => {
+      if (location.query) {
+        if (
+          location.query?.type === 'Confirm' &&
+          location.query?.address &&
+          location.query?.email &&
+          location.pathname === '/email'
+        ) {
+          return true;
+        }
+      }
+
+      return false;
+    };
+
+    const [visible, setVisible] = React.useState<boolean>(checkIsVisible());
+    const [status, setStatus] = React.useState<StatusVerify>(
+      checkIsVisible() ? StatusVerify.SUCCESS : StatusVerify.INFO,
+    );
 
     const onVisible = () => setVisible(!visible);
 
@@ -36,7 +55,7 @@ const Verify: React.FC<Props & Ref> = React.forwardRef(
       setStatus(StatusVerify.INFO);
 
       if (status == StatusVerify.SUCCESS) {
-        refresh();
+        history.push('/account/settings');
       }
     };
 

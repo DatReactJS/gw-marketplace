@@ -12,7 +12,7 @@ import { trim } from 'lodash';
 import Form from 'rc-field-form';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { useIntl } from 'umi';
+import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
 
 interface Props {}
@@ -24,11 +24,30 @@ interface FormValues {
 }
 
 const Password: React.FC<Props> = (props: Props) => {
+  const location: any = useLocation();
   const intl = useIntl();
   const [form] = Form.useForm();
 
+  const checkIsVisible = (): boolean => {
+    if (location.query) {
+      if (
+        location.query?.type === 'ResetPassword' &&
+        location.query?.address &&
+        location.query?.email &&
+        location.query?.token &&
+        location.pathname === '/email'
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   const [password, setPassword] = React.useState<string>('12345678');
-  const [visible, setVisible] = React.useState<boolean>(false);
+  const [visible, setVisible] = React.useState<boolean>(checkIsVisible());
+
+  const isCreateNew: boolean = checkIsVisible();
 
   React.useEffect(() => {
     return () => {
@@ -71,11 +90,40 @@ const Password: React.FC<Props> = (props: Props) => {
     },
   );
 
+  const createNewPasswordRequest = useRequest(
+    async (password: string) => {
+      const create = await api.post(API_PATHS.UPDATE_PASSWORD_BY_TOKEN, {
+        data: {
+          address: location.query?.address,
+          token: location.query?.token,
+          newPassword: password,
+        },
+      });
+
+      return create;
+    },
+    {
+      manual: true,
+      onSuccess: (result: any) => {
+        if (result?.status) {
+          return toast.error(intl.formatMessage({ id: 'common.failed' }));
+        }
+
+        setPassword(createNewPasswordRequest.params[0]);
+        onVisible();
+        toast.success(intl.formatMessage({ id: 'common.success' }));
+        history.push('/account/settings');
+      },
+    },
+  );
+
   const onFinish = (values: FormValues) => {
-    updatePasswordRequest.run(values.password, values.currentPassword);
+    if (isCreateNew) {
+      return createNewPasswordRequest.run(values.password);
+    }
+    return updatePasswordRequest.run(values.password, values.currentPassword);
   };
 
-  const isCreateNew: boolean = false; // TODO: check in query url in email link
   const action = (type?: 'title'): string => {
     if (isCreateNew && type !== 'title') return 'createNew';
 
@@ -278,7 +326,10 @@ const Password: React.FC<Props> = (props: Props) => {
               <Button
                 htmlType="submit"
                 className={styles.btnConfirm}
-                loading={updatePasswordRequest.loading}
+                loading={
+                  updatePasswordRequest.loading ||
+                  createNewPasswordRequest.loading
+                }
               >
                 {intl.formatMessage({ id: 'common.confirm' })}
               </Button>

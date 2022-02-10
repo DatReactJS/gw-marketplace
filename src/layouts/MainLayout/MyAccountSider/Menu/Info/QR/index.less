@@ -25,10 +25,22 @@
       height: 208px;
       border-radius: 8px;
       background-color: var(--neutral-0);
-      padding: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+
+      .code {
+        border-radius: 8px;
+        width: 100%;
+      }
+
+      .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 }

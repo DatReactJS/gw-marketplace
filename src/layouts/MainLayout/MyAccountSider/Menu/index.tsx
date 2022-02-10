@@ -26,7 +26,11 @@ const Menu: React.FC<Props> = (props: Props) => {
   );
 
   React.useEffect(() => {
-    const [, , path = MenuEnum.ACCOUNT] = location.pathname.split('/');
+    let [, prevPath, path = MenuEnum.ACCOUNT] = location.pathname.split('/');
+    if (prevPath === 'email') {
+      path = MenuEnum.SETTINGS;
+    }
+
     setActiveMenu(path as MenuEnum);
   }, [location.pathname]);
 

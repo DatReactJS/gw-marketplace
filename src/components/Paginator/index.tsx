@@ -73,6 +73,8 @@ const Paginator: React.FC<PaginatorProps> = ({
     return null;
   }
 
+  const screenWidth: number = window.innerWidth;
+
   const displayPrevDots = totalPages > max && currentPage > 1;
   const displayNextDots = totalPages > max && currentPage < totalPages - 1;
   const lastPage = totalPages;
@@ -116,6 +118,12 @@ const Paginator: React.FC<PaginatorProps> = ({
           />
         )}
 
+        {currentPage > 4 && totalPages > 7 && displayPrevDots && (
+          <div className="ellipsis">
+            <span>...</span>
+          </div>
+        )}
+
         {totalPages < max
           ? new Array(totalPages).fill('paginationItem').map((_, i) => {
               return (
@@ -141,6 +149,15 @@ const Paginator: React.FC<PaginatorProps> = ({
                   />
                 );
               })}
+
+        {currentPage <= totalPages - max + 1 &&
+          lastPage &&
+          displayNextDots &&
+          totalPages > 7 && (
+            <div className="ellipsis">
+              <span>...</span>
+            </div>
+          )}
 
         {options.to !== totalPages && (
           <Button

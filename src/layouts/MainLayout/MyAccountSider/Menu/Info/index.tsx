@@ -14,14 +14,14 @@ const Info: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.info}>
       <Text type="headline-20-semi-bold" className={styles.username}>
-        {accountInfo?.username}
+        {accountInfo?.username || 'Unknown user'}
       </Text>
       <Text
         type="caption-12-regular"
         color="primary-100"
         className={styles.email}
       >
-        {accountInfo?.email}
+        {accountInfo?.email || 'Unknown'}
       </Text>
 
       <QR />

@@ -31,7 +31,7 @@ export const api = extend({
   prefix: ENVIRONMENTS.API_URL,
   errorHandler: (error: any) => {
     console.log(
-      '🚀 ~ error',
+      '🚀 ~ error with API',
       error,
       error?.code,
       error?.message,
@@ -50,8 +50,8 @@ export const api = extend({
 
 api.interceptors.response.use(
   async (response) => {
-    const data = await response.clone().json();
     if (!response.ok) {
+      const data = await response.clone().json();
       console.error(data);
 
       return data;
@@ -119,6 +119,9 @@ export const API_PATHS = {
   LOGIN: '/Login',
   LOGIN_WITH_ADDRESS: '/LoginWithAddress',
   VALIDATE_SIGNATURE: '/ValidateSignature',
+  SEND_RESET_PASSWORD_EMAIL: (email: string) =>
+    `/SendResetPasswordEmail?email=${email}`,
+  UPDATE_PASSWORD_BY_TOKEN: '/UpdatePasswordByToken',
 
   // Claim Reward
   CLAIM_REWARD: ({ token, amount }: { token: string; amount: number }) =>
@@ -133,4 +136,7 @@ export const API_PATHS = {
   UPDATE_EMAIL: '/Account/UpdateEmail',
   UPDATE_PASSWORD: '/Account/UpdatePassword',
   RESEND_CONFIRMATION_EMAIL: '/Account/ResendConfirmationEmail',
+
+  // QRCoder
+  LOGIN_QR_CODE: '/QrCoder/Login',
 };

@@ -28,11 +28,7 @@ const Settings: React.FC<Props> = (props: Props) => {
             <>
               <Username username={data.username} />
               <Password />
-              <Email
-                email={data.email || ''}
-                isVerified={!!(data.isVerified && data?.email)}
-                refresh={refresh}
-              />
+              <Email email={data?.email || ''} />
             </>
           ) : (
             <Init refresh={refresh} />

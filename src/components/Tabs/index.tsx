@@ -70,17 +70,27 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
 
     return (
       <div className={styles.tabs}>
-        {tabs.map((tab: TabItem, index: number) => {
-          const isActive: boolean = activeTab === tab.value;
-          return (
-            <TabItem
-              {...tab}
-              key={`tab-${index}`}
-              onChangeTab={onChangeTab}
-              isActive={isActive}
-            />
-          );
-        })}
+        <div className={styles.SelectReponsive}>
+          <RCSelect
+            options={tabs}
+            className={styles.select}
+            defaultValue={TabsEnum.CHARACTER}
+          />
+        </div>
+        <div className={styles.TabsReponsive}>
+          {tabs.map((tab: TabItem, index: number) => {
+            const isActive: boolean = activeTab === tab.value;
+
+            return (
+              <TabItem
+                {...tab}
+                key={`tab-${index}`}
+                onChangeTab={onChangeTab}
+                isActive={isActive}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   },

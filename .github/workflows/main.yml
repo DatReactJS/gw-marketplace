@@ -62,10 +62,21 @@ jobs:
           script: |
             cd /home/ubuntu/kingdom
             echo "${{ secrets.KINGDOM_DEPLOY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            
+
             docker pull ghcr.io/${{ github.repository_owner }}/kingdomfe:latest
+
             docker-compose up -d
-          
+      - name: Clear Images No Unused
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          password: ${{ secrets.PASS_PHRASE }}
+          port: 22
+          script_stop: true
+          script: |
+            docker image prune -a -f
+
   notifification:
     needs: deploy
     runs-on: ubuntu-latest

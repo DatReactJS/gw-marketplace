@@ -5,8 +5,8 @@
   height: auto;
   margin: 0px auto;
   margin-top: 48px;
-  @media (max-width: 1200px) {
-    display: block;
+  @media (min-width: 1024px) and(max-width: 1200px) {
+    padding: 0px 15px;
   }
   @media (max-width: 1024px) {
     width: calc(100% - 60px);
@@ -28,6 +28,15 @@
       width: 100%;
       margin-right: 0;
       max-width: unset;
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .headerSelectOption {
+          border: none;
+          height: 38px;
+        }
+      }
     }
     .titleRecentlyListed {
       height: 28px;
@@ -85,6 +94,15 @@
       max-width: unset;
       width: 100%;
       margin-left: 0;
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .headerSelectOption {
+          border: none;
+          height: 38px;
+        }
+      }
     }
     .titleRecentlySold {
       height: 28px;
@@ -263,6 +281,9 @@
       margin-left: 32px;
       @media (max-width: 1024px) {
         margin-left: 0;
+      }
+      @media (max-width: 1024px) {
+        margin-bottom: 12px;
       }
       .title {
         height: 20px;

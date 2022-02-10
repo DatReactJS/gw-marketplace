@@ -4,9 +4,9 @@
   .header {
     height: 28px;
   }
-  // .content {
-  //   max-width: 949px;
-  // }
+  .content {
+    max-width: 949px;
+  }
 }
 .containerElement {
   border: 1px solid #868790;
@@ -14,17 +14,9 @@
   border-radius: 8px;
   width: 100%;
   height: auto;
-  padding: 11px 14px 8px 14px;
+  padding: 11px 0px 8px 14px;
   .status {
     display: flex;
-    align-items: center;
-    .flex {
-      display: flex;
-      align-items: center;
-    }
-    @media (max-width: 1366px) {
-      justify-content: space-between;
-    }
     .logoToken {
       width: 21px;
       height: 21px;
@@ -53,59 +45,16 @@
     width: 100%;
     height: auto;
     display: flex;
-    @media (max-width: 1366px) {
+    @media (max-width: 768px) {
       flex-direction: column;
-    }
-    .flex {
-      display: flex;
-      align-items: center;
-      @media (max-width: 1366px) {
-        justify-content: space-between;
-        margin-bottom: 12px;
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-      @media (max-width: 480px) {
-        .txId,
-        .address {
-          width: 200px;
-          .content {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--neutral-0);
-          }
-        }
-      }
-      @media (max-width: 360px) {
-        .txId,
-        .address {
-          width: 160px;
-          .content {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--neutral-0);
-          }
-        }
-        // flex-direction: column;
-        // align-items: flex-start;
-        // .iconGroupAddress {
-        //   margin-left: 0;
-        //   .icon,
-        //   .iconRedirect {
-        //     margin-left: 0;
-        //   }
-        // }
-      }
+      align-items: flex-start;
     }
     .date {
     }
     .address {
       display: flex;
       margin-left: 26px;
-      @media (max-width: 1366px) {
+      @media (max-width: 768px) {
         margin-left: 0;
       }
       .title {
@@ -116,24 +65,14 @@
     .iconGroupAddress {
       display: flex;
       margin-left: 9px;
-      .iconCopy,
-      .iconRedirect,
-      .icon,
-      .iconCopyTxId {
-        margin-left: 9px;
-        width: 36px;
-        height: 36px;
-        background: #3b3b4a;
-        border-radius: 4px;
-        display: grid;
-        align-items: center;
-        justify-content: center;
+      .iconCopy {
+        margin-left: 17px;
       }
     }
     .txId {
       display: flex;
       margin-left: 26px;
-      @media (max-width: 1366px) {
+      @media (max-width: 768px) {
         margin-left: 0;
       }
       .title {

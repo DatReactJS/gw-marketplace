@@ -1,7 +1,12 @@
 .formItemContainer {
   display: flex;
   flex-direction: column;
-
+  @media (max-width: 480px) {
+    // margin-right: 47px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
   .txtError {
     margin-top: 3px;
     margin-left: 3px;

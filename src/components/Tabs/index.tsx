@@ -30,7 +30,6 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
   (props: Props, ref: Ref['ref']) => {
     const { onChange, defaultTab = TabsEnum.CHARACTER } = props;
     const intl = useIntl();
-
     const tabs: TabItem[] = [
       {
         icon: <Character />,
@@ -72,7 +71,6 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
       <div className={styles.tabs}>
         {tabs.map((tab: TabItem, index: number) => {
           const isActive: boolean = activeTab === tab.value;
-
           return (
             <TabItem
               {...tab}

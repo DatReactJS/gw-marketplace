@@ -8,7 +8,9 @@
   background-color: var(--primary-400);
   z-index: 1;
   padding: 16px 0;
-
+  @media (max-width: 480px) {
+    width: calc(100% - 320px);
+  }
   .right {
     display: flex;
     align-items: center;

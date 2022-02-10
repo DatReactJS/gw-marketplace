@@ -22,13 +22,19 @@ interface Props {
   total: number;
   onClear: () => void;
   tab: TabsEnum;
+  showFilter?: boolean;
 }
 
-const SideFilter: React.FC<Props> = ({ total, onClear, tab }: Props) => {
+const SideFilter: React.FC<Props> = ({
+  total,
+  onClear,
+  tab,
+  showFilter,
+}: Props) => {
   const intl = useIntl();
 
   return (
-    <div className={styles.sideFilter}>
+    <div className={`${styles.sideFilter} ${showFilter ? styles.active : ''}`}>
       <div className={styles.content}>
         <div className={styles.head}>
           <div className={styles.titleFilter}>

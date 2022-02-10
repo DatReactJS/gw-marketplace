@@ -50,6 +50,19 @@
       top: 7px;
       left: 12px;
       color: var(--neutral-0);
+      @media (max-width: 480px) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 14px;
+        svg {
+          margin-right: 5px;
+          path {
+            fill: var(--accent-500);
+          }
+        }
+      }
+
       &:extend(.font);
       display: flex;
       align-items: center;
@@ -89,17 +102,17 @@
       opacity: 1;
       color: var(--neutral-0);
     }
+    &.disable {
+      pointer-events: none;
+    }
     .rc-select-item-option-content {
       display: flex;
+      flex-direction: row;
       align-items: center;
+      // justify-content: center;
       svg {
-        margin-right: 6px;
+        margin-right: 10px;
       }
-    }
-  }
-  .rc-virtual-list {
-    .rc-virtual-list-holder-inner {
-      border-radius: 8px;
     }
   }
 

@@ -14,6 +14,7 @@ interface Props {
   children: React.ReactNode;
   onChange: (values: Record<string, any>) => void;
   tab: TabsEnum;
+  showFilter?: boolean;
 }
 
 interface Ref {
@@ -22,7 +23,7 @@ interface Ref {
 
 const Filters: React.FC<Props & Ref> = React.forwardRef(
   (props: Props, ref: Ref['ref']) => {
-    const { children, onChange, tab } = props;
+    const { children, onChange, tab, showFilter } = props;
     const [form] = Form.useForm();
     const location: any = useLocation();
 
@@ -334,9 +335,14 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
           }
         }
       >
-        <SideFilter onClear={onResetFilter} total={numberFilter} tab={tab} />
+        <SideFilter
+          onClear={onResetFilter}
+          total={numberFilter}
+          tab={tab}
+          showFilter={showFilter}
+        />
 
-        <div className={styles.content}>
+        <div className={`${styles.content} ${showFilter ? styles.active : ''}`}>
           <HeadFilter total={1208} />
           {children}
         </div>

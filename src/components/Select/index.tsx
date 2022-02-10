@@ -11,9 +11,11 @@ export interface OptionSelect {
   label: string;
   prefix?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
-  icon?: any;
+  icon: React.ReactNode;
+  isComming?: boolean;
 }
 interface SelectProps {
+  defaultValue?: string | number | undefined;
   options?: OptionSelect[];
   className?: string;
   placeholder?: string;
@@ -22,7 +24,6 @@ interface SelectProps {
   open?: boolean;
   value?: string | number | undefined;
   onChange?: (value: string | number, option?: any) => void;
-  defaultValue?: string;
 }
 
 const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
@@ -31,6 +32,7 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
     className,
     classNameDropdown,
     icon,
+    onChange,
     defaultValue,
     ...rest
   } = props;
@@ -40,16 +42,22 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
       <Select
         className={cls(['rcselect', className])}
         dropdownClassName={cls(['menu', classNameDropdown])}
-        defaultValue={defaultValue}
+        onChange={onChange}
         {...rest}
+        defaultValue={defaultValue}
       >
         {options.map(
           (
-            { label, value, prefix, suffix, icon }: OptionSelect,
+            { label, value, prefix, suffix, icon, isComming }: OptionSelect,
             index: number,
           ) => {
             return (
-              <Option value={value} key={`${label}-${value}-${index}`}>
+              <Option
+                value={value}
+                key={`${label}-${value}-${index}`}
+                className={isComming ? 'disable' : ''}
+              >
+                {icon}
                 {prefix}
                 {icon}
                 {label}

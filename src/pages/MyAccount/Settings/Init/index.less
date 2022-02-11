@@ -1,8 +1,15 @@
 .init {
   margin-top: 16px;
-
+  @media (max-width: 768px) {
+    text-align: center;
+  }
   .btn {
     width: 560px;
+    text-transform: uppercase;
+    @media (max-width: 768px) {
+      width: 163px;
+      text-transform: none;
+    }
   }
 }
 
@@ -19,11 +26,17 @@
 
     .form {
       margin-top: 8px;
+      @media (max-width: 480px) {
+        width: 100%;
+      }
     }
 
     .input {
       margin-top: 16px;
       width: 368px;
+      @media (max-width: 480px) {
+        width: 100%;
+      }
     }
 
     :global {
@@ -39,6 +52,9 @@
     .btnConfirm {
       margin-top: 24px;
       width: 368px;
+      @media (max-width: 480px) {
+        width: 100%;
+      }
     }
   }
 }

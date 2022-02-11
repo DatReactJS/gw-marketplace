@@ -1,11 +1,18 @@
 .password {
   margin-top: 24px;
+  @media (max-width: 528px) {
+    position: relative;
+  }
 
   .wrapperInput {
     display: flex;
     align-items: center;
     margin-top: 4px;
-
+    @media (max-width: 528px) {
+      .inputPassword {
+        width: 100% !important;
+      }
+    }
     .inputPassword {
       width: 368px;
     }
@@ -13,6 +20,18 @@
     .btn {
       width: 176px;
       margin-left: 16px;
+      @media (max-width: 528px) {
+        background: transparent !important;
+        color: #e9992a;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 22px;
+        text-decoration: underline;
+        position: absolute;
+        top: -4px;
+        right: 0;
+        width: unset;
+      }
     }
   }
 }

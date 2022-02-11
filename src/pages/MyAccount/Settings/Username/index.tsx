@@ -81,7 +81,7 @@ const Username: React.FC<Props> = (props: Props) => {
       </Text>
 
       <div className={styles.wrapperInput}>
-        <FormItem shouldUpdate>
+        <FormItem shouldUpdate className={styles.FormItemUserName}>
           {() => {
             const isError: boolean = form.getFieldError('username').length > 0;
             return (

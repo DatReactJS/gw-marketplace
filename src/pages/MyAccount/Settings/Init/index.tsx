@@ -109,7 +109,7 @@ const Init: React.FC<Props> = ({ refresh }: Props) => {
   return (
     <div className={styles.init}>
       <Button className={styles.btn} onClick={onVisible}>
-        {intl.formatMessage({ id: 'settings.initAccount' })}
+        {intl.formatMessage({ id: 'settings.createAccount' })}
       </Button>
 
       <Modal

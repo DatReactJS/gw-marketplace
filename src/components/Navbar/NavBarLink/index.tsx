@@ -16,23 +16,9 @@ const NavBarLink: React.FC<Props> = ({
   title = '',
   onClick,
 }: Props) => {
-  const handleClickLink = () => {
-    onClick?.(false);
-  };
-
   return (
     <NavLink to={link} exact className={classNames(styles.navLink, className)}>
-      <span
-        className={classNames('body-16-semi-bold', styles.hidden)}
-        data-content={title}
-        onClick={handleClickLink}
-      >
-        {title === 'Wallet' ? (
-          <div className={styles.navWallet}>{title}</div>
-        ) : (
-          title
-        )}
-      </span>
+      <span className="size-16" data-content={title}></span>
     </NavLink>
   );
 };

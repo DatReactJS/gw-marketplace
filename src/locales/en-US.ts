@@ -3,7 +3,7 @@ export default {
   'navbar.metrics': 'Metrics',
   'navbar.marketplace': 'Marketplace',
   'navbar.home': 'Home',
-  'navbar.login': 'Login',
+  'navbar.wallet': 'WALLET',
 
   'navbar.info.myAccount': 'My Account',
 

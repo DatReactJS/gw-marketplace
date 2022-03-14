@@ -30,7 +30,7 @@
   .links {
     display: flex;
   }
-  .connected {
+  .connect {
     transform: skewX(-28.64789deg);
     background: linear-gradient(180deg, #1ad7fd 0%, #036c7a 100%);
     width: 100%;
@@ -44,12 +44,26 @@
       display: flex;
       align-items: center;
       font-size: 16px;
-      font-family: 'Barlow-SemiBold';
+      font-family: 'Barlow-Regular';
       color: white;
       font-weight: 700;
-      img {
-        margin-left: 16px;
+      span {
+        margin-right: 16px;
       }
     }
+  }
+}
+.balance {
+  display: flex;
+  padding-left: 53px;
+  .container {
+    background: rgb(14, 31, 49);
+    clip-path: polygon(
+      0% 0%,
+      calc(100% - 5px) 0%,
+      100% 5%,
+      calc(100% - 5px) 100%,
+      0 100%
+    );
   }
 }

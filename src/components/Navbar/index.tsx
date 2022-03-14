@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './index.less';
+import Icon from '../Icon';
 import { links } from '@/utils/constants/links';
 import styles from './index.less';
 import NavBarLink from './NavBarLink';
@@ -35,15 +36,41 @@ const Navbar: React.FC = () => {
             </aside>
 
             <aside className={styles.wallet}>
-              <button className={styles.connected}>
+              {/* <button className={styles.connect}>
                 <div className={styles.content}>
+                  <span>
                   {intl.formatMessage({ id: 'navbar.wallet' })}
+                  </span>
+                  <Icon icon='bxs_lock-open-alt' size={24}/>                  
+                </div>
+              </button> */}
+
+              <div className={styles.conected}>
+                <div className={styles.balance}>
                   <img
-                    src="/assets/images/marketplace/menu-keyOpen.svg"
+                    src={'/assets/images/navbar/Icon_ExampleCoin0 1.png'}
                     alt=""
                   />
+                  <div className={styles.container}>
+                    <img
+                      src={'/assets/images/navbar/Btn_BuyCoins_p 1.png'}
+                      alt=""
+                    />
+                    <span>123</span>
+                  </div>
                 </div>
-              </button>
+                <div className={styles.address}>
+                  <img
+                    src={'/assets/images/navbar/profile-circle.png'}
+                    alt=""
+                  />
+                  <img
+                    src={'/assets/images/navbar/ItemButton04Blue_p 2.png'}
+                    alt=""
+                  />
+                  <span>0xb7e79...</span>
+                </div>
+              </div>
             </aside>
           </main>
         </div>

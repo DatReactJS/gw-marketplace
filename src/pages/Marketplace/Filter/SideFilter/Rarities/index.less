@@ -1,29 +1,19 @@
 .rarities {
-  margin-bottom: 12px;
+  margin-top: 16px;
+  text-align: center;
+  .title {
+    margin-bottom: 16px;
+    display: block;
+  }
   .checkboxs {
-    margin-top: 10px;
-    @media (max-width: 480px) {
-      // display: flex;
-      // flex-direction: row;
-      // flex-wrap: wrap;
-      // justify-content: space-between;
-      width: 300px;
-      column-count: 2;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
     .option {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-
-      .label {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-
-        .txt {
-          margin-left: 6px;
-        }
-      }
+      width: calc(50%);
+      margin-bottom: 10px;
     }
   }
 }

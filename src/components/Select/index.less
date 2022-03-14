@@ -6,19 +6,22 @@
   font-family: 'NunitoSans-Bold';
   font-weight: 700;
 }
-
-.rcselect {
-  background: transparent;
-  border: 1px solid var(--primary-100);
+.checkbox-container {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 10px;
+  padding: 3px;
+}
+.rcselect {
+  background: #000000;
+  box-sizing: border-box;
   position: relative;
-  height: 40px !important;
-  color: var(--primary-100);
+  height: 48px;
+  color: var(--neutral-0);
   cursor: pointer;
-
   &.rc-select-open {
-    & + svg {
+    & + img {
       transform: translateY(-50%) rotate(180deg);
     }
   }
@@ -47,15 +50,21 @@
     }
     .rc-select-selection-item {
       position: absolute;
-      top: 7px;
-      left: 12px;
+      top: 12px;
+      right: 42px;
       color: var(--neutral-0);
+      text-transform: capitalize;
+      font-family: 'Barlow-Regular';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
       @media (max-width: 480px) {
         display: flex;
         flex-direction: row;
         align-items: center;
         font-size: 14px;
-        svg {
+        img {
           margin-right: 5px;
           path {
             fill: var(--accent-500);
@@ -66,10 +75,10 @@
       &:extend(.font);
       display: flex;
       align-items: center;
-      svg {
+      img {
         margin-right: 6px;
       }
-      svg > * {
+      img > * {
         fill: var(--accent-500);
         margin-right: 6px;
       }
@@ -80,7 +89,7 @@
   &.rc-select-dropdown-hidden {
     display: none;
   }
-  background: var(--primary-400);
+  background: #000000;
   border: 1px solid var(--primary-100);
   color: var(--primary-100);
   box-sizing: border-box;
@@ -88,6 +97,7 @@
   padding: 3px 0;
   position: relative;
   box-sizing: border-box;
+  text-transform: capitalize;
   .rc-select-item {
     transition: 0.3s ease-in-out;
     &:extend(.font);
@@ -97,6 +107,11 @@
     opacity: 0.8;
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
+    font-family: 'Barlow-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
     &:hover {
       opacity: 1;
       color: var(--neutral-0);
@@ -109,7 +124,7 @@
       flex-direction: row;
       align-items: center;
       // justify-content: center;
-      svg {
+      img {
         margin-right: 10px;
       }
     }
@@ -125,16 +140,39 @@
     }
   }
 }
-
+.placeholder {
+  position: absolute;
+  left: 12px;
+  top: 13px;
+}
+.placeholderActive {
+  position: absolute;
+  left: 60px;
+  top: 13px;
+}
 .checkbox-container {
   cursor: pointer;
   position: relative;
-  & > svg {
+  & > img {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     transition: 0.5s ease-in-out;
     pointer-events: none;
+  }
+}
+.iconLabel {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  margin-right: 10px;
+  img {
+    padding-right: 13px;
+  }
+  &::after {
+    content: url('/assets/images/marketplace/ic-cross.png');
+    position: absolute;
+    top: -8px;
   }
 }

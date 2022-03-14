@@ -47,14 +47,6 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
         'page',
       ];
 
-      if (tab === TabsEnum.SHIP) {
-        allQueries.push('buffAmount');
-      }
-
-      if (tab === TabsEnum.ACCESORY) {
-        allQueries.push('stat');
-      }
-
       Object.entries(values).forEach(([key, val]) => {
         if (!allQueries.includes(key)) {
           delete values[key];
@@ -320,47 +312,6 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
           count += 1;
         }
       }
-
-      if (tab === TabsEnum.SHIP) {
-        if (
-          values?.buffAmount ||
-          (+values?.buffAmount === 0 && isNumber(+values.buffAmount))
-        ) {
-          count += 1;
-        }
-      }
-
-      if (tab === TabsEnum.ACCESORY) {
-        if (values?.stat || (+values?.stat === 0 && isNumber(+values.stat))) {
-          count += 1;
-        }
-
-        if (
-          (values?.hp?.[0] && +values.hp[0] > 100) ||
-          (values?.hp?.[1] && +values.hp[1] < 1000)
-        ) {
-          count += 1;
-        }
-        if (
-          (values?.atk?.[0] && +values.atk[0] > 100) ||
-          (values?.atk?.[1] && +values.atk[1] < 1000)
-        ) {
-          count += 1;
-        }
-        if (
-          (values?.def?.[0] && +values.def[0] > 100) ||
-          (values?.def?.[1] && +values.def[1] < 1000)
-        ) {
-          count += 1;
-        }
-        if (
-          (values?.spd?.[0] && +values.spd[0] > 100) ||
-          (values?.spd?.[1] && +values.spd[1] < 1000)
-        ) {
-          count += 1;
-        }
-      }
-
       setNumberFilter(count);
     };
 

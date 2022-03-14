@@ -34,6 +34,7 @@ export interface TextProps {
     | 'primary-300'
     | 'primary-200'
     | 'primary-100'
+    | 'primary-250'
     | 'neutral-0'
     | 'accent-600'
     | 'accent-500'
@@ -41,6 +42,7 @@ export interface TextProps {
     | 'success'
     | 'info'
     | 'blue';
+  font?: 'font-Michroma';
 }
 
 const Text: React.FC<TextProps> = (props: TextProps) => {
@@ -48,6 +50,7 @@ const Text: React.FC<TextProps> = (props: TextProps) => {
     children,
     className,
     type,
+    font,
     color = 'neutral-0',
     disabled = false,
     onClick,
@@ -64,6 +67,7 @@ const Text: React.FC<TextProps> = (props: TextProps) => {
       [`${prefixCls}-click`]: !!onClick,
     },
     className,
+    font,
   );
 
   const handleClick = () => {

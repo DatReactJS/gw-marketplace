@@ -25,9 +25,7 @@ const TabItem: React.FC<Props> = ({
   const [isHovering, hoverRef] = useHover<HTMLDivElement>();
 
   const onClickTab = (newTab: TabsEnum) => {
-    if (newTab === TabsEnum.CHARACTER) {
-      return onChangeTab(newTab);
-    }
+    onChangeTab(newTab);
   };
 
   return (
@@ -40,7 +38,12 @@ const TabItem: React.FC<Props> = ({
       ref={hoverRef}
     >
       <div className={styles.info}>
-        <Text type="body-16-bold" color="neutral-0" className={styles.label}>
+        <Text
+          type="body-16-bold"
+          color="neutral-0"
+          className={styles.label}
+          font="font-Michroma"
+        >
           {label}
         </Text>
       </div>

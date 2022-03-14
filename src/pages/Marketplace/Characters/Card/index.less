@@ -1,0 +1,81 @@
+.CardCharacters {
+  background-image: url('/assets/images/marketplace/Panel_Character.png'),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-repeat: no-repeat;
+  padding-top: 26px;
+  background-position: top;
+  background-size: contain;
+  margin-bottom: 16px;
+  width: 300px;
+  height: 378px;
+  position: relative;
+  .header {
+    background-image: url(/assets/images/marketplace/PanelTitle1_Character.png);
+    background-repeat: no-repeat;
+    text-transform: uppercase;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-position: center;
+    width: 252px;
+    height: 60px;
+    padding: 13px 0px 12px 26px;
+    margin-bottom: 69px;
+  }
+  .content {
+    margin-bottom: 16px;
+    .commen {
+      position: relative;
+      span {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+    }
+    .imgProduct {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    .infoProduct {
+      display: flex;
+      flex-direction: column;
+      padding-left: 32px;
+      .flexItem {
+        display: flex;
+        margin-bottom: 3px;
+        .flex {
+          margin-right: 10px;
+          width: 77px;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+  .footer {
+    text-align: center;
+    padding-left: 17px;
+    .btn {
+      background-image: url(/assets/images/marketplace/card-btn.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 165px;
+      height: 55px;
+      padding: 5px 0px;
+      span {
+        text-transform: uppercase;
+      }
+    }
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span {
+        margin-right: 3px;
+      }
+    }
+  }
+}

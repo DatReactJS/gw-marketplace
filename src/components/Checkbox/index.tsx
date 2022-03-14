@@ -45,10 +45,10 @@ const RcCheckBox: React.FC<CheckBoxProps & Ref> = React.forwardRef(
             checked={checked}
             {...rest}
           />
-          {tickAccent ? (
-            <img alt="" src="/assets/images/ic-tick-accent.png" />
+          {checked ? (
+            <img alt="" src="/assets/images/marketplace/ic-checked.png" />
           ) : (
-            <img alt="" src="/assets/images/ic-tick.png" />
+            <img alt="" src="/assets/images/marketplace/ic-checkbox.png" />
           )}
         </div>
 

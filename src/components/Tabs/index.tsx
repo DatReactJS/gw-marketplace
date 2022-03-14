@@ -17,6 +17,7 @@ export enum TabsEnum {
 interface Props {
   onChange: (tabs: TabsEnum) => void;
   defaultTab?: TabsEnum;
+  currentTab: TabsEnum;
 }
 interface TabItem {
   icon: React.ReactNode;
@@ -30,7 +31,7 @@ interface Ref {
 
 const Tabs: React.FC<Props & Ref> = React.forwardRef(
   (props: Props, ref: Ref['ref']) => {
-    const { onChange, defaultTab = TabsEnum.CHARACTER } = props;
+    const { onChange, defaultTab = TabsEnum.CHARACTER, currentTab } = props;
     const intl = useIntl();
     const tabs: TabItem[] = [
       {
@@ -56,7 +57,7 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
     ];
 
     const [activeTab, setActiveTab] = React.useState<TabsEnum>(
-      TabsEnum.CHARACTER,
+      props.currentTab || TabsEnum.CHARACTER,
     );
 
     const onChangeTab = (newTab: TabsEnum) => {

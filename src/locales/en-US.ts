@@ -114,7 +114,7 @@ export default {
   'filter.item': '{total} item',
   'filter.items': '{total} items',
   'filter.total': 'Filter ({total})',
-  'filter.clear': 'Clear filter',
+  'filter.clear': 'Clear',
   'filter.class': 'CLASS',
   'filter.class.warrior': 'Warrior',
   'filter.class.mage': 'Mage',

@@ -1,10 +1,10 @@
 import Select, { Option } from 'rc-select';
 import cls from 'classnames';
 import './index.less';
-import { useBoolean } from '@umijs/hooks';
 import React from 'react';
 import Icon from '../Icon';
 import { NEUTRAL, PRIMARY } from '@/utils/constants/colors';
+import Text from '@/components/Text';
 
 export interface OptionSelect {
   value: string | number;
@@ -23,6 +23,7 @@ interface SelectProps {
   icon?: string;
   open?: boolean;
   value?: string | number | undefined;
+  iconLabel?: React.ReactNode;
   onChange?: (value: string | number, option?: any) => void;
 }
 
@@ -34,6 +35,8 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
     icon,
     onChange,
     defaultValue,
+    placeholder,
+    iconLabel,
     ...rest
   } = props;
 
@@ -67,11 +70,18 @@ const RCSelect: React.FC<SelectProps> = (props: SelectProps) => {
         )}
       </Select>
 
-      <Icon
-        icon="chevron_down"
-        color={props?.value ? NEUTRAL.NEUTRAL_0 : PRIMARY.PRIMARY_100}
-        size={23}
-      />
+      {iconLabel && <div className="iconLabel">{iconLabel}</div>}
+      {placeholder && (
+        <Text
+          type="body-18-regular"
+          color="primary-250"
+          className={iconLabel ? 'placeholderActive' : 'placeholder'}
+        >
+          {placeholder}
+        </Text>
+      )}
+
+      <img alt="arrow" src="/assets/images/marketplace/arrow.png" />
     </div>
   );
 };

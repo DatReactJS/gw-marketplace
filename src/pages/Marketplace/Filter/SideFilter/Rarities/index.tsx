@@ -22,59 +22,66 @@ const Rarities: React.FC<Props> = ({ value = [], onChange }: Props) => {
 
   return (
     <div className={styles.rarities}>
-      <Text type="caption-12-bold" color="accent-500">
-        {intl.formatMessage({ id: 'filter.rarity' })}
+      <Text type="body-14-regular" color="neutral-0" className={styles.title}>
+        Rarity
       </Text>
-
       <div className={styles.checkboxs}>
-        <div className={styles.option} onClick={onValueChange('legendary')}>
+        <div className={styles.option} onClick={onValueChange('Common')}>
           <RcCheckBox
-            onChange={onValueChange('legendary')}
-            checked={value.includes('legendary')}
+            onChange={onValueChange('Common')}
+            checked={value.includes('Common')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/Legend.png" />
-              <Text type="body-16-bold" className={styles.txt}>
-                {intl.formatMessage({ id: 'filter.rarity.legendary' })}
+              <Text type="body-14-regular" className={styles.txt}>
+                Common
               </Text>
             </div>
           </RcCheckBox>
         </div>
-        <div className={styles.option} onClick={onValueChange('epic')}>
+        <div className={styles.option} onClick={onValueChange('Legendary')}>
           <RcCheckBox
-            onChange={onValueChange('epic')}
-            checked={value.includes('epic')}
+            onChange={onValueChange('Legendary')}
+            checked={value.includes('Legendary')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/Epic.png" />
-              <Text type="body-16-bold" className={styles.txt}>
-                {intl.formatMessage({ id: 'filter.rarity.epic' })}
+              <Text type="body-14-regular" className={styles.txt}>
+                Legendary
               </Text>
             </div>
           </RcCheckBox>
         </div>
-        <div className={styles.option} onClick={onValueChange('rare')}>
+        <div className={styles.option} onClick={onValueChange('Uncommon')}>
           <RcCheckBox
-            onChange={onValueChange('rare')}
-            checked={value.includes('rare')}
+            onChange={onValueChange('Uncommon')}
+            checked={value.includes('Uncommon')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/Rare.png" />
-              <Text type="body-16-bold" className={styles.txt}>
-                {intl.formatMessage({ id: 'filter.rarity.rare' })}
+              <Text type="body-14-regular" className={styles.txt}>
+                Uncommon
               </Text>
             </div>
           </RcCheckBox>
         </div>
-        <div className={styles.option} onClick={onValueChange('common')}>
+        <div className={styles.option} onClick={onValueChange('Epic')}>
           <RcCheckBox
-            onChange={onValueChange('common')}
-            checked={value.includes('common')}
+            onChange={onValueChange('Epic')}
+            checked={value.includes('Epic')}
           >
             <div className={styles.label}>
-              <img alt="" src="/assets/images/Common.png" />
-              <Text type="body-16-bold" className={styles.txt}>
-                {intl.formatMessage({ id: 'filter.rarity.common' })}
+              <Text type="body-14-regular" className={styles.txt}>
+                Epic
+              </Text>
+            </div>
+          </RcCheckBox>
+        </div>
+        <div className={styles.option} onClick={onValueChange('Rare')}>
+          <RcCheckBox
+            onChange={onValueChange('Rare')}
+            checked={value.includes('Rare')}
+          >
+            <div className={styles.label}>
+              <Text type="body-14-regular" className={styles.txt}>
+                Rare
               </Text>
             </div>
           </RcCheckBox>

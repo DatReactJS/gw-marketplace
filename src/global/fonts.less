@@ -50,6 +50,10 @@
   font-family: 'Barlow-SemiBold';
   src: url(/assets/fonts/Barlow-SemiBold.ttf);
 }
+@font-face {
+  font-family: 'Michroma-Regular';
+  src: url(/assets/fonts/Michroma-Regular.ttf);
+}
 
 .size-12 {
   font-size: 12px;
@@ -60,6 +64,13 @@
 
 .size-14 {
   font-size: 14px;
+  font-style: normal;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
+
+.size-18 {
+  font-size: 18px;
   font-style: normal;
   line-height: 22px;
   letter-spacing: 0em;
@@ -157,19 +168,19 @@
 }
 
 .body-18-regular {
-  &:extend(.size-16);
+  &:extend(.size-18);
   font-family: 'Barlow-Regular';
   font-weight: 400;
 }
 
 .body-18-semi-bold {
-  &:extend(.size-16);
+  &:extend(.size-18);
   font-family: 'Barlow-SemiBold';
   font-weight: 600;
 }
 
 .body-18-bold {
-  &:extend(.size-16);
+  &:extend(.size-18);
   font-family: 'Barlow-Bold';
   font-weight: 700;
 }
@@ -220,4 +231,7 @@
   &:extend(.size-30);
   font-family: 'Barlow-Bold';
   font-weight: 700;
+}
+.font-Michroma {
+  font-family: 'Michroma-Regular';
 }

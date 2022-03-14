@@ -23,7 +23,7 @@ const NavBarLink: React.FC<Props> = ({
   return (
     <NavLink to={link} exact className={classNames(styles.navLink, className)}>
       <span
-        className={classNames('body-16-bold', styles.hidden)}
+        className={classNames('body-16-semi-bold', styles.hidden)}
         data-content={title}
         onClick={handleClickLink}
       >

@@ -6,7 +6,9 @@ import { history, useIntl, useLocation } from 'umi';
 import styles from './index.less';
 import Info from './Info';
 
-interface Props {}
+interface Props {
+  onClick?: any;
+}
 
 enum MenuEnum {
   ACCOUNT = '',
@@ -17,6 +19,7 @@ enum MenuEnum {
 }
 
 const Menu: React.FC<Props> = (props: Props) => {
+  const { onClick } = props;
   const intl = useIntl();
   const location: any = useLocation();
   const { disconnectWallet } = useWallet();
@@ -65,41 +68,41 @@ const Menu: React.FC<Props> = (props: Props) => {
 
   const handleSelectMenu = (event: React.MouseEvent, menu: MenuEnum) => {
     event.preventDefault();
-
     setActiveMenu(menu);
     history.push(`/account/${menu}`);
+    onClick && onClick(false);
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.menu}>
         <Info />
-
-        {allMenus.map(({ label, value }, index: number) => {
-          const isActive: boolean = activeMenu === value;
-          return (
-            <Button
-              key={`menu-${label}-${index}`}
-              className={classNames(styles.btn, {
-                [styles.btnActive]: isActive,
-              })}
-              onClick={(event: React.MouseEvent) =>
-                handleSelectMenu(event, value)
-              }
-              type={isActive ? 'primary' : 'ghost'}
-              icon={
-                <img
-                  alt=""
-                  src={`/assets/images/ic-${value || 'account'}.svg`}
-                  className={classNames({ [styles.iconActive]: isActive })}
-                />
-              }
-            >
-              {label}
-            </Button>
-          );
-        })}
-
+        <div className={styles.listBtn}>
+          {allMenus.map(({ label, value }, index: number) => {
+            const isActive: boolean = activeMenu === value;
+            return (
+              <Button
+                key={`menu-${label}-${index}`}
+                className={classNames(styles.btn, {
+                  [styles.btnActive]: isActive,
+                })}
+                onClick={(event: React.MouseEvent) =>
+                  handleSelectMenu(event, value)
+                }
+                type={isActive ? 'primary' : 'ghost'}
+                icon={
+                  <img
+                    alt=""
+                    src={`/assets/images/ic-${value || 'account'}.svg`}
+                    className={classNames({ [styles.iconActive]: isActive })}
+                  />
+                }
+              >
+                {label}
+              </Button>
+            );
+          })}
+        </div>
         <Button
           icon={<img alt="" src="/assets/images/logout.svg" />}
           type="ghost"

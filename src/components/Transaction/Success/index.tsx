@@ -24,6 +24,10 @@ const Success: React.FC<Props> = ({ hash }: Props) => {
     window?.open(`${process.env.APP__CHAIN_URL}tx/${hash}`, '_blank');
   };
 
+  const [, path]: string[] = location.pathname.split('/');
+
+  const isMarket: boolean = ['character'].includes(path);
+
   return (
     <div className={styles.success}>
       <img
@@ -47,9 +51,11 @@ const Success: React.FC<Props> = ({ hash }: Props) => {
         <img alt="" src="/assets/images/ic-open-link.png" />
       </div>
 
-      <Button className={styles.btn} onClick={goInventory}>
-        {intl.formatMessage({ id: 'common.goInventory' })}
-      </Button>
+      {isMarket && (
+        <Button className={styles.btn} onClick={goInventory}>
+          {intl.formatMessage({ id: 'common.goInventory' })}
+        </Button>
+      )}
     </div>
   );
 };

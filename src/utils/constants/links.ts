@@ -1,4 +1,6 @@
 export const links = {
-  metrics: '/metrics',
+  home: '/home',
   marketplace: '/',
+  document: '/document',
+  Wallet: '/Wallet',
 };

@@ -13,16 +13,6 @@ export const WEB_PATHS = {
   APP_CONFIG: '/assets/configs/appConfig.json',
 };
 
-// Game
-export const apiMeta = extend({
-  prefix: ENVIRONMENTS.API_META_URL,
-  errorHandler: (res: any) => {
-    if (res?.data?.code && ERROR_CODES[res?.data?.code]) {
-      throw ERROR_CODES[res?.data?.code];
-    }
-  },
-});
-
 /**
  * Swagger https://api.kingdomquest.io/swagger/index.html
  */
@@ -124,8 +114,15 @@ export const API_PATHS = {
   UPDATE_PASSWORD_BY_TOKEN: '/UpdatePasswordByToken',
 
   // Claim Reward
-  CLAIM_REWARD: ({ token, amount }: { token: string; amount: number }) =>
-    `ClaimReward?Token=${token}&Amount=${amount}`,
+  CLAIM_REWARD: ({
+    token,
+    amount,
+    player,
+  }: {
+    token: string;
+    amount: number;
+    player: string;
+  }) => `ClaimReward?Player=${player}&Token=${token}&Amount=${amount}`,
 
   // Account
   INFO: '/Account/Info',
@@ -136,7 +133,40 @@ export const API_PATHS = {
   UPDATE_EMAIL: '/Account/UpdateEmail',
   UPDATE_PASSWORD: '/Account/UpdatePassword',
   RESEND_CONFIRMATION_EMAIL: '/Account/ResendConfirmationEmail',
+  ACTIVITIES: (time?: { from: string; to: string }) => {
+    if (time) {
+      return `/Account/Activity?from=${time.from}&to=${time.to}`;
+    }
+
+    return '/Account/Activity';
+  },
+  SIGN_WITHDRAW_TOKEN: (amount: string) =>
+    `/Account/WithdrawToken?amount=${amount}`,
+  SIGN_CANCEL_WITHDRAW: (ticketId: string) =>
+    `/Account/CancelWithdraw?ticketId=${ticketId}`,
+  SIGN_CLAIM_REWARD: (token: string, amount: number) =>
+    `/Account/ClaimReward?token=${token}&amount=${amount}`,
+  SIGN_CANCEL_CLAIM_REWARD: (ticketId: string) =>
+    `/Account/CancelClaimReward?ticketId=${ticketId}`,
+
+  // Email Link
+  CONFIRM_EMAIL: (token: string) => `/ConfirmEmail?token=${token}`,
+  RESET_PASSWORD_BY_EMAIL: (token: string) =>
+    `/ResetPasswordByEmail?token=${token}`,
+
+  // Config
+  TOKEN_LIST: '/Config/TokenList',
+  CONTRACT_LIST: '/Config/ContractList',
+  GET_TOKEN: (symbol: string) => `/Config/GetToken?symbol=${symbol}`,
 
   // QRCoder
   LOGIN_QR_CODE: '/QrCoder/Login',
+
+  // NFT Info
+  NFT_INFO: (id: string) => `/api/NftInfo/${id}`,
+
+  // Marketplace
+  SELL_ITEM: '/Marketplace/SellItem',
+  CANCEL_ORDER: (orderId: string) =>
+    `/Marketplace/CancelOrder?orderId=${orderId}`,
 };

@@ -1,4 +1,4 @@
-.Paginator {
+.paginator {
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -6,6 +6,7 @@
   align-items: center;
   @media (max-width: 480px) {
     width: 100%;
+    justify-content: center;
   }
   .number {
     display: flex;
@@ -34,7 +35,7 @@
       }
     }
 
-    &:not(.active).pagesNumber:hover {
+    &:not(.active).pages-number:hover {
       color: var(--neutral-0);
     }
     &.active {

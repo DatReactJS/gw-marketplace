@@ -92,14 +92,16 @@ const Info: React.FC<Props> = ({ refresh }: Props) => {
             >
               0.5
             </Text>
-            <img alt="" src="/assets/images/ic-avax.png" />
+            <img alt="" src="/assets/images/ic-kingdom-coin.png" />
           </div>
 
           <Text type="body-14-regular">$1,200</Text>
         </div>
-        <BuyNow onBuy={onBuy} />
-        <Sell onSell={onSell} />
-        <CancelSell onCancel={onCancel} />
+        <div className={styles.btnMarket}>
+          <BuyNow onBuy={onBuy} />
+          <Sell onSell={onSell} />
+          <CancelSell onCancel={onCancel} />
+        </div>
       </div>
 
       <About />

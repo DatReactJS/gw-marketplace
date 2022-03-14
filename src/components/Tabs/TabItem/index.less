@@ -1,10 +1,24 @@
 .tab {
   cursor: pointer;
   position: relative;
-
+  background-image: url('/assets/images/marketplace/tab1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 320px;
+  height: 70px;
+  display: grid;
+  padding-left: 43px;
+  margin-left: -150px;
+  &:first-child {
+    margin-left: 0;
+  }
   .info {
     display: flex;
     align-items: center;
+    span {
+      text-transform: uppercase;
+    }
 
     .icon > svg > * {
       transition: all 0.3s;
@@ -31,25 +45,10 @@
   .barActive {
     background: var(--accent-500);
   }
-
-  .commingSoon {
-    position: absolute;
-    top: 69px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 145px;
-    height: 69px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary-400);
-    border: 1px solid var(--primary-100);
-    box-sizing: border-box;
-    border-radius: 8px;
-  }
 }
 
 .tabHover {
+  background-image: url('/assets/images/marketplace/tab2.png');
   .info {
     .icon > svg > * {
       fill: var(--neutral-0);
@@ -63,4 +62,7 @@
   .bar {
     background: var(--neutral-0);
   }
+}
+.activeTab {
+  background-image: url('/assets/images/marketplace/tab2.png');
 }

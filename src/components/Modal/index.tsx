@@ -45,8 +45,8 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
       <Dialog
         visible={visible}
         width={width}
-        wrapClassName={classNames('bat-modal', className, {
-          ['bat-modal-centered']: centered,
+        wrapClassName={classNames('kingdom-modal', className, {
+          ['kingdom-modal-centered']: centered,
         })}
         animation="zoom"
         maskAnimation="fade"

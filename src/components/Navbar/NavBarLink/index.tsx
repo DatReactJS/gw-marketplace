@@ -27,7 +27,11 @@ const NavBarLink: React.FC<Props> = ({
         data-content={title}
         onClick={handleClickLink}
       >
-        {title}
+        {title === 'Wallet' ? (
+          <div className={styles.navWallet}>{title}</div>
+        ) : (
+          title
+        )}
       </span>
     </NavLink>
   );

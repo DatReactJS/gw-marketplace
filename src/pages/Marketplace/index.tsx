@@ -1,6 +1,6 @@
 import Loading from '@/components/Loading';
 import Paginator from '@/components/Paginator';
-import RCSelect, { OptionSelect } from '@/components/Select';
+import RCSelect from '@/components/Select';
 import Tabs, { TabsEnum } from '@/components/Tabs';
 import { useDebounceFn, useMount, useRequest } from '@umijs/hooks';
 import React, { useState } from 'react';
@@ -13,6 +13,7 @@ import { useIntl } from 'umi';
 import Character from '@/components/Icon/Character';
 import Ship from '@/components/Icon/Ship';
 import Accessory from '@/components/Icon/Accesory';
+
 interface Props {}
 
 interface TabItem {
@@ -21,8 +22,15 @@ interface TabItem {
   value: TabsEnum;
   isComming?: boolean;
 }
+
 const Marketplace: React.FC<Props> = (props: Props) => {
   const intl = useIntl();
+  const location: any = useLocation();
+  const filterRef: any = React.useRef();
+  const [isShowFilter, setIsShowFilter] = useState<boolean>(false);
+  const currentPage: number = +location.query?.page || 1;
+  const tab: TabsEnum = TabsEnum.CHARACTER;
+
   const optionsSelect: TabItem[] = [
     {
       icon: <Character />,
@@ -43,11 +51,6 @@ const Marketplace: React.FC<Props> = (props: Props) => {
       isComming: true,
     },
   ];
-  const location: any = useLocation();
-  const filterRef: any = React.useRef();
-  const [isShowFilter, setIsShowFilter] = useState(false);
-  const currentPage: number = +location.query?.page - 1 || 0;
-  const tab: TabsEnum = TabsEnum.CHARACTER;
 
   useMount(() => history.push({ query: { ...location.query, tab } }));
 
@@ -68,6 +71,7 @@ const Marketplace: React.FC<Props> = (props: Props) => {
   const onFiltersChangeDebounce = useDebounceFn(
     (values: Record<string, any>) => {
       history.push({ query: { ...values, tab: tab.toString() } });
+
       run();
     },
     300,
@@ -78,13 +82,14 @@ const Marketplace: React.FC<Props> = (props: Props) => {
   };
 
   const onPageChange = (page: number) => {
-    const realPage: number = page + 1;
+    const newQuery: Record<string, any> = { ...location.query, page };
 
-    const newQuery: Record<string, any> = { ...location.query, page: realPage };
     if (newQuery.page === 1) {
       delete newQuery.page;
     }
+
     history.push({ query: newQuery });
+
     run();
   };
 
@@ -94,74 +99,56 @@ const Marketplace: React.FC<Props> = (props: Props) => {
   };
 
   const renderContent = () => {
-    if (loading) {
-      return (
-        <div className={styles.loading}>
-          <Loading />
+    return (
+      <>
+        <div className={styles.heroContainer}>
+          <div className={styles.heroContainerFlex}>
+            {new Array(24).fill(undefined).map((_, index: number) => {
+              return (
+                <div className={styles.heroCard} key={`hero-card-${index}`}>
+                  <HeroCard />
+                </div>
+              );
+            })}
+          </div>
         </div>
-      );
-    }
 
-    if (data && !loading) {
-      return (
-        <>
-          <div className={styles.heroContainer}>
-            <div className={styles.heroContainerFlex}>
-              {new Array(24).fill(undefined).map((_, index: number) => {
-                return (
-                  <div className={styles.heroCard} key={`hero-card-${index}`}>
-                    <HeroCard />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className={styles.paginatorContainer}>
-            <Paginator
-              totalPages={100}
-              currentPage={currentPage}
-              onPage={onPageChange}
-            />
-          </div>
-        </>
-      );
-    }
-
-    if ((data as any)?.heroes?.length === 0 && !loading) {
-      return <NoData />;
-    }
-
-    /**
-     * TODO: Return error page or null
-     */
-
-    return null;
+        <div className={styles.paginatorContainer}>
+          <Paginator
+            totalPages={100}
+            currentPage={currentPage}
+            onPage={onPageChange}
+          />
+        </div>
+      </>
+    );
   };
 
   const handleFilterMobile = () => {
     setIsShowFilter(!isShowFilter);
   };
+
   const handleChangeTab = (value: any) => {
     history.push({ query: { tab: value.toString() } });
     filterRef.current?.onResetFilter?.(value);
   };
+
   return (
     <div className={styles.marketplace}>
       <div className={styles.navMobile}>
         <div className={styles.selectTab}>
           <RCSelect
-            // placeholder="123"
-            className={styles.select}
+            className={styles.selectTab}
             options={optionsSelect}
             onChange={handleChangeTab}
             defaultValue={tab}
           />
         </div>
         <div className={styles.filter} onClick={handleFilterMobile}>
-          Filter
+          {intl.formatMessage({ id: 'filter.filter' })}
         </div>
       </div>
+
       <div className={styles.tabs}>
         <Tabs onChange={onChangeTab} defaultTab={location.query?.tab} />
       </div>

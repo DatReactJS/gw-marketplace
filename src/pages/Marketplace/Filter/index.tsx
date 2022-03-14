@@ -29,10 +29,43 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
 
     const [numberFilter, setNumberFilter] = React.useState<number>(0);
 
+    const onCheckValidQuery = (values: Record<string, any>) => {
+      const allQueries: string[] = [
+        'classes',
+        'rarities',
+        'vit',
+        'str',
+        'agi',
+        'int',
+        'spd',
+        'hp',
+        'atk',
+        'def',
+        'type',
+        'sort',
+        'tab',
+        'page',
+      ];
+
+      if (tab === TabsEnum.SHIP) {
+        allQueries.push('buffAmount');
+      }
+
+      if (tab === TabsEnum.ACCESORY) {
+        allQueries.push('stat');
+      }
+
+      Object.entries(values).forEach(([key, val]) => {
+        if (!allQueries.includes(key)) {
+          delete values[key];
+        }
+      });
+
+      return values;
+    };
+
     const getInitialValues = (values: Record<string, any>) => {
-      const newValues = {
-        ...values,
-      };
+      const newValues = onCheckValidQuery(values);
 
       delete newValues?.tab;
 
@@ -42,6 +75,14 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
 
       if (typeof values?.classes === 'string') {
         newValues.classes = [values.classes];
+      }
+
+      if (values?.sort && !Object.values(SorterValues).includes(values.sort)) {
+        delete newValues.sort;
+      }
+
+      if (values?.type && !Object.values(TypeValues).includes(values.type)) {
+        delete newValues.type;
       }
 
       if (values?.vit) {
@@ -335,15 +376,22 @@ const Filters: React.FC<Props & Ref> = React.forwardRef(
           }
         }
       >
-        <SideFilter
-          onClear={onResetFilter}
-          total={numberFilter}
-          tab={tab}
-          showFilter={showFilter}
-        />
+        <div
+          className={`${
+            showFilter ? styles.activeFilter : styles.filterMobile
+          }`}
+        >
+          <SideFilter
+            onClear={onResetFilter}
+            total={numberFilter}
+            tab={tab}
+            showFilter={showFilter}
+          />
+        </div>
 
-        <div className={`${styles.content} ${showFilter ? styles.active : ''}`}>
-          <HeadFilter total={1208} />
+        <div
+          className={`${styles.content} ${showFilter ? styles.isActive : ''}`}
+        >
           {children}
         </div>
       </Form>

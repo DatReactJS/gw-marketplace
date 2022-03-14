@@ -23,13 +23,6 @@ const TabItem: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const [isHovering, hoverRef] = useHover<HTMLDivElement>();
-  const [isCommingSoon, setCommingSoon] = React.useState<boolean>(false);
-
-  useUpdateEffect(() => {
-    if (value !== TabsEnum.CHARACTER) {
-      setCommingSoon(!!isHovering);
-    }
-  }, [isHovering]);
 
   const onClickTab = (newTab: TabsEnum) => {
     if (newTab === TabsEnum.CHARACTER) {
@@ -41,40 +34,16 @@ const TabItem: React.FC<Props> = ({
     <div
       className={classNames(styles.tab, {
         [styles.tabHover]: isHovering && !isActive,
+        [styles.activeTab]: isActive,
       })}
       onClick={() => onClickTab(value as TabsEnum)}
       ref={hoverRef}
     >
       <div className={styles.info}>
-        <div
-          className={classNames(styles.icon, {
-            [styles.iconActive]: isActive,
-          })}
-        >
-          {icon}
-        </div>
-        <Text
-          type="body-16-bold"
-          color={isActive ? 'accent-500' : 'primary-100'}
-          className={styles.label}
-        >
+        <Text type="body-16-bold" color="neutral-0" className={styles.label}>
           {label}
         </Text>
       </div>
-
-      <div
-        className={classNames(styles.bar, {
-          [styles.barActive]: isActive,
-        })}
-      />
-
-      {isCommingSoon && (
-        <div className={styles.commingSoon}>
-          <Text type="body-16-bold" color="accent-500">
-            {intl.formatMessage({ id: 'common.commingSoon' })}
-          </Text>
-        </div>
-      )}
     </div>
   );
 };

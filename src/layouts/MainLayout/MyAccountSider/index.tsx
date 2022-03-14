@@ -9,7 +9,7 @@ interface Props {
 const MyAccountSider: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.myAccountSider}>
-      <div className={styles.siderBar}>
+      <div className={`${styles.menu} ${styles.siderBar}`}>
         <Menu />
       </div>
       {props?.children && <div className={styles.main}>{props.children}</div>}

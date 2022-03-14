@@ -4,12 +4,22 @@
   width: 100%;
   max-width: 505px;
   padding-bottom: 48px;
-
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+  @media (max-width: 768px) {
+    margin-top: 30px;
+    width: 100%;
+    max-width: unset;
+  }
   .head {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 32px;
+    @media (max-width: 768px) {
+      justify-content: space-between;
+    }
     .prices {
       display: flex;
       align-items: center;
@@ -23,6 +33,9 @@
           margin-right: 4px;
         }
       }
+    }
+    .btnMarket {
+      display: flex;
     }
   }
 }

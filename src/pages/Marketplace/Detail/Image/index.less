@@ -2,7 +2,15 @@
   min-width: 515px;
   margin-top: 35px;
   position: fixed;
-
+  @media (max-width: 1024px) {
+    min-width: unset;
+    width: 400px;
+    left: 16px;
+  }
+  @media (max-width: 768px) {
+    position: unset;
+    width: 100%;
+  }
   .goBack {
     width: 33px;
     height: 33px;
@@ -28,5 +36,8 @@
     align-items: center;
     justify-content: center;
     margin-top: 24px;
+    @media (max-width: 768px) {
+      margin: 0 auto;
+    }
   }
 }

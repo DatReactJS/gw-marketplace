@@ -34,7 +34,7 @@ const SideFilter: React.FC<Props> = ({
   const intl = useIntl();
 
   return (
-    <div className={`${styles.sideFilter} ${showFilter ? styles.active : ''}`}>
+    <div className={`${styles.sideFilter}`}>
       <div className={styles.content}>
         <div className={styles.head}>
           <div className={styles.titleFilter}>

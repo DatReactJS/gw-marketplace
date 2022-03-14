@@ -51,7 +51,7 @@ const Paginator: React.FC<PaginatorProps> = ({
     currentPage = totalPages;
   }
 
-  const max = 5;
+  const max: number = 5;
 
   const handlePrev = () => {
     if (totalPages && currentPage === 0) return;
@@ -69,21 +69,19 @@ const Paginator: React.FC<PaginatorProps> = ({
     onPage && currentPage !== page && onPage(page);
   };
 
-  if (!totalPages) {
-    return null;
-  }
+  const displayPrevDots: boolean = totalPages > max && currentPage > 1;
+  const displayNextDots: boolean =
+    totalPages > max && currentPage < totalPages - 1;
 
-  const screenWidth: number = window.innerWidth;
+  const lastPage: number = totalPages;
+  const firstPage: number = 1;
+  const pageBufferSize: number = 2;
 
-  const displayPrevDots = totalPages > max && currentPage > 1;
-  const displayNextDots = totalPages > max && currentPage < totalPages - 1;
-  const lastPage = totalPages;
-  const firstPage = 1;
-  const pageBufferSize = 2;
-  const options = {
+  const options: { from: number; to: number } = {
     from: Math.max(1, currentPage - pageBufferSize),
     to: Math.min(currentPage + pageBufferSize, totalPages),
   };
+
   if (totalPages <= 7) {
     options.from = 1;
     options.to = totalPages;
@@ -98,7 +96,7 @@ const Paginator: React.FC<PaginatorProps> = ({
   }
 
   return (
-    <div className="Paginator">
+    <div className="paginator">
       <Button
         page={
           <img alt="" src="/assets/images/ic-arrow.png" className="icon-prev" />
@@ -114,7 +112,7 @@ const Paginator: React.FC<PaginatorProps> = ({
             page={firstPage}
             onPage={handlePage}
             isActive={false}
-            className="pagesNumber body-14-bold"
+            className="page-number body-14-bold"
           />
         )}
 
@@ -125,27 +123,27 @@ const Paginator: React.FC<PaginatorProps> = ({
         )}
 
         {totalPages < max
-          ? new Array(totalPages).fill('paginationItem').map((_, i) => {
+          ? new Array(totalPages).fill('pagination-item').map((_, i) => {
               return (
                 <Button
                   page={i}
                   onPage={handlePage}
-                  key={`$pagination-${i + options.from}`}
+                  key={`pagination-${i + options.from}`}
                   isActive={i === currentPage}
-                  className="pagesNumber body-14-bold"
+                  className="page-number body-14-bold"
                 />
               );
             })
           : new Array(options.to - options.from + 1)
-              .fill('paginationItem')
+              .fill('pagination-item')
               .map((_, i) => {
                 return (
                   <Button
                     page={i + options.from}
                     onPage={handlePage}
-                    key={`$pagination-${i + options.from}`}
+                    key={`pagination-${i + options.from}`}
                     isActive={i + options.from === currentPage}
-                    className="pagesNumber body-14-bold"
+                    className="page-number body-14-bold"
                   />
                 );
               })}
@@ -164,7 +162,7 @@ const Paginator: React.FC<PaginatorProps> = ({
             page={lastPage}
             onPage={handlePage}
             isActive={false}
-            className="pagesNumber body-14-bold"
+            className="page-number body-14-bold"
           />
         )}
       </div>

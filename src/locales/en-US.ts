@@ -11,6 +11,7 @@ export default {
   'common.filter': 'Filters',
   'common.reset': 'Reset',
   'common.back': 'BACK',
+  'common.cancel': 'Cancel',
   'common.success': 'Success',
   'common.failed': 'Failed',
   'common.error': 'Error',
@@ -172,7 +173,8 @@ export default {
   // General settings
   'settings.gereral': 'General Settings',
   'settings.username': 'Username',
-  'settings.initAccount': 'CREATE MY ACCOUNT',
+  'settings.initAccount': 'Create account',
+  'settings.myAccount': 'My account',
   'settings.createAccount': 'Create Account',
   'settings.usernameExist': 'Username have been existed',
   'settings.usernameRequired': 'Username is required',
@@ -233,4 +235,7 @@ export default {
   'claim.claim': 'Claim',
   'claim.claimHistory': 'Claim History ',
   'claim.claimConfirm': 'Confirm',
+  'claim.cancel': 'Cancel Claim',
+  'claim.retry': 'Retry Claim',
+  'claim.waitingTo': 'Waiting to claim {token}',
 };

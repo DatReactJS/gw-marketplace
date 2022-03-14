@@ -10,12 +10,41 @@
   border-radius: 8px;
   margin-bottom: 16px;
   overflow: hidden;
-
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
   .username {
     height: 28px;
   }
 
   .email {
     height: 20px;
+  }
+  .menuMobile {
+    display: none;
+    @media (max-width: 1024px) {
+      display: flex;
+      margin-top: 10px;
+    }
+    .wallet {
+      margin-left: 8px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--accent-500);
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+
+      .detail {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
+      }
+    }
+  }
+  .contentQr {
+    @media (max-width: 1024px) {
+      display: none;
+    }
   }
 }

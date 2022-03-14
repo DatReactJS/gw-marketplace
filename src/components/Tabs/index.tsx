@@ -9,8 +9,9 @@ import RCSelect from '@/components/Select';
 
 export enum TabsEnum {
   CHARACTER = 'character',
-  SHIP = 'ship',
-  ACCESORY = 'accesory',
+  SPACECRAFT = 'spacecraft',
+  PLANETS = 'planets',
+  WEAPONS = 'weapons',
 }
 
 interface Props {
@@ -34,18 +35,23 @@ const Tabs: React.FC<Props & Ref> = React.forwardRef(
     const tabs: TabItem[] = [
       {
         icon: <Character />,
-        label: intl.formatMessage({ id: 'common.character' }),
+        label: 'character',
         value: TabsEnum.CHARACTER,
       },
       {
         icon: <Ship />,
-        label: intl.formatMessage({ id: 'common.ship' }),
-        value: TabsEnum.SHIP,
+        label: 'spacecraft',
+        value: TabsEnum.SPACECRAFT,
       },
       {
         icon: <Accessory />,
-        label: intl.formatMessage({ id: 'common.accesory' }),
-        value: TabsEnum.ACCESORY,
+        label: 'planets',
+        value: TabsEnum.PLANETS,
+      },
+      {
+        icon: <Accessory />,
+        label: 'weapons',
+        value: TabsEnum.WEAPONS,
       },
     ];
 

@@ -134,7 +134,10 @@ const Sell: React.FC<Props> = ({ onSell }: Props) => {
                             placeholder="0"
                           />
                         </FormItem>
-                        <img alt="" src="/assets/images/ic-BNB-medium.png" />
+                        <img
+                          alt=""
+                          src="/assets/images/ic-kingdom-coin-ssm.png"
+                        />
                       </div>
 
                       <Button

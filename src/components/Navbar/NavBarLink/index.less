@@ -2,11 +2,31 @@
   text-decoration: none;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  color: var(--primary-100);
+  color: var(--neutral-0);
   position: relative;
-  height: 64px;
   display: inline-block;
-  padding-left: 32px;
+  padding: 0 70px;
+  transform: skewX(-28.64789deg);
+  -webkit-transform: skewX(-28.64789deg);
+  height: 109px;
+  span {
+    -webkit-transform: skewX(28.64789deg) translateY(5px);
+    transform: skewX(28.64789deg) translateY(5px);
+    transform: skewX(28.64789deg) translateY(5px);
+    width: 100%;
+    height: 109px;
+    display: inline-block;
+  }
+  &::after {
+    position: absolute;
+    left: 0;
+    content: '';
+    background: rgba(255, 255, 255, 0.5);
+    display: block;
+    height: 100%;
+    width: 1.02px;
+    top: -3.5px;
+  }
   @media (max-width: 1024px) {
     height: 32px;
   }
@@ -16,11 +36,20 @@
     }
 
     &::after {
-      color: var(--primary-100);
+      color: var(--neutral-0);
       content: attr(data-content);
       position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
+    .navWallet::after {
+      color: var(--neutral-0);
+      content: url(/assets/images/marketplace/menu-keyOpen.svg);
+      position: absolute;
+      top: 50%;
+      left: -20px;
       transform: translate(-50%, -50%);
       white-space: nowrap;
     }
@@ -40,13 +69,29 @@
       span {
         &::after {
           transition: all 0.3s;
-          color: var(--accent-500);
+          color: var(--blue);
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
         }
+        &::before {
+          position: absolute;
+          left: 50%;
+          top: 85px;
+          transform: translate(-50%, -50%);
+          content: url('/assets/images/marketplace/menu-active.png');
+          background-position: bottom;
+          background-repeat: no-repeat;
+        }
       }
     }
   }
+  &:last-child {
+    background: linear-gradient(180deg, #1ad7fd 0%, #036c7a 100%);
+  }
+}
+.navWallet {
+  display: flex;
+  align-items: center;
 }

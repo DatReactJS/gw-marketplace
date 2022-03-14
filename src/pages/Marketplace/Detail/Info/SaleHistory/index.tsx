@@ -54,7 +54,7 @@ const SaleHistory: React.FC<Props> = (props: Props) => {
                   >
                     0.5
                   </Text>
-                  <img alt="" src="/assets/images/bnb.svg" />
+                  <img alt="" src="/assets/images/ic-kingdom-coin-sm.png" />
                 </div>
 
                 <Text type="body-14-regular">$1,200</Text>

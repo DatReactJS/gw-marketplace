@@ -39,7 +39,8 @@ export interface TextProps {
     | 'accent-500'
     | 'warning'
     | 'success'
-    | 'info';
+    | 'info'
+    | 'blue';
 }
 
 const Text: React.FC<TextProps> = (props: TextProps) => {

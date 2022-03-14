@@ -26,35 +26,7 @@ const HeroCard: React.FC<Props> = (props: Props) => {
         [styles.legendary]: true,
       })}
       onClick={navigateDetail}
-    >
-      <img alt="" src="/assets/images/char/char1.png" className={styles.img} />
-
-      <div className={styles.info}>
-        <img alt="" src="/assets/images/Warrior.png" />
-        <Text type="caption-12-semi-bold" className={styles.id}>
-          #62354876
-        </Text>
-      </div>
-
-      <div className={styles.prices}>
-        <div className={styles.bnb}>
-          <Text
-            type="title-24-bold"
-            color="accent-500"
-            className={styles.balance}
-          >
-            0.5
-          </Text>
-          <img alt="" src="/assets/images/ic-kingdom-coin.png" />
-        </div>
-
-        <Text type="body-14-regular">$1,200</Text>
-      </div>
-
-      {/* <Text type="body-14-semi-bold" color="warning" className={styles.expired}>
-        {intl.formatMessage({ id: 'common.expired' })}
-      </Text> */}
-    </div>
+    ></div>
   );
 };
 

@@ -3,6 +3,11 @@
   position: fixed;
   overflow-y: scroll;
   margin-top: 24px;
+  @media (max-width: 1024px) {
+    // display: none;
+    position: unset;
+    left: 16px;
+  }
 }
 
 .menu {
@@ -13,14 +18,29 @@
   box-sizing: border-box;
   border-radius: 8px;
   padding: 16px 16px 24px;
-
+  @media (max-width: 1024px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+    border: none;
+  }
   .btn {
     margin-bottom: 4px;
     width: 100%;
     justify-content: flex-start;
     color: var(--primary-100);
   }
-
+  .listBtn {
+    @media (max-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+      .btn {
+        width: 220px;
+      }
+    }
+  }
   .btnActive {
     color: var(--neutral-0);
   }
@@ -33,7 +53,13 @@
   .btnLogout {
     margin-top: 300px;
     color: var(--warning);
-
+    @media (max-width: 1024px) {
+      margin-top: 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
     &:hover,
     &:focus {
       color: var(--warning) !important;

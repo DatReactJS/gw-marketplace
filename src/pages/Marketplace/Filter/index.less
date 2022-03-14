@@ -1,19 +1,30 @@
 .filter {
-  padding: 49px 0 49px 16px;
+  padding: 100px 0 49px 16px;
   display: flex;
   width: 100%;
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     padding-right: 16px;
     padding-top: 60px;
+  }
+  .filterMobile {
+    display: block;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  .activeFilter {
+    display: block;
+  }
+  .active {
   }
   .content {
     width: 100%;
     padding-left: 272px;
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       padding-left: 0;
       // opacity: 1;
     }
-    &.active {
+    &.isActive {
       height: 100%;
       overflow: hidden;
       opacity: 0;

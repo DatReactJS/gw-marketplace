@@ -17,7 +17,7 @@ const Logo: React.FC<Props> = ({ type }: Props) => {
     <img
       className={level}
       src="/assets/images/logo.png"
-      alt="Battlelands"
+      alt="Kingdom"
       onClick={handleClickLogo}
     />
   );

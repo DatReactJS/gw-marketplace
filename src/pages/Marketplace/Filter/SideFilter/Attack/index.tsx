@@ -12,14 +12,6 @@ interface Props {
 
 const Attack: React.FC<Props> = ({ value = [100, 1000], onChange }: Props) => {
   const [innerValue, setInnerValue] = useState(value);
-  const leftPosion = {
-    left: `calc(100% / 1000 * ${innerValue[0] - 50}`,
-    transform: 'translateX(-50%)',
-  };
-  const rightPosion = {
-    left: `calc(100% / 1000 * ${innerValue[1] - 70}`,
-    transform: 'translateX(-50%)',
-  };
 
   const prevValue: number[] | undefined = usePrevious(value);
 
@@ -53,10 +45,10 @@ const Attack: React.FC<Props> = ({ value = [100, 1000], onChange }: Props) => {
       </div>
 
       <div className={styles.valueContainer}>
-        <div className={styles.valueSwitchMin} style={leftPosion}>
+        <div className={styles.valueSwitchMin}>
           <Text type="caption-12-semi-bold">{innerValue[0]}</Text>
         </div>
-        <div className={styles.valueSwitchMax} style={rightPosion}>
+        <div className={styles.valueSwitchMax}>
           <Text type="caption-12-semi-bold">{innerValue[1]}</Text>
         </div>
       </div>

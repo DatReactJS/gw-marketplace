@@ -9,7 +9,6 @@ export const ENVIRONMENTS = {
   CHAIN_NAME: process.env.APP__CHAIN_NAME || '',
 
   API_URL: process.env.APP__API_URL || '',
-  API_META_URL: process.env.APP__API_META_URL || '',
 
   APP_URL: process.env.APP__APP_URL || '',
   LOCAL_STORAGE_KEY: process.env.APP__LOCAL_STORAGE_KEY || '',

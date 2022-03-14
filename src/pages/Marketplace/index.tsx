@@ -41,13 +41,15 @@ const Marketplace: React.FC<Props> = (props: Props) => {
     {
       icon: <Ship />,
       label: intl.formatMessage({ id: 'common.ship' }),
-      value: TabsEnum.SHIP,
+      // value: TabsEnum.SHIP |
+      value: TabsEnum.SPACECRAFT,
       isComming: true,
     },
     {
       icon: <Accessory />,
       label: intl.formatMessage({ id: 'common.accesory' }),
-      value: TabsEnum.ACCESORY,
+      // value: TabsEnum.ACCESORY ||
+      value: TabsEnum.SPACECRAFT,
       isComming: true,
     },
   ];

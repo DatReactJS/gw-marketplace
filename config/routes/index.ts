@@ -7,10 +7,17 @@ export default [
       {
         exact: true,
         path: '/',
-        component: '@/pages/Marketplace',
-        title: 'navbar.marketplace',
+        component: '@/pages/Home',
+        title: 'navbar.home',
         wrappers: ['@/components/Wrapper'],
       },
+      // {
+      //   exact: true,
+      //   path: '/',
+      //   component: '@/pages/Marketplace',
+      //   title: 'navbar.marketplace',
+      //   wrappers: ['@/components/Wrapper'],
+      // },
       {
         exact: true,
         path: '/home',

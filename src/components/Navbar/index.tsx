@@ -17,13 +17,41 @@ const Navbar: React.FC = () => {
     <>
       <header className={styles.header_navbar}>
         <div className={styles.container}>
-          <img
-            className={styles.logo}
-            alt=""
-            src="/assets/images/marketplace/logo.png"
-          />
+          <div className={styles.logoPart}>
+            <a href="/">
+              <img
+                className={styles.logo}
+                alt=""
+                src="/assets/images/marketplace/logo.png"
+              />
+            </a>
+            <div className={styles.title}>
+              <h1>galactic war</h1>
+            </div>
+            <button className={styles.toggleMenu}>
+              <Icon icon="Vector-1" size={18}></Icon>
+            </button>
+          </div>
 
           <main>
+            <aside className={styles.social}>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <Icon icon="path14" size={24}></Icon>
+              </a>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <Icon icon="YouTube-Icon" size={24}></Icon>
+              </a>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <Icon icon="Vector-2" size={24}></Icon>
+              </a>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <Icon icon="Group" size={24}></Icon>
+              </a>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <Icon icon="Vector-4" size={24}></Icon>
+              </a>
+            </aside>
+
             <aside className={styles.links}>
               {allNavLinks.map((link: string) => (
                 <NavBarLink

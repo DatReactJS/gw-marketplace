@@ -5,8 +5,8 @@ import routes from './routes';
 const outputPath: string = '/dist/';
 
 const env: string | undefined = process.env.NODE_ENV;
-const path: string =
-  env === 'development' ? 'http://127.0.0.1:8000/' : outputPath;
+
+const path: string = outputPath;
 
 export default defineConfig({
   nodeModulesTransform: {

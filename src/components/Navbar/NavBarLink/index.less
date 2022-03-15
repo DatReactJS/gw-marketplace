@@ -16,16 +16,6 @@
     display: inline-block;
     font-family: 'Barlow-Regular';
   }
-  &::after {
-    position: absolute;
-    left: 0;
-    content: '';
-    background: rgba(255, 255, 255, 0.5);
-    display: block;
-    height: 100%;
-    width: 1.02px;
-    top: -3.5px;
-  }
   span {
     &::after {
       color: var(--neutral-0);
@@ -36,16 +26,6 @@
       transform: translate(-50%, -50%);
       white-space: nowrap;
     }
-  }
-  &:last-child::before {
-    position: absolute;
-    left: 100%;
-    content: '';
-    background: rgba(255, 255, 255, 0.5);
-    display: block;
-    height: 100%;
-    width: 1.02px;
-    top: -3.5px;
   }
 
   &:global {

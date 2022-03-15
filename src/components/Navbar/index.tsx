@@ -13,6 +13,8 @@ const Navbar: React.FC = () => {
 
   const allNavLinks: string[] = Object.keys(links);
 
+  const isConneted = true;
+
   return (
     <>
       <header className={styles.header_navbar}>
@@ -28,12 +30,15 @@ const Navbar: React.FC = () => {
             <div className={styles.title}>
               <h1>galactic war</h1>
             </div>
-            <button className={styles.toggleMenu}>
+            <button
+              className={styles.toggleMenu}
+              onClick={() => setIsShowNav((prev) => !prev)}
+            >
               <Icon icon="Vector-1" size={18}></Icon>
             </button>
           </div>
 
-          <main>
+          <main className={isShowNav ? styles.isShowNav : ''}>
             <aside className={styles.social}>
               <a href="http://" target="_blank" rel="noopener noreferrer">
                 <Icon icon="path14" size={24}></Icon>
@@ -64,48 +69,49 @@ const Navbar: React.FC = () => {
             </aside>
 
             <aside className={styles.wallet}>
-              {/* <button className={styles.connect}>
-                <div className={styles.content}>
-                  <span>
-                  {intl.formatMessage({ id: 'navbar.wallet' })}
-                  </span>
-                  <Icon icon='bxs_lock-open-alt' size={24}/>                  
-                </div>
-              </button> */}
-
-              <div className={styles.conected}>
-                <div className={styles.balance}>
-                  <img
-                    className={styles.coin}
-                    src={'/assets/images/navbar/Icon_ExampleCoin0 1.png'}
-                    alt=""
-                  />
-                  <div className={styles.container}>
-                    <span>123</span>
+              {!isConneted && (
+                <button className={styles.connect}>
+                  <div className={styles.content}>
+                    <span>{intl.formatMessage({ id: 'navbar.wallet' })}</span>
+                    <Icon icon="bxs_lock-open-alt" size={24} />
+                  </div>
+                </button>
+              )}
+              {isConneted && (
+                <div className={styles.conected}>
+                  <div className={styles.balance}>
                     <img
-                      className={styles.plus}
-                      src={'/assets/images/navbar/Btn_BuyCoins_p 1.png'}
+                      className={styles.coin}
+                      src={'/assets/images/navbar/Icon_ExampleCoin0 1.png'}
                       alt=""
                     />
+                    <div className={styles.container}>
+                      <span>123</span>
+                      <img
+                        className={styles.plus}
+                        src={'/assets/images/navbar/Btn_BuyCoins_p 1.png'}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.address}>
+                    <div className={styles.headIcon}>
+                      <img
+                        src={'/assets/images/navbar/profile-circle.png'}
+                        alt=""
+                        className={styles.centerIcon}
+                      />
+                      <img
+                        src={'/assets/images/navbar/ItemButton04Blue_p 2.png'}
+                        alt=""
+                      />
+                    </div>
+                    <div className={styles.container}>
+                      <span>0xb7e79...</span>
+                    </div>
                   </div>
                 </div>
-                <div className={styles.address}>
-                  <div className={styles.headIcon}>
-                    <img
-                      src={'/assets/images/navbar/profile-circle.png'}
-                      alt=""
-                      className={styles.centerIcon}
-                    />
-                    <img
-                      src={'/assets/images/navbar/ItemButton04Blue_p 2.png'}
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles.container}>
-                    <span>0xb7e79...</span>
-                  </div>
-                </div>
-              </div>
+              )}
             </aside>
           </main>
         </div>

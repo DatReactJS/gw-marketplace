@@ -78,8 +78,6 @@
     main {
       position: absolute;
       width: 100%;
-      left: 100%;
-      left: 0%;
       top: 54px;
       transition: 0.3s ease-in-out;
       display: flex;
@@ -90,6 +88,10 @@
       backdrop-filter: blur(30px);
       height: calc(100vh - 54px);
       padding-top: 28px;
+      left: 100%;
+      &.isShowNav {
+        left: 0%;
+      }
       @media (min-width: 1024px) {
         flex-direction: row;
         background: initial;
@@ -136,6 +138,10 @@
     font-family: 'Barlow-Regular';
     padding: 0 70px;
     border: none;
+    display: none;
+    @media (min-width: 1024px) {
+      display: block;
+    }
     .content {
       transform: skewX(28.64789deg);
       display: flex;

@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(238, 238, 238, 0.1);
   backdrop-filter: blur(30px);
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -18,13 +17,19 @@
     max-width: 1920px;
     width: 100%;
     align-items: center;
+    position: relative;
     .logo {
-      padding-right: 50px;
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     main {
       flex: auto;
       display: flex;
       justify-content: space-between;
+      margin: auto;
+      max-width: 1420px;
     }
   }
   .links {
@@ -53,17 +58,75 @@
     }
   }
 }
-.balance {
+
+.conected {
   display: flex;
-  padding-left: 53px;
+  align-items: center;
+  height: 100%;
+  .balance {
+    display: flex;
+    // padding-left: 53px;
+    margin-right: 25px;
+    position: relative;
+    .coin {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
   .container {
-    background: rgb(14, 31, 49);
+    background-color: rgb(23, 56, 93);
+    z-index: -1;
+    padding: 0 45px 0 30px;
+    height: 32px;
+    color: white;
     clip-path: polygon(
       0% 0%,
       calc(100% - 5px) 0%,
-      100% 5%,
-      calc(100% - 5px) 100%,
+      100% 7px,
+      calc(100% - 9px) 100%,
       0 100%
     );
+    .plus {
+      position: absolute;
+      right: 2px;
+    }
+    &::before {
+      content: '';
+      background: rgb(14, 31, 49);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      display: block;
+      clip-path: polygon(
+        0% 0%,
+        calc(100% - 5px) 0%,
+        100% 7px,
+        calc(100% - 9px) 100%,
+        0 100%
+      );
+      transform: translate(-47%, -51%) scale(0.9);
+      z-index: -1;
+    }
+  }
+  .address {
+    display: flex;
+    align-items: center;
+    position: relative;
+    .headIcon {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      .centerIcon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 }

@@ -48,27 +48,34 @@ const Navbar: React.FC = () => {
               <div className={styles.conected}>
                 <div className={styles.balance}>
                   <img
+                    className={styles.coin}
                     src={'/assets/images/navbar/Icon_ExampleCoin0 1.png'}
                     alt=""
                   />
                   <div className={styles.container}>
+                    <span>123</span>
                     <img
+                      className={styles.plus}
                       src={'/assets/images/navbar/Btn_BuyCoins_p 1.png'}
                       alt=""
                     />
-                    <span>123</span>
                   </div>
                 </div>
                 <div className={styles.address}>
-                  <img
-                    src={'/assets/images/navbar/profile-circle.png'}
-                    alt=""
-                  />
-                  <img
-                    src={'/assets/images/navbar/ItemButton04Blue_p 2.png'}
-                    alt=""
-                  />
-                  <span>0xb7e79...</span>
+                  <div className={styles.headIcon}>
+                    <img
+                      src={'/assets/images/navbar/profile-circle.png'}
+                      alt=""
+                      className={styles.centerIcon}
+                    />
+                    <img
+                      src={'/assets/images/navbar/ItemButton04Blue_p 2.png'}
+                      alt=""
+                    />
+                  </div>
+                  <div className={styles.container}>
+                    <span>0xb7e79...</span>
+                  </div>
                 </div>
               </div>
             </aside>

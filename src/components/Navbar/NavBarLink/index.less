@@ -6,15 +6,13 @@
   position: relative;
   display: inline-block;
   padding: 0 100px;
-  transform: skewX(-28.64789deg);
-  -webkit-transform: skewX(-28.64789deg);
   height: 109px;
   span {
-    transform: skewX(28.64789deg);
     width: 100%;
     height: 108px;
     display: inline-block;
     font-family: 'Barlow-Regular';
+    transition: 0.3s ease-in-out;
   }
   span {
     &::after {
@@ -31,8 +29,10 @@
   &:global {
     &:not(.disabled, .active):hover {
       span {
+        color: var(--neutral-0);
+        transform: scale(1.1);
         &::after {
-          color: var(--neutral-0);
+          color: var(--blue);
           transition: all 0.3s;
         }
       }
@@ -52,7 +52,7 @@
           position: absolute;
           left: 50%;
           bottom: -40%;
-          transform: translateX(-63%);
+          transform: translateX(-50%);
           content: url('/assets/images/marketplace/menu-active.png');
           background-position: bottom;
           background-repeat: no-repeat;

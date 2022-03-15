@@ -48,7 +48,7 @@ const Provider: React.FC<Props> = ({ children }: Props) => {
         transition={Zoom}
       />
       <Navbar />
-      <div className={classNames(styles.main)}>{children}</div>
+      {/* <div className={classNames(styles.main)}>{children}</div> */}
     </>
   );
 };

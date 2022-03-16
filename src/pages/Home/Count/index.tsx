@@ -1,14 +1,22 @@
 import * as React from 'react';
 import styles from './index.less';
+import Footer from './Footer';
 function Count() {
   return (
     <>
       <div className={styles.countDown}>
-        <img
-          className={styles.bg}
-          src="/assets/images/home/Group-232.webp"
-          alt=""
-        />
+        <div className={styles.bg}>
+          <img
+            className={styles.layer}
+            src="/assets/images/home/226347986-AdobeStock_226347986 3 (1).png"
+            alt=""
+          />
+          <img
+            className={styles.main}
+            src="/assets/images/home/Group-232.webp"
+            alt=""
+          />
+        </div>
 
         <aside className={styles.left}>
           <img src="/assets/images/home/Layer-3-2.webp" alt="" />
@@ -40,6 +48,15 @@ function Count() {
             </div>
           </div>
         </div>
+
+        <Footer />
+
+        <h3 className={styles.total}>
+          total:
+          <img src="/assets/images/navbar/Icon_ExampleCoin0 1.png" alt="" />
+          <span>10310</span>
+        </h3>
+        <h4 className={styles.h4}>bet on spacecraft#1</h4>
       </div>
     </>
   );

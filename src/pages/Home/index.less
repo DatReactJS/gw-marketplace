@@ -2,11 +2,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  img {
-    max-width: 100%;
-  }
   background: linear-gradient(0deg, #05082c 0%, rgba(5, 8, 44, 0) 41.44%);
-  padding-top: 53px;
   .bg {
     position: absolute;
     width: 100%;
@@ -19,6 +15,17 @@
     img {
       width: 100%;
       height: auto;
+    }
+    .bg_top {
+      width: 100%;
+      position: relative;
+      img {
+        position: absolute;
+        width: 120%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 }

@@ -13,6 +13,13 @@
   color: #ffffff;
   text-shadow: 0px 3.76312px 30.1049px rgba(0, 0, 0, 0.5);
   font-family: var(--font-header);
+  @media (min-width: 1024px) {
+    width: 942px;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 48%;
+  }
   .mid {
     width: 31%;
     position: relative;
@@ -26,6 +33,10 @@
       transform: translate(-50%, -50%);
     }
     z-index: 1;
+    @media (min-width: 1024px) {
+      font-size: 24px;
+      line-height: 29px;
+    }
   }
   .left,
   .right {
@@ -37,6 +48,9 @@
       width: 200%;
       position: absolute;
       right: -45%;
+      @media (min-width: 1024px) {
+        width: initial;
+      }
     }
     p {
       position: absolute;
@@ -45,6 +59,14 @@
       text-align: left;
       margin-bottom: 0;
       line-height: 1.2em;
+      @media (min-width: 1024px) {
+        font-size: 24px;
+        line-height: 29px;
+        bottom: 1.3em;
+        br {
+          display: none;
+        }
+      }
     }
   }
   .right {

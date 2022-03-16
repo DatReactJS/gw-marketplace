@@ -6,16 +6,49 @@ function Count() {
     <>
       <div className={styles.countDown}>
         <div className={styles.bg}>
-          <img
-            className={styles.layer}
-            src="/assets/images/home/226347986-AdobeStock_226347986 3 (1).png"
-            alt=""
-          />
-          <img
-            className={styles.main}
-            src="/assets/images/home/Group-232.webp"
-            alt=""
-          />
+          <picture>
+            <source
+              srcSet="/assets/images/home/bg_desktop.png"
+              media="(min-width:1024px)"
+            />
+            <img
+              className={styles.layer}
+              src="/assets/images/home/226347986-AdobeStock_226347986 3 (1).png"
+              alt=""
+            />
+          </picture>
+          <picture>
+            <source
+              srcSet="/assets/images/home/ob_desktop.png"
+              media="(min-width:1024px)"
+            />
+            <img
+              className={styles.main}
+              src="/assets/images/home/Group-232.webp"
+              alt=""
+            />
+          </picture>
+          <picture>
+            <source
+              srcSet="/assets/images/home/Group217.png"
+              media="(min-width:1024px)"
+            />
+            <img className={styles.border} src="" alt="" />
+          </picture>
+          <picture>
+            <source
+              srcSet="/assets/images/home/Layer-8-3.webp"
+              media="(min-width:1024px)"
+            />
+            <img className={styles.plant1} src="" alt="" />
+          </picture>
+          <picture>
+            <source
+              srcSet="/assets/images/home/Layer-8-4.webp"
+              media="(min-width:1024px)"
+            />
+            <img className={styles.plant2} src="" alt="" />
+          </picture>
         </div>
 
         <aside className={styles.left}>

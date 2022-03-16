@@ -89,7 +89,6 @@ function Count() {
           <img src="/assets/images/navbar/Icon_ExampleCoin0 1.png" alt="" />
           <span>10310</span>
         </h3>
-        <h4 className={styles.h4}>bet on spacecraft#1</h4>
       </div>
     </>
   );

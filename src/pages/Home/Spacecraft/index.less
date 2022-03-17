@@ -1,6 +1,8 @@
 .spacecraft {
   position: relative;
   .bg {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      linear-gradient(180deg, rgba(5, 8, 44, 0) 62.46%, #05082c 100%);
     position: absolute;
     top: 0;
     left: 0;
@@ -8,6 +10,7 @@
     height: 100%;
     z-index: -1;
     img {
+      z-index: -1;
       width: 100%;
       object-fit: cover;
     }
@@ -16,7 +19,7 @@
     transform: translateY(-1em);
     text-align: center;
   }
-  h3 {
+  .titleH3 {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
@@ -66,8 +69,8 @@
     font-family: var(--font-base);
     padding: 0 15px;
   }
-  img {
+  .img {
     max-width: 100%;
-    margin: -15% auto;
+    margin: -9% auto -7%;
   }
 }

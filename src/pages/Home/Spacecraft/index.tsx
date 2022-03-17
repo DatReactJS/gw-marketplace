@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import Statistics from './Statistics';
+import Footer from '../Footer';
 
 function Spacecraft() {
   const spacecraft1 = [20, 50, 100, 200, 300, 500],
@@ -32,11 +33,11 @@ function Spacecraft() {
         </div>
         <main>
           <aside>
-            <h3>bet on spacecraft#1</h3>
+            <h3 className={styles.titleH3}>bet on spacecraft#1</h3>
             <div className={styles.container}>{listItem(spacecraft1)}</div>
           </aside>
           <aside>
-            <h3>bet on spacecraft#2</h3>
+            <h3 className={styles.titleH3}>bet on spacecraft#2</h3>
             <div className={styles.container}>{listItem(spacecraft2)}</div>
           </aside>
 
@@ -49,9 +50,14 @@ function Spacecraft() {
             back
           </blockquote>
 
-          <img src="assets/images/home/Victory_Light-Line-1.webp" alt="" />
+          <img
+            className={styles.img}
+            src="assets/images/home/Victory_Light-Line-1.webp"
+            alt=""
+          />
 
           <Statistics />
+          <Footer />
         </main>
       </div>
     </>

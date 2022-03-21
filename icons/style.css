@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?evph22');
-  src:  url('fonts/icomoon.eot?evph22#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?evph22') format('truetype'),
-    url('fonts/icomoon.woff?evph22') format('woff'),
-    url('fonts/icomoon.svg?evph22#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?gyz4yi');
+  src:  url('fonts/icomoon.eot?gyz4yi#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?gyz4yi') format('truetype'),
+    url('fonts/icomoon.woff?gyz4yi') format('woff'),
+    url('fonts/icomoon.svg?gyz4yi#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,40 +25,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-Group:before {
-  content: "\e903";
-  color: #fff;
+.icon-ci_close-big:before {
+  content: "\e906";
 }
-.icon-path14:before {
-  content: "\e904";
-  color: #fff;
+.icon-dashicons_menu-alt:before {
+  content: "\e907";
+}
+.icon-bxl_telegram:before {
+  content: "\e900";
+}
+.icon-Discord-Icon:before {
+  content: "\e901";
+}
+.icon-Twitter-Logo:before {
+  content: "\e902";
 }
 .icon-YouTube-Icon .path1:before {
-  content: "\e905";
-  color: rgb(255, 255, 255);
+  content: "\e903";
+  color: rgb(26, 215, 253);
 }
 .icon-YouTube-Icon .path2:before {
-  content: "\e906";
-  margin-left: -1.3330078125em;
+  content: "\e904";
+  margin-left: -1.388671875em;
   color: rgb(12, 16, 61);
 }
-.icon-Vector-2:before {
-  content: "\e907";
-  color: #fff;
-}
-.icon-Vector-4:before {
-  content: "\e908";
-  color: #fff;
-}
-.icon-Vector-1:before {
-  content: "\e902";
-  color: #fff;
-}
-.icon-Vector:before {
-  content: "\e901";
-  color: #fff;
-}
-.icon-bxs_lock-open-alt:before {
-  content: "\e900";
-  color: #fff;
+.icon-Facebook-Icon:before {
+  content: "\e905";
 }

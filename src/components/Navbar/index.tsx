@@ -34,26 +34,26 @@ const Navbar: React.FC = () => {
               className={styles.toggleMenu}
               onClick={() => setIsShowNav((prev) => !prev)}
             >
-              <Icon icon="Vector-1" size={18}></Icon>
+              <Icon icon="dashicons_menu-alt" size={21} color="white"></Icon>
             </button>
           </div>
 
           <main className={isShowNav ? styles.isShowNav : ''}>
             <aside className={styles.social}>
               <a href="http://" target="_blank" rel="noopener noreferrer">
-                <Icon icon="path14" size={24}></Icon>
+                <Icon icon="Facebook-Icon" size={24} color="#1AD7FD"></Icon>
               </a>
               <a href="http://" target="_blank" rel="noopener noreferrer">
-                <Icon icon="YouTube-Icon" size={24}></Icon>
+                <Icon icon="YouTube-Icon" size={24} color="#1AD7FD"></Icon>
               </a>
               <a href="http://" target="_blank" rel="noopener noreferrer">
-                <Icon icon="Vector-2" size={24}></Icon>
+                <Icon icon="bxl_telegram" size={24} color="#1AD7FD"></Icon>
               </a>
               <a href="http://" target="_blank" rel="noopener noreferrer">
-                <Icon icon="Group" size={24}></Icon>
+                <Icon icon="Twitter-Logo" size={24} color="#1AD7FD"></Icon>
               </a>
               <a href="http://" target="_blank" rel="noopener noreferrer">
-                <Icon icon="Vector-4" size={24}></Icon>
+                <Icon icon="Discord-Icon" size={24} color="#1AD7FD"></Icon>
               </a>
             </aside>
 

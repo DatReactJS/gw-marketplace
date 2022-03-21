@@ -1,9 +1,8 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SwiperCore, { Navigation, Lazy } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/swiper-bundle.min.css';
-import 'swiper/components/navigation';
 import styles from './index.less';
 SwiperCore.use([Navigation]);
 function Statistics() {
@@ -13,9 +12,9 @@ function Statistics() {
       <>
         <div className={styles.statistic}>
           <img
-            src="/assets/images/home/Frame.png"
+            data-src="/assets/images/home/Frame.png"
             alt=""
-            className={styles.activeSign + 'swiper-lazy'}
+            className={styles.activeSign + ' swiper-lazy'}
           />
           <h3>263,731</h3>
           <div className={styles.cotainer}>
@@ -27,7 +26,7 @@ function Statistics() {
             <img
               data-src="/assets/images/home/Btn_WeaponMenu_p.png"
               alt=""
-              className="light-up"
+              className={styles.lightUp + ' swiper-lazy'}
             />
           </div>
         </div>
@@ -38,6 +37,7 @@ function Statistics() {
     <>
       <h3 className={styles.title}>statistics</h3>
       <Swiper
+        modules={[Lazy, Navigation]}
         spaceBetween={50}
         slidesPerView={1}
         direction="horizontal"
@@ -50,70 +50,13 @@ function Statistics() {
         }}
       >
         <SwiperSlide>
-          <div className={styles.statistic}>
-            <img
-              src="/assets/images/home/Frame.png"
-              alt=""
-              className={styles.activeSign + 'swiper-lazy'}
-            />
-            <h3>263,731</h3>
-            <div className={styles.cotainer}>
-              <h4>players</h4>
-              <img
-                className="swiper-lazy"
-                data-src="/assets/images/home/PanelTitle_StoreItem.png"
-              />
-              <img
-                data-src="/assets/images/home/Btn_WeaponMenu_p.png"
-                alt=""
-                className="light-up"
-              />
-            </div>
-          </div>
+          <Item />
         </SwiperSlide>
         <SwiperSlide>
-          <div className={styles.statistic}>
-            <img
-              src="/assets/images/home/Frame.png"
-              alt=""
-              className={styles.activeSign + 'swiper-lazy'}
-            />
-            <h3>263,731</h3>
-            <div className={styles.cotainer}>
-              <h4>players</h4>
-              <img
-                className="swiper-lazy"
-                data-src="/assets/images/home/PanelTitle_StoreItem.png"
-              />
-              <img
-                data-src="/assets/images/home/Btn_WeaponMenu_p.png"
-                alt=""
-                className="light-up"
-              />
-            </div>
-          </div>
+          <Item />
         </SwiperSlide>
         <SwiperSlide>
-          <div className={styles.statistic}>
-            <img
-              src="/assets/images/home/Frame.png"
-              alt=""
-              className={styles.activeSign + 'swiper-lazy'}
-            />
-            <h3>263,731</h3>
-            <div className={styles.cotainer}>
-              <h4>players</h4>
-              <img
-                className="swiper-lazy"
-                data-src="/assets/images/home/PanelTitle_StoreItem.png"
-              />
-              <img
-                data-src="/assets/images/home/Btn_WeaponMenu_p.png"
-                alt=""
-                className="light-up"
-              />
-            </div>
-          </div>
+          <Item />
         </SwiperSlide>
 
         <button className={styles.swiper_button_next}>

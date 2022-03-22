@@ -1,3 +1,25 @@
+.statistics {
+  header {
+    img {
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      margin-top: -62px;
+      img {
+        display: block;
+        margin: auto;
+        width: 770px;
+      }
+      .title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+      }
+    }
+  }
+}
 .title {
   font-weight: 700;
   font-size: 24px;
@@ -18,11 +40,17 @@
     font-size: 24px;
     line-height: 29px;
     font-family: var(--font-header);
+    @media (min-width: 1024px) {
+      font-size: 36px;
+    }
   }
   .cotainer {
     position: relative;
     img {
       width: 100%;
+      @media (min-width: 1024px) {
+        height: 38.79px;
+      }
     }
     h4 {
       color: #1ad7fd;
@@ -42,6 +70,21 @@
       margin-top: -36px;
       width: 100%;
       max-width: 172px;
+      @media (min-width: 1024px) {
+        margin-top: 9px;
+      }
+    }
+  }
+  @media (min-width: 1024px) {
+    .activeSign,
+    .lightUp {
+      visibility: hidden;
+    }
+    &:hover {
+      .activeSign,
+      .lightUp {
+        visibility: initial;
+      }
     }
   }
 }

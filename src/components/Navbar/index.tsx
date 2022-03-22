@@ -34,7 +34,12 @@ const Navbar: React.FC = () => {
               className={styles.toggleMenu}
               onClick={() => setIsShowNav((prev) => !prev)}
             >
-              <Icon icon="dashicons_menu-alt" size={21} color="white"></Icon>
+              {!isShowNav && (
+                <Icon icon="dashicons_menu-alt" size={21} color="white"></Icon>
+              )}
+              {isShowNav && (
+                <Icon icon="ci_close-big" size={21} color="white"></Icon>
+              )}
             </button>
           </div>
 

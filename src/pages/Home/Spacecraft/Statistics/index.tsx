@@ -34,13 +34,20 @@ function Statistics() {
     );
   };
   return (
-    <>
+    <div className={styles.statistics}>
       <header>
         <h3 className={styles.title}>statistics</h3>
+        <picture>
+          <source
+            srcSet="/assets/images/home/组-34-1.webp"
+            media="(min-width:1024px)"
+          />
+          <img src="" alt="" />
+        </picture>
       </header>
       <Swiper
         modules={[Lazy, Navigation]}
-        spaceBetween={50}
+        spaceBetween={0}
         slidesPerView={1}
         direction="horizontal"
         effect="flip"
@@ -50,7 +57,18 @@ function Statistics() {
           nextEl: `.${styles.swiper_button_next}`,
           prevEl: `.${styles.swiper_button_prev}`,
         }}
+        breakpoints={{
+          1024: {
+            slidesPerView: 3,
+          },
+          1240: {
+            slidesPerView: 4,
+          },
+        }}
       >
+        <SwiperSlide>
+          <Item />
+        </SwiperSlide>
         <SwiperSlide>
           <Item />
         </SwiperSlide>
@@ -69,7 +87,7 @@ function Statistics() {
           <img src="/assets/images/home/Btn_Previous1_p 1.png" alt="" />
         </button>
       </Swiper>
-    </>
+    </div>
   );
 }
 

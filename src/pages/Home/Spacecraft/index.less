@@ -19,16 +19,78 @@
   main {
     transform: translateY(-1em);
     text-align: center;
+    width: 100%;
+    max-width: 1285px;
+    margin: auto;
+    @media (min-width: 1024px) {
+      transform: translateY(-277px);
+      .bet_on_spacecraft {
+        display: flex;
+        justify-content: space-between;
+        aside {
+          width: fit-content;
+        }
+      }
+    }
   }
-  .titleH3 {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    text-transform: uppercase;
-    color: #ffffff;
-    font-family: var(--font-header);
-    text-align: center;
-    margin-bottom: 15px;
+  header {
+    .titleH3 {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 17px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-family: var(--font-header);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    img {
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      position: relative;
+      .titleH3 {
+        font-size: 24px;
+        line-height: 29px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      img {
+        display: initial;
+      }
+    }
+  }
+  .bet1 {
+    @media (min-width: 1024px) {
+      header {
+        text-align: left;
+        .titleH3 {
+          left: 2em;
+        }
+      }
+      .col {
+        width: initial;
+        padding: initial;
+      }
+    }
+  }
+  .bet2 {
+    @media (min-width: 1024px) {
+      header {
+        text-align: right;
+        .titleH3 {
+          right: 2em;
+        }
+      }
+      .col {
+        width: initial;
+        padding: initial;
+      }
+      .container {
+        justify-content: end;
+      }
+    }
   }
   .container {
     display: flex;
@@ -58,6 +120,9 @@
       color: #ffffff;
       font-weight: 700;
       font-family: var(--font-header);
+      @media (min-width: 1024px) {
+        font-size: 36px;
+      }
     }
   }
   blockquote {
@@ -69,9 +134,17 @@
     color: #ffffff;
     font-family: var(--font-base);
     padding: 0 15px;
+    @media (min-width: 1024px) {
+      font-size: 18px;
+      line-height: 150%;
+    }
   }
   .img {
     max-width: 100%;
     margin: -9% auto -7%;
+    @media (min-width: 1024px) {
+      width: 580px;
+      margin-top: -152px;
+    }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import Statistics from './Statistics';
-import Footer from '../Footer';
+import Footer from './Footer';
 
 function Spacecraft() {
   const spacecraft1 = [20, 50, 100, 200, 300, 500],
@@ -11,7 +11,13 @@ function Spacecraft() {
       return (
         <div className={styles.col} key={item}>
           <div className={styles.content}>
-            <img src="/assets/images/home/IconButton11Blue_p 1.png" alt="" />
+            <picture>
+              <source
+                srcSet="/assets/images/home/IconButton11Blue_p.png"
+                media="(min-width:1024px)"
+              />
+              <img src="/assets/images/home/IconButton11Blue_p 1.png" alt="" />
+            </picture>
             <h4>{item}</h4>
           </div>
         </div>
@@ -32,14 +38,25 @@ function Spacecraft() {
           </picture>
         </div>
         <main>
-          <aside>
-            <h3 className={styles.titleH3}>bet on spacecraft#1</h3>
-            <div className={styles.container}>{listItem(spacecraft1)}</div>
-          </aside>
-          <aside>
-            <h3 className={styles.titleH3}>bet on spacecraft#2</h3>
-            <div className={styles.container}>{listItem(spacecraft2)}</div>
-          </aside>
+          <div className={styles.bet_on_spacecraft}>
+            <aside className={styles.bet1}>
+              <header>
+                <h3 className={styles.titleH3}>bet on spacecraft#1</h3>
+                <img src="/assets/images/home/Mask-group.webp" alt="" />
+              </header>
+              <div className={styles.container}>{listItem(spacecraft1)}</div>
+            </aside>
+            <aside className={styles.bet2}>
+              <header>
+                <h3 className={styles.titleH3}>bet on spacecraft#2</h3>
+                <img
+                  src="/assets/images/home/Btn_MainMenuYellow_p 2.png"
+                  alt=""
+                />
+              </header>
+              <div className={styles.container}>{listItem(spacecraft2)}</div>
+            </aside>
+          </div>
 
           <blockquote>
             The spacecraft with less GLW bet will win.

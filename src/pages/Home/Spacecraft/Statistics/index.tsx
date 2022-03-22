@@ -35,7 +35,9 @@ function Statistics() {
   };
   return (
     <>
-      <h3 className={styles.title}>statistics</h3>
+      <header>
+        <h3 className={styles.title}>statistics</h3>
+      </header>
       <Swiper
         modules={[Lazy, Navigation]}
         spaceBetween={50}

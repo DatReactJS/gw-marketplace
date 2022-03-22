@@ -40,8 +40,6 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
 
   return (
     <>
-      {children}
-
       <Dialog
         visible={visible}
         width={width}
@@ -62,6 +60,7 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
         )}
 
         {content && <div className="modal-body">{content}</div>}
+        {children}
       </Dialog>
     </>
   );

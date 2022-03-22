@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import Statistics from './Statistics';
-import Footer from './Footer';
+import Footer from '@/components/Footer';
 
 function Spacecraft() {
   const spacecraft1 = [20, 50, 100, 200, 300, 500],

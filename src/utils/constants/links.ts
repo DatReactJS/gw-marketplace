@@ -1,7 +1,7 @@
 export const links = {
   home: '/home',
   marketplace: '/',
-  STAKING: '/STAKING',
+  staking: '/staking',
   'MY INVENTORY': '/MY INVENTORY',
   document: '/document',
 };

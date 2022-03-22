@@ -2,7 +2,8 @@ export default {
   // Navbar
   'navbar.metrics': 'Metrics',
   'navbar.marketplace': 'Marketplace',
-  'navbar.home': 'Home',
+  'navbar.home': 'home',
+  'navbar.staking': 'staking',
   'navbar.wallet': 'WALLET',
 
   'navbar.info.myAccount': 'My Account',

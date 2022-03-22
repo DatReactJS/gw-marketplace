@@ -7,8 +7,8 @@ export default [
       {
         exact: true,
         path: '/',
-        component: '@/pages/Home',
-        title: 'navbar.home',
+        component: '@/pages/Staking',
+        title: 'navbar.staking',
         wrappers: ['@/components/Wrapper'],
       },
       // {

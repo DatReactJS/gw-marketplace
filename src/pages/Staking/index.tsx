@@ -1,68 +1,62 @@
 import React from 'react';
 import styles from './index.less';
 import Footer from '@/components/Footer';
+import Stake from './Stake';
+const Stakes = [
+  {
+    name: 'GLW Investors',
+    img: '/assets/images/staking/image 16.png',
+    APR: '200%',
+    min: '300',
+    lock_days: '5 days',
+    status: '1,655,301.22 / 2,000,000.00',
+  },
+  {
+    name: 'GLW lovers',
+    img: '/assets/images/staking/Layer 8 5.png',
+    APR: '200%',
+    min: '300',
+    lock_days: '5 days',
+    status: '1,655,301.22 / 2,000,000.00',
+  },
+  {
+    name: 'GLW whitelist',
+    img: '/assets/images/staking/Layer 8 3.png',
+    APR: '200%',
+    min: '300',
+    lock_days: '5 days',
+    status: '1,655,301.22 / 2,000,000.00',
+    open: false,
+  },
+];
 function Staking() {
   return (
     <div className={styles.staking}>
-      <div className={styles.bg}>
-        <img src="/assets/images/staking/bg.png" alt="" />
-      </div>
-      <header>
-        <h1>Pools</h1>
-        <img src="/assets/images/home/组-34-1.webp" alt="" />
-      </header>
-      <main>
-        <aside>
-          <div className={styles.Item}>
-            <img
-              src="/assets/images/staking/Panel_Weapon 2.png"
-              alt=""
-              className={styles.bg}
+      <div className={styles.container}>
+        <div className={styles.bg}>
+          <picture>
+            <source
+              srcSet="/assets/images/staking/bgDesktop.png"
+              media="(min-width:1024px)"
             />
-            <header>
-              <h2>GLW Investors</h2>
-              <img
-                src="/assets/images/staking/PanelTitle_Weapon 2.png"
-                alt=""
-              />
-            </header>
-            <figure>
-              <img src="/assets/images/staking/image 16.png" alt="" />
-            </figure>
-            <dl>
-              <dt>
-                <img src="/assets/images/staking/Group 198 (3).png" alt="" />
-                <span>APR:</span>
-                <span>200%</span>
-              </dt>
-              <dt>
-                <img src="/assets/images/staking/Group 198 (3).png" alt="" />
-                <span>APR:</span>
-                <span>200%</span>
-              </dt>
-              <dt>
-                <img src="/assets/images/staking/Group 198 (3).png" alt="" />
-                <span>APR:</span>
-                <span>200%</span>
-              </dt>
-              <dt>
-                <img src="/assets/images/staking/Group 198 (3).png" alt="" />
-                <span>APR:</span>
-                <span>200%</span>
-              </dt>
-            </dl>
-
-            <button className={styles.stake}>
-              <img
-                src="/assets/images/staking/Btn_Rectangle04Yellow_n 1.png"
-                alt=""
-              />
-              <span>stake</span>
-            </button>
-          </div>
-        </aside>
-      </main>
-      <Footer />
+            <img src="/assets/images/staking/bg.png" alt="" />
+          </picture>
+        </div>
+        <header>
+          <h1>Pools</h1>
+          <img src="/assets/images/home/组-34-1.webp" alt="" />
+        </header>
+        <main className={styles.main}>
+          {Stakes.map((item) => {
+            return (
+              <aside key={item.name}>
+                <Stake {...item} />
+              </aside>
+            );
+          })}
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

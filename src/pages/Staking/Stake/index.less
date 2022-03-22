@@ -1,0 +1,112 @@
+.stake {
+  padding-top: 134%;
+  position: relative;
+  .bgCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  & > header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    @media (min-width: 1024px) {
+      top: 30px;
+    }
+    img {
+      width: auto;
+      height: auto;
+    }
+    & > h2 {
+      white-space: nowrap;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-family: var(--font-header);
+    }
+  }
+  & > main {
+    position: absolute;
+    top: 21%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%);
+    padding: 0 36px;
+    @media (min-width: 1024px) {
+      top: 24%;
+      padding: 0 56px;
+    }
+    figure {
+      text-align: center;
+    }
+    dl {
+      dt {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid #082657;
+        padding-bottom: 4px;
+        margin-bottom: 4px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        img {
+          margin-right: 4px;
+        }
+        span {
+          margin-left: 0;
+          margin-right: auto;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          color: #1ad7fd;
+          font-family: var(--font-base);
+          &:last-child {
+            color: #ffffff;
+            margin-left: auto;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  & > .stake_btn {
+    position: absolute;
+    border: none;
+    background: none;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    @media (min-width: 1024px) {
+      transform: translate(-50%, -12%);
+    }
+    &.stakeClose {
+      img {
+        filter: grayscale(100%);
+      }
+    }
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 22px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-family: var(--font-header);
+    }
+  }
+}
